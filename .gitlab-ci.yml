@@ -1,2 +1,5 @@
+variables:
+  NOMAD__HOSTNAME: 'tracey.dev.archive.org'
+
 include:
   - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
