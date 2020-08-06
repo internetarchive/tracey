@@ -7,10 +7,10 @@
 import http from 'http'
 import { createReadStream } from 'fs'
 
-const TITLE = 'Tracey'
+const TITLE = 'tracey likes to dev'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
-  Talks: [{
+  Presentations: [{
     slug: 'gitlab-commit',
     title: 'GitLab Commit 2020',
     img: '48_IG_Wall.png',
