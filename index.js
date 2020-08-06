@@ -8,12 +8,28 @@ import http from 'http'
 import { createReadStream } from 'fs'
 
 const TITLE = 'Tracey'
-const SLIDES = 'https://archive.org/~tracey/slides'
+const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
-  talks: [{
+  Talks: [{
     slug: 'gitlab-commit',
     title: 'GitLab Commit 2020',
     img: '48_IG_Wall.png',
+    descrip: 'Simple CI/CD with GitLab + Nomad',
+  }, {
+    slug: 'kubecon',
+    title: 'KubeCon 2018 - Seattle',
+    img: 'kubecon.jpg',
+    descrip: 'Migrating Internet Archive to Kubernetes',
+  }, {
+    slug: 'mozfest17',
+    title: 'MozFest 2017 - London',
+    img: 'mozfest17.jpg',
+    descrip: 'TV Archives cracked Open "AI for IA" -- Artificial Intelligence for Internet Archive',
+  }, {
+    slug: 'demuxed-third-eye',
+    title: 'Demuxed 2018 - San Francisco',
+    img: 'https://archive.org/download/third-eye/third-eye.png',
+    descrip: 'Third Eye - tweeting TV text overlays.  CNN MSNBC FOXNEWS BBCNEWS.  (chyrons / lower thirds)',
   },
   ],
 }
@@ -40,25 +56,25 @@ function markup_pre() {
 <head>
   <meta charset="UTF-8">
   <meta property="title" content="${TITLE}">
-  <link href="/services/clusters/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <style>
-.groups {
+.list {
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
   align-items: top;
 }
 h2 {
   margin-top: 75px;
 }
-h2 img {
-  max-width: 50px;
-  max-height: 50px;
+.card {
+  text-align: center;
 }
-.groups li {
-  list-style-type: none;
+.card img {
+  max-width: 250px;
+  max-height: 250px;
 }
-.groups a {
+.card a {
   display: block;
 }
   </style>
@@ -72,22 +88,25 @@ h2 img {
 }
 
 
-async function markup() {
+function markup() {
   let str = ''
-  for (const [header, group] of Object.entries(ME)) {
+
+  for (const [header, list] of Object.entries(ME)) {
     str += `
 <h2>${header}</h2>
-<div class="groups">`
+<div class="list">`
 
-    for (const [project] of group) {
+    for (const card of list) {
       str += `
         <div class="card card-body bg-light">
-          <a href="${SLIDES}${group.slug}">
-            <img src="${group.img}"/>
+          <a href="${SLIDES}${card.slug}">
+            <img src="${card.img}"/>
           </a>
           <h3>
-            <a href="${SLIDES}${group.slug}">${project.title}</a>
-          </h3>`
+            <a href="${SLIDES}${card.slug}">${card.title}</a>
+          </h3>
+          ${card.descrip || ''}
+        </div>`
     }
 
     str += '</div>'
