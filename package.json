@@ -1,0 +1,26 @@
+{
+  "name": "tracey",
+  "description": "pointers to slides/talks and projects",
+  "author": "tracey",
+  "license": "AGPL-3.0",
+  "type": "module",
+  "browserslist": [
+    "> 1%"
+  ],
+  "dependencies": {
+    "bootstrap": "",
+    "supervisor": ""
+  },
+  "devDependencies": {
+    "//": [
+      "v7.3.0 is broken for 'no-cycle' and lint"
+    ],
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "",
+    "eslint-plugin-compat": "",
+    "eslint-plugin-import": ""
+  },
+  "scripts": {
+    "test": "eslint ."
+  }
+}
