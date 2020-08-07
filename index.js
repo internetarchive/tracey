@@ -32,6 +32,11 @@ const ME = {
     img: 'https://archive.org/download/third-eye/third-eye.png',
     descrip: 'Third Eye - tweeting TV text overlays.  CNN MSNBC FOXNEWS BBCNEWS.  (chyrons / lower thirds)',
   }, {
+    slug: 'demuxed-webamp',
+    title: 'Demuxed 2018 - San Francisco',
+    img: 'webamp.jpg',
+    descrip: 'WebAmp Lightning Talk (WinAmp in JS)',
+  }, {
     href: 'https://www.youtube.com/watch?v=0gVOlDDg4z4',
     title: 'Demuxed 2016 - San Francisco',
     img: 'popcorn.jpg',
