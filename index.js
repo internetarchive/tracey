@@ -16,11 +16,22 @@ const ME = {
     img: '48_IG_Wall.png',
     descrip: 'Simple CI/CD with GitLab + Nomad',
   }, {
-    slug: 'kubecon',
+    slug: 'aaron-swartz-day-2019',
+    title: 'Aaron Swartz Day 2019',
+    img: 'aaron.jpg',
+    descrip: 'Internet Archive - Pods & Pods - ++diversity',
+  }, {
+    href: 'https://www.youtube.com/watch?v=rzgKDdFTEmQ',
+    slides: 'https://archive.org/~tracey/slides/kubecon',
     title: 'KubeCon 2018 - Seattle',
     img: 'kubecon.jpg',
-    descrip: `Migrating Internet Archive to Kubernetes
-      <br><b><a href="https://www.youtube.com/watch?v=rzgKDdFTEmQ">Video 📺</a></b>`,
+    descrip: 'Migrating Internet Archive to Kubernetes',
+  }, {
+    slug: 'auto-devops',
+    title: 'Internet Archive Engineering 2018 - San Francisco',
+    img: 'https://archive.org/~tracey/slides/auto-devops/devops-loop-and-spans-small-490x227.png',
+    descrip: `GitLab 'Auto DevOps' Changes Everything<br>
+      Dev & Ops Harmony - Confessions of a middle child`,
   }, {
     slug: 'mozfest17',
     title: 'MozFest 2017 - London',
@@ -32,20 +43,21 @@ const ME = {
     img: 'https://archive.org/download/third-eye/third-eye.png',
     descrip: 'Third Eye - tweeting TV text overlays.  CNN MSNBC FOXNEWS BBCNEWS.  (chyrons / lower thirds)',
   }, {
-    slug: 'demuxed-webamp',
+    href: 'https://www.youtube.com/watch?v=LSoWf3E-IPo',
+    slides: 'https://archive.org/~tracey/slides/demuxed-webamp',
     title: 'Demuxed 2018 - San Francisco',
     img: 'webamp.jpg',
-    descrip: 'WebAmp Lightning Talk (WinAmp in JS)',
+    descrip: 'WebAmp Lightning Talk [WinAmp in JS]<i>(and i tell bad jokes)</i>',
   }, {
     href: 'https://www.youtube.com/watch?v=0gVOlDDg4z4',
+    slides: 'https://docs.google.com/presentation/d/1UfyTmXhe39EohAZxS_lktnqspF5uwV4_QsQsT7AoRbs/edit?ts=57fe4fc0#slide=id.g1840168ce8_2_0',
     title: 'Demuxed 2016 - San Francisco',
     img: 'popcorn.jpg',
-    descrip: `Tracey Jaquith - Popcorn Reborn! Open Video Editor from Mozilla
-      <br><b><a href="https://docs.google.com/presentation/d/1UfyTmXhe39EohAZxS_lktnqspF5uwV4_QsQsT7AoRbs/edit?ts=57fe4fc0#slide=id.g1840168ce8_2_0">Slides 📰</a></b>`,
+    descrip: 'Tracey Jaquith - Popcorn Reborn! Open Video Editor from Mozilla',
   },
   ],
-  // https://github.com/traceypooh/textAV
-  // https://www.slideshare.net/tracey_pooh/presentations
+  // xxxx https://github.com/traceypooh/textAV
+  // xxxx https://www.slideshare.net/tracey_pooh/presentations
 }
 
 /**
@@ -98,6 +110,7 @@ h2 {
 <div class="container" style="width:98%; max-width:98%">
 
 <h1>${TITLE}</h1>
+👆 <i><b> expert plastic square presser</b></i>
 `
 }
 
@@ -121,6 +134,7 @@ function markup() {
             <a href="${href}">${card.title}</a>
           </h3>
           ${card.descrip || ''}
+          ${card.slides ? `<b><a href="${card.slides}">Slides 📰</a></b>` : ''}
         </div>`
     }
 
