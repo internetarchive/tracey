@@ -7,16 +7,18 @@
 import http from 'http'
 import { createReadStream } from 'fs'
 
-const TITLE = 'tracey likes to dev'
+const TITLE = 'tracey likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   Presentations: [{
-    slug: 'gitlab-commit',
+    href: 'https://www.youtube.com/watch?v=6mAmH_-HCxg',
+    slides: 'https://archive.org/~tracey/slides/gitlab-commit',
     title: 'GitLab Commit 2020',
     img: '48_IG_Wall.png',
     descrip: 'Simple CI/CD with GitLab + Nomad',
   }, {
-    slug: 'aaron-swartz-day-2019',
+    href: 'https://www.youtube.com/watch?v=3g8VmHQux6s',
+    slides: 'https://archive.org/~tracey/slides/aaron-swartz-day-2019',
     title: 'Aaron Swartz Day 2019',
     img: 'aaron.jpg',
     descrip: 'Internet Archive - Pods & Pods - ++diversity',
@@ -27,7 +29,8 @@ const ME = {
     img: 'kubecon.jpg',
     descrip: 'Migrating Internet Archive to Kubernetes',
   }, {
-    slug: 'auto-devops',
+    href: 'https://archive.org/details/auto-devops',
+    slides: 'https://archive.org/~tracey/slides/auto-devops',
     title: 'Internet Archive Engineering 2018 - San Francisco',
     img: 'https://archive.org/~tracey/slides/auto-devops/devops-loop-and-spans-small-490x227.png',
     descrip: `GitLab 'Auto DevOps' Changes Everything<br>
