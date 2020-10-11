@@ -36,11 +36,6 @@ const ME = {
     descrip: `GitLab 'Auto DevOps' Changes Everything<br>
       Dev & Ops Harmony - Confessions of a middle child`,
   }, {
-    slug: 'mozfest17',
-    title: 'MozFest 2017 - London',
-    img: 'mozfest17.jpg',
-    descrip: 'TV Archives cracked Open "AI for IA" -- Artificial Intelligence for Internet Archive',
-  }, {
     slug: 'demuxed-third-eye',
     title: 'Demuxed 2018 - San Francisco',
     img: 'https://archive.org/download/third-eye/third-eye.png',
@@ -51,6 +46,11 @@ const ME = {
     title: 'Demuxed 2018 - San Francisco',
     img: 'webamp.jpg',
     descrip: 'WebAmp Lightning Talk [WinAmp in JS]<i>(and i tell bad jokes)</i>',
+  }, {
+    slug: 'mozfest17',
+    title: 'MozFest 2017 - London',
+    img: 'mozfest17.jpg',
+    descrip: 'TV Archives cracked Open "AI for IA" -- Artificial Intelligence for Internet Archive',
   }, {
     href: 'https://www.youtube.com/watch?v=0gVOlDDg4z4',
     slides: 'https://docs.google.com/presentation/d/1UfyTmXhe39EohAZxS_lktnqspF5uwV4_QsQsT7AoRbs/edit?ts=57fe4fc0#slide=id.g1840168ce8_2_0',
