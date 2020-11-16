@@ -11,7 +11,8 @@ const TITLE = 'tracey likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   Presentations: [{
-    slug: 'aaron-swartz-day-2020',
+    href: 'https://youtu.be/L7_endXVkHY?t=2084',
+    slides: 'https://archive.org/~tracey/slides/aaron-swartz-day-2020',
     title: 'Aaron Swartz Day 2020',
     img: 'aaron2.jpg',
     descrip: 'Processing Hype Project 🚀<br> (It\'s not PHP ;-)<br> Modern JS and Serverless processing',
