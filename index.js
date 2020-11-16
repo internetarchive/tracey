@@ -143,7 +143,7 @@ function markup() {
             <a href="${href}">${card.title}</a>
           </h3>
           ${card.descrip || ''}
-          ${card.slides ? `<b><a href="${card.slides}">Slides 📰</a></b>` : ''}
+          ${card.slides ? `<b><a href="${card.slides}">SLIDES 📰</a></b>` : ''}
         </div>`
     }
 
