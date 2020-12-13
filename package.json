@@ -12,10 +12,7 @@
     "supervisor": ""
   },
   "devDependencies": {
-    "//": [
-      "v7.3.0 is broken for 'no-cycle' and lint"
-    ],
-    "eslint": "7.2.0",
+    "eslint": "",
     "eslint-config-airbnb-base": "",
     "eslint-plugin-compat": "",
     "eslint-plugin-import": ""
