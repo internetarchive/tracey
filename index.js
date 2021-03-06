@@ -129,7 +129,7 @@ h2 {
 
 <p>
   <i>
-    (coming soon: DevOps Training 🚂 sessions -
+    (coming soon: DevOps Training 🚂  sessions -
     <a href="https://archive.org/~tracey/slides/devops/">preview</a>)
   </i>
 </p>
