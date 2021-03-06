@@ -10,7 +10,7 @@ import { createReadStream } from 'fs'
 const TITLE = 'tracey likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
-  Presentations: [{
+  'Tracey Jaquith Presentations': [{
     href: 'coming-soon',
     slides: 'https://archive.org/~tracey/slides/hashitalks',
     title: 'HashiTalks 2021',
@@ -126,6 +126,13 @@ h2 {
 
 <h1>${TITLE}</h1>
 👆 <i><b> expert plastic square presser</b></i>
+
+<p>
+  <i>
+    (coming soon: DevOps Training 🚂 sessions -
+    <a href="https://archive.org/~tracey/slides/devops/">preview</a>)
+  </i>
+</p>
 `
 }
 
