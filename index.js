@@ -11,7 +11,7 @@ const TITLE = 'tracey likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   'Tracey Jaquith Presentations': [{
-    href: 'coming-soon',
+    href: 'https://www.hashicorp.com/resources/gitlab-nomad-gitops-internet-archive-migrated-from-kubernetes-nomad-consul',
     slides: 'https://archive.org/~tracey/slides/hashitalks',
     title: 'HashiTalks 2021',
     img: 'hashitalks.png',
