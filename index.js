@@ -11,21 +11,24 @@ const TITLE = 'tracey likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   'Tracey Jaquith Presentations': [{
-    slug: 'nomad',
+    href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=0',
+    slides: 'https://archive.org/~tracey/slides/nomad',
     title: 'Moving archive.org from Kubernetes to Nomad',
     img: 'https://archive.org/~tracey/slides/nomad/deploys.jpg',
     descrip: 'What is Orchestration?  How do Containers help?  How did we move Kubernetes to Nomad using GitLab plus a single templated common job file?',
-  },{
-    slug: 'derive-speedups',
+  }, {
+    href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=1057',
+    slides: 'https://archive.org/~tracey/slides/derive-speedups',
     title: 'Deriver (Item Processing) Speedups',
     img: 'https://media.giphy.com/media/11CGJUWW1TqnHW/source.gif',
     descrip: 'Speeding up item processing at archive.org.  GPUs, single-pass mp4 processing, serverless deriving with arbitrary containers, and more!',
-  },{
-    slug: 'word-salad',
+  }, {
+    href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=1734',
+    slides: 'https://archive.org/~tracey/slides/word-salad',
     title: 'Word Salad - a word game',
     img: 'https://archive.org/~tracey/slides/word-salad/screenshot.jpg',
     descrip: 'I made a NY Times Spelling Bee knock-off game.  What can you do with 7 letters? 😺',
-  },{
+  }, {
     href: 'https://www.hashicorp.com/resources/gitlab-nomad-gitops-internet-archive-migrated-from-kubernetes-nomad-consul',
     slides: 'https://archive.org/~tracey/slides/hashitalks',
     title: 'HashiTalks 2021',
