@@ -10,7 +10,7 @@ import { createReadStream } from 'fs'
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
-  'Tracey Jaquith Presentations': [{
+  'Presentations & Talks': [{
     href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=0',
     slides: 'https://archive.org/~tracey/slides/nomad',
     title: 'Moving archive.org from Kubernetes to Nomad',
