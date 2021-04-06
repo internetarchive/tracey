@@ -7,7 +7,7 @@
 import http from 'http'
 import { createReadStream } from 'fs'
 
-const TITLE = 'tracey likes to dev 🐋'
+const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   'Tracey Jaquith Presentations': [{
