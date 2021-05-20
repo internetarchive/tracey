@@ -29,6 +29,30 @@ const ME = {
     img: 'https://archive.org/~tracey/slides/word-salad/screenshot.jpg',
     descrip: 'I made a NY Times Spelling Bee knock-off game.  What can you do with 7 letters? 😺',
   }, {
+    href: 'https://archive.org/details/devops-gitlab-nomad-cicd-from-scratch--part1of2',
+    slides: 'https://archive.org/~tracey/slides/devops/2021-03-31',
+    title: '[1/2] Setup GitLab, Nomad, Consul & Fabio',
+    img: 'https://archive.org/download/devops-gitlab-nomad-cicd-from-scratch--part1of2/devops-gitlab-nomad-cicd-from-scratch--part1of2_itemimage.png',
+    descrip: '🚂  DevOps Training: part 1 of 2: Build up GitLab (via Docker omnibus) + basic & secure Nomad & Consul pair of daemons, towards full CI/CD pipelines, on Digital Ocean'
+  }, {
+    href: 'https://archive.org/details/devops-gitlab-nomad-cicd-from-scratch--part2of2',
+    slides: 'https://archive.org/~tracey/slides/devops/2021-04-07',
+    title: '[2/2] Add GitLab Runner & Setup full CI/CD pipelines',
+    img: 'https://archive.org/download/devops-gitlab-nomad-cicd-from-scratch--part2of2/devops-gitlab-nomad-cicd-from-scratch--part2of2_itemimage.jpg',
+    descrip: '🚂  DevOps Training: part 2 of 2: setup GitLab Runner and tie everything together to get full end-to-end CI/CD pipelines working cleanly'
+  }, {
+    href: 'https://archive.org/~tracey/slides/devops/2021-02-17',
+    slides: 'https://archive.org/~tracey/slides/devops/2021-02-17',
+    title: 'setup GitLab, Nomad, Consul & GitLab Runner on your Mac/laptop',
+    img: 'gitlab-runner.jpg',
+    descrip: '🚂  DevOps Training: 3 part series: <a href="https://archive.org/~tracey/slides/devops/2021-02-17">[1/3] Setup GitLab & GitLab Runner on Mac</a> <a href="https://archive.org/~tracey/slides/devops/2021-02-24">[2/3] Setup Nomad & Consul</a> <a href="https://archive.org/~tracey/slides/devops/2021-03-10">[3/3] connect everything</a>'
+  }, {
+    href: 'https://archive.org/~tracey/slides/devops/2021-02-03',
+    slides: 'https://archive.org/~tracey/slides/devops/2021-02-03',
+    title: 'Create a webapp on GitLab',
+    img: 'create-webapp.jpg',
+    descrip: '🚂  DevOps Training: hands on webapp creation, start to finish, full CI/CD pipelines'
+  }, {
     href: 'https://www.hashicorp.com/resources/gitlab-nomad-gitops-internet-archive-migrated-from-kubernetes-nomad-consul',
     slides: 'https://archive.org/~tracey/slides/hashitalks',
     title: 'HashiTalks 2021',
@@ -144,13 +168,6 @@ h2 {
 
 <h1>${TITLE}</h1>
 👆 <i><b> expert plastic square presser</b></i>
-
-<p>
-  <i>
-    (coming soon: DevOps Training 🚂  sessions -
-    <a href="https://archive.org/~tracey/slides/devops/">preview</a>)
-  </i>
-</p>
 `
 }
 
