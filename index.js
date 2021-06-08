@@ -15,7 +15,7 @@ const ME = {
     // slides: 'https://archive.org/~tracey/slides/hashiconf',
     slug: 'hashiconf',
     title: 'HashiConf Europe 2021',
-    img: 'https://archive.org/~tracey/slides/hashiconf/welcome.jpg',
+    img: 'hashiconf.jpg',
     descrip: 'GitLab + Nomad = A Dream Come True<hr><a href="https://twitter.com/HashiCorp/status/1400845639009906693">☀️ (cute!) TEASER VIDEO 🌲</a><hr>',
   }, {
     href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=0',
