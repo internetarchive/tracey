@@ -11,6 +11,13 @@ const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   'Presentations & Talks': [{
+    // href: 'xxx once youtube up; link to it; uncomment next & drop "slug"',
+    // slides: 'https://archive.org/~tracey/slides/hashiconf',
+    slug: 'hashiconf',
+    title: 'HashiConf Europe 2021',
+    img: 'https://archive.org/~tracey/slides/hashiconf/welcome.jpg',
+    descrip: 'GitLab + Nomad = A Dream Come True<hr><a href="https://twitter.com/HashiCorp/status/1400845639009906693">☀️ (cute!) TEASER VIDEO 🌲</a><hr>',
+  }, {
     href: 'https://archive.org/details/tracey-jaquith-kubernetes-to-nomad?start=0',
     slides: 'https://archive.org/~tracey/slides/nomad',
     title: 'Moving archive.org from Kubernetes to Nomad',
@@ -90,6 +97,7 @@ const ME = {
     descrip: `GitLab 'Auto DevOps' Changes Everything<br>
       Dev & Ops Harmony - Confessions of a middle child`,
   }, {
+    // talk w/o video
     slug: 'demuxed-third-eye',
     title: 'Demuxed 2018 - San Francisco',
     img: 'https://archive.org/download/third-eye/third-eye.png',
@@ -209,7 +217,8 @@ http.createServer((req, res) => {
     .slice(1) // nix lead /
     .replace(/^services\/clusters\//, '') // sigh - current way paths are proxy-passed to us
 
-  if (file === 'node_modules/bootstrap/dist/css/bootstrap.min.css') {
+  if (file === 'node_modules/bootstrap/dist/css/bootstrap.min.css' ||
+      file === 'node_modules/bootstrap/dist/css/bootstrap.min.css.map') {
     type = 'text/css'
   } else if (file.endsWith('.jpg')) {
     type = 'image/jpg'
@@ -235,6 +244,8 @@ http.createServer((req, res) => {
   // static file - send it directly out
   alog(file)
   res.writeHead(200, { 'Content-Type': type })
-
-  createReadStream(file).pipe(res)
+  try {
+    createReadStream(file).pipe(res)
+  } catch (e) {
+  }
 }).listen(5000)
