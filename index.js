@@ -10,10 +10,13 @@ import { createReadStream } from 'fs'
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
+  // When updating a "slides only" w/ a new video link:
+  //   [add] href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
+  //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
+  //   [drop] slug
   'Presentations & Talks': [{
-    // href: 'xxx once youtube up; link to it; uncomment next & drop "slug"',
-    // slides: 'https://archive.org/~tracey/slides/hashiconf',
-    slug: 'hashiconf',
+    href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
+    slides: 'https://archive.org/~tracey/slides/hashiconf',
     title: 'HashiConf Europe 2021',
     img: 'hashiconf.jpg',
     descrip: 'GitLab + Nomad = A Dream Come True<hr><a href="https://twitter.com/HashiCorp/status/1400845639009906693">☀️ (cute!) TEASER VIDEO 🌲</a><hr>',
