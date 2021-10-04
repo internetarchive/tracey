@@ -15,6 +15,12 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    slug: 'demuxed',
+    slides: 'https://archive.org/~tracey/slides/demuxed',
+    title: 'Demuxed 2021',
+    img: 'demuxed.jpg',
+    descrip: '30,000 fps nginx - To Russia with Love<hr>Working a patch upstream to nginx mp4 module for exact start/end lossless server-side mp4 clipping<hr><a href="https://2021.demuxed.com/">Demuxed 2021</a>',
+  }, {
     href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
     slides: 'https://archive.org/~tracey/slides/hashiconf',
     title: 'HashiConf Europe 2021',
