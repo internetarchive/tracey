@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run --location https://word-salad.archive.org --unstable --no-check
+#!/usr/bin/env -S deno run --location https://word-salad.archive.org --unstable --no-check --allow-read --allow-net
 
 /**
  * Our little web server
@@ -148,7 +148,7 @@ function markup_pre() {
 <head>
   <meta charset="UTF-8">
   <meta property="title" content="${TITLE}">
-  <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  <link href="https://esm.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <style>
 .list {
   display: grid;
