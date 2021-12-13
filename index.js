@@ -1,12 +1,10 @@
-#!/usr/bin/env -S deno run --location https://word-salad.archive.org --unstable --no-check --allow-read --allow-net
+#!/usr/bin/env -S deno run --location https://tracey.dev.archive.org --unstable --no-check --allow-read --allow-net
 
 /**
  * Our little web server
  */
 
 import main from 'https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts'
-
-/* eslint-disable no-console */
 
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
