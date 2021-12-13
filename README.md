@@ -1,3 +1,1 @@
-# tracey
-
-pointers to slides/talks and projects
+main Sun Dec 12 18:03:11 PST 2021
