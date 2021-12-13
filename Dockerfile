@@ -1,22 +1,15 @@
-FROM node:alpine
-MAINTAINER tracey
+# syntax=docker/dockerfile:1.2
+# https://docs.docker.com/develop/develop-images/build_enhancements/#overriding-default-frontends
 
-EXPOSE 80 5000
+FROM denoland/deno:alpine
 
-RUN apk add jq zsh git colordiff
+LABEL maintainers=tracey
 
-RUN mkdir -m777 /app/
-
-# dont run as root
-USER node
+EXPOSE 5000
 
 WORKDIR /app/
+COPY . .
 
-# add JS source code and npm pkgs we use
-COPY . /app/
-RUN npm install
-RUN ln -s  /app/zshrc     /home/node/.zshrc  &&  \
-    ln -s  /app/aliases   /home/node/.aliases
+USER deno
 
-# when this container is invoked like "docker exec .." this is what that will run
-CMD [ "./node_modules/.bin/supervisor", ".", "index.js" ]
+CMD [ "./index.js", "-p", "5000", "--no-dotfiles", "--no-dir-listing" ]

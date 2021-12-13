@@ -1,11 +1,12 @@
+#!/usr/bin/env -S deno run --location https://word-salad.archive.org --unstable --no-check
+
 /**
- * Main node web server
+ * Our little web server
  */
 
-/* eslint-disable no-console */
+import main from 'https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts'
 
-import http from 'http'
-import { createReadStream } from 'fs'
+/* eslint-disable no-console */
 
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
@@ -49,25 +50,25 @@ const ME = {
     slides: 'https://archive.org/~tracey/slides/devops/2021-03-31',
     title: '[1/2] Setup GitLab, Nomad, Consul & Fabio',
     img: 'https://archive.org/download/devops-gitlab-nomad-cicd-from-scratch--part1of2/devops-gitlab-nomad-cicd-from-scratch--part1of2_itemimage.png',
-    descrip: '🚂  DevOps Training: part 1 of 2: Build up GitLab (via Docker omnibus) + basic & secure Nomad & Consul pair of daemons, towards full CI/CD pipelines, on Digital Ocean'
+    descrip: '🚂  DevOps Training: part 1 of 2: Build up GitLab (via Docker omnibus) + basic & secure Nomad & Consul pair of daemons, towards full CI/CD pipelines, on Digital Ocean',
   }, {
     href: 'https://archive.org/details/devops-gitlab-nomad-cicd-from-scratch--part2of2',
     slides: 'https://archive.org/~tracey/slides/devops/2021-04-07',
     title: '[2/2] Add GitLab Runner & Setup full CI/CD pipelines',
     img: 'https://archive.org/download/devops-gitlab-nomad-cicd-from-scratch--part2of2/devops-gitlab-nomad-cicd-from-scratch--part2of2_itemimage.jpg',
-    descrip: '🚂  DevOps Training: part 2 of 2: setup GitLab Runner and tie everything together to get full end-to-end CI/CD pipelines working cleanly'
+    descrip: '🚂  DevOps Training: part 2 of 2: setup GitLab Runner and tie everything together to get full end-to-end CI/CD pipelines working cleanly',
   }, {
     href: 'https://archive.org/~tracey/slides/devops/2021-02-17',
     slides: 'https://archive.org/~tracey/slides/devops/2021-02-17',
     title: 'setup GitLab, Nomad, Consul & GitLab Runner on your Mac/laptop',
     img: 'gitlab-runner.jpg',
-    descrip: '🚂  DevOps Training: 3 part series: <a href="https://archive.org/~tracey/slides/devops/2021-02-17">[1/3] Setup GitLab & GitLab Runner on Mac</a> <a href="https://archive.org/~tracey/slides/devops/2021-02-24">[2/3] Setup Nomad & Consul</a> <a href="https://archive.org/~tracey/slides/devops/2021-03-10">[3/3] connect everything</a>'
+    descrip: '🚂  DevOps Training: 3 part series: <a href="https://archive.org/~tracey/slides/devops/2021-02-17">[1/3] Setup GitLab & GitLab Runner on Mac</a> <a href="https://archive.org/~tracey/slides/devops/2021-02-24">[2/3] Setup Nomad & Consul</a> <a href="https://archive.org/~tracey/slides/devops/2021-03-10">[3/3] connect everything</a>',
   }, {
     href: 'https://archive.org/~tracey/slides/devops/2021-02-03',
     slides: 'https://archive.org/~tracey/slides/devops/2021-02-03',
     title: 'Create a webapp on GitLab',
     img: 'create-webapp.jpg',
-    descrip: '🚂  DevOps Training: hands on webapp creation, start to finish, full CI/CD pipelines'
+    descrip: '🚂  DevOps Training: hands on webapp creation, start to finish, full CI/CD pipelines',
   }, {
     href: 'https://www.hashicorp.com/resources/gitlab-nomad-gitops-internet-archive-migrated-from-kubernetes-nomad-consul',
     slides: 'https://archive.org/~tracey/slides/hashitalks',
@@ -132,15 +133,6 @@ const ME = {
   ],
   // xxxx https://github.com/traceypooh/textAV
   // xxxx https://www.slideshare.net/tracey_pooh/presentations
-}
-
-/**
- * Outputs nice micro access.log like entry
- * @param string file  File being served
- * @param int code  HTTP status code
- */
-function alog(file, code = 200) {
-  console.log(`${new Date().toISOString().slice(0, 19).replace(/T/, ' ')} ${code} /${file || ''}`)
 }
 
 
@@ -220,41 +212,18 @@ function markup() {
 
 
 // Main web server
-http.createServer((req, res) => {
-  let type = 'text/html'
-  const file = req.url
-    .slice(1) // nix lead /
-    .replace(/^services\/clusters\//, '') // sigh - current way paths are proxy-passed to us
+main((req) => {
+  const headers = new Headers()
+  headers.append('content-type', 'text/html')
 
-  if (file === 'node_modules/bootstrap/dist/css/bootstrap.min.css' ||
-      file === 'node_modules/bootstrap/dist/css/bootstrap.min.css.map') {
-    type = 'text/css'
-  } else if (file.endsWith('.jpg')) {
-    type = 'image/jpg'
-  } else if (file.endsWith('.png')) {
-    type = 'image/png'
-  } else if (file.endsWith('.svg')) {
-    type = 'image/svg'
-  } else if (file === 'favicon.ico') {
-    type = 'image/x-icon'
-  } else if (file === '') {
-    alog()
-    res.writeHead(200)
-    res.end(markup_pre().concat(markup()))
-    return
-  } else {
-    alog(file, 404)
-    res.writeHead(404)
-    res.end(`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body>
-            🇫🇷 Merde, il n'y a rien ici! - Corentin`)
-    return
-  }
+  const url = new URL(req.url)
 
-  // static file - send it directly out
-  alog(file)
-  res.writeHead(200, { 'Content-Type': type })
-  try {
-    createReadStream(file).pipe(res)
-  } catch (e) {
-  }
-}).listen(5000)
+  if (url.pathname === '/')
+    return Promise.resolve(new Response(markup_pre().concat(markup()), { status: 200, headers }))
+
+  return Promise.resolve(new Response(
+    `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body>
+    🇫🇷 Merde, il n'y a rien ici! - Corentin`,
+    { status: 404, headers },
+  ))
+})

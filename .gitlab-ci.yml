@@ -3,3 +3,15 @@ variables:
 
 include:
   - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+
+build:
+  # kill docker-in-docker
+  services:
+  before_script:
+    - export DOCKER_BUILDKIT=1
+
+lint:
+  image: registry.gitlab.com/internetarchive/eslint/main
+  stage: test
+  script:
+    - /app/lint
