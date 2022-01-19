@@ -166,6 +166,7 @@ h2 {
 }
 .card a {
   display: block;
+  text-decoration: none;
 }
   </style>
 </head>
