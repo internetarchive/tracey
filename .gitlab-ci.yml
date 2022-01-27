@@ -1,5 +1,5 @@
 variables:
-  NOMAD_VAR_HOSTNAMES: '["tracey.dev.archive.org"]'
+  NOMAD_VAR_HOSTNAMES: '["tracey.archive.org", "tracey.dev.archive.org"]'
 
 include:
   - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
