@@ -14,6 +14,12 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    slug: 'hashitalks-2022',
+    slides: 'https://archive.org/~tracey/slides/hashitalks-2022',
+    title: 'HashiTalks 2022',
+    img: 'hashitalks-2022.jpg',
+    descrip: 'Nomad the Easy Way - Creating GitHub & GitLab Pipelines in Minutes<hr><i>(also pre-announcing<br> <a style="display:inline" href="https://github.com/internetarchive/hind">HinD - Hashistack-in-Docker</a>)</i>',
+  }, {
     slug: 'demuxed',
     slides: 'https://archive.org/~tracey/slides/demuxed',
     title: 'Demuxed 2021',
