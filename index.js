@@ -20,11 +20,22 @@ const ME = {
     img: 'hashitalks-2022.jpg',
     descrip: 'Nomad the Easy Way - Creating GitHub & GitLab Pipelines in Minutes<hr><i>(also pre-announcing<br> <a style="display:inline" href="https://github.com/internetarchive/hind">HinD - Hashistack-in-Docker</a>)</i>',
   }, {
-    slug: 'demuxed',
+    href: 'https://www.youtube.com/watch?v=LAL5js2vl0E&t=5192s',
+    slides: 'https://github.com/traceypooh/multi-line-chart',
+    title: 'Aaron Swartz Day 2021',
+    img: 'aaron.jpg',
+    descrip: 'How a Denosaur 🦕 is making it so Everyone Can Code.<br>Aaron wanted to democratize everything - power to everyone.  I live code a single JS file & fun graph visualization of archive.org live concerts, and how anyone can code with zero setup.',
+  }, {
+    href: 'https://www.youtube.com/watch?v=pzMlOtrhEwc&t=786s',
+    img: 'https://archive.org/download/internet-archive-25th-anniversary-event/internet-archive-25th-anniversary-event.thumbs/Internet%20Archive%2025th%20Anniversary%20102121_000001.jpg',
+    title: 'Internet Archive 25th Anniversary',
+    descrip: 'As founding coder of Internet Archive, I get to emcee our 25th Anniversary Celebration at our San Francisco Headquarters!',
+  }, {
+    href: 'https://www.youtube.com/watch?v=yPwF2ms9MQ8',
     slides: 'https://archive.org/~tracey/slides/demuxed',
     title: 'Demuxed 2021',
     img: 'demuxed.jpg',
-    descrip: '30,000 fps nginx - To Russia with Love<hr>Working a patch upstream to nginx mp4 module for exact start/end lossless server-side mp4 clipping<hr><a href="https://2021.demuxed.com/">Demuxed 2021</a>',
+    descrip: '30,000 fps nginx - To Russia with Love<hr>Working a patch upstream to nginx mp4 module for exact start/end lossless server-side mp4 clipping<br><a href="https://2021.demuxed.com/">Demuxed 2021</a><hr><img style="float:right" src="tracey-memoji-love.png">I won audience favorite talk award for the day!',
   }, {
     href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
     slides: 'https://archive.org/~tracey/slides/hashiconf',
@@ -165,8 +176,9 @@ h2 {
 }
 .card {
   text-align: center;
+  display: initial;
 }
-.card img {
+.card a img {
   max-width: 250px;
   max-height: 250px;
 }
@@ -205,6 +217,7 @@ function markup() {
             <a href="${href}">${card.title}</a>
           </h3>
           ${card.descrip || ''}
+          <br clear="all">
           ${card.slides ? `<b><a href="${card.slides}">SLIDES 📰</a></b>` : ''}
         </div>`
     }
