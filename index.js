@@ -5,6 +5,7 @@
  */
 
 import main from 'https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts'
+import { existsSync } from 'https://deno.land/std/fs/mod.ts'
 
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
@@ -238,6 +239,11 @@ main((req) => {
 
   if (url.pathname === '/')
     return Promise.resolve(new Response(markup_pre().concat(markup()), { status: 200, headers }))
+
+  const index = `${url.pathname.replace(/^[./]*/, '').replace(/\.\.\//g, '')}index.html`
+  if (url.pathname.endsWith('/') && existsSync(index))
+    return Promise.resolve(new Response(Deno.readTextFileSync(index), { status: 200, headers }))
+
 
   return Promise.resolve(new Response(
     `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body>
