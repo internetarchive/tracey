@@ -4,7 +4,8 @@
  * Our little web server
  */
 
-import main from 'https://raw.githubusercontent.com/traceypooh/deno_std/main/http/file_server.ts'
+import main from 'https://deno.land/x/file_server_plus/mod.ts'
+
 import { existsSync } from 'https://deno.land/std/fs/mod.ts'
 
 const TITLE = 'tracey jaquith likes to dev 🐋'
@@ -237,7 +238,8 @@ function markup() {
 
 
 // Main web server
-main((req) => {
+// eslint-disable-next-line no-undef
+globalThis.finalHandler = (req) => {
   const headers = new Headers()
   headers.append('content-type', 'text/html')
 
@@ -256,4 +258,6 @@ main((req) => {
     🇫🇷 Merde, il n'y a rien ici! - Corentin`,
     { status: 404, headers },
   ))
-})
+}
+
+main()
