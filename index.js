@@ -16,10 +16,16 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    slug: 'aaron-swartz-day-2022',
+    slides: 'https://archive.org/~tracey/slides/aaron-swartz-day-2022',
+    title: 'Markdown & JS Blogs/Websites; Call for volunteers for IA JS project',
+    img: 'aaron2.jpg',
+    descrip: 'Create free blogs and websites entirely from markdown leveraging one JavaScript file.  Take back control of your content with a newer vision for internetworked, decentralized social sharing with friends, family, and the world.  Your website will be archivable, decentralize-able, 100% content-first, and will live forever.  <a href="https://blogtini.com">blogtini.com</a>',
+  }, {
     slug: 'dweb-2022',
     slides: 'https://archive.org/~tracey/slides/dweb-2022',
     title: 'Decentralized Social via markdown Blogs (+JS)',
-    img: 'https://archive.org/~tracey/slides/dweb-2022/view-source.jpg',
+    img: 'https://archive.org/~tracey/slides/images/view-source.jpg',
     descrip: 'Create free blogs and websites entirely from markdown leveraging one JavaScript file.  Take back control of your content with a newer vision for internetworked, decentralized social sharing with friends, family, and the world.  Your website will be archivable, decentralize-able, 100% content-first, and will live forever.  <a href="https://blogtini.com">blogtini.com</a>',
   }, {
     slug: 'hashitalks-2022',
