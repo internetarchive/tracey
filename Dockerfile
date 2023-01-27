@@ -1,6 +1,3 @@
-# syntax=docker/dockerfile:1.2
-# https://docs.docker.com/develop/develop-images/build_enhancements/#overriding-default-frontends
-
 FROM denoland/deno:alpine
 
 LABEL maintainers=tracey
