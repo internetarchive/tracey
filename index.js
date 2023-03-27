@@ -3,10 +3,7 @@
 /**
  * Our little web server
  */
-
-import main from 'https://deno.land/x/file_server_plus/mod.ts'
-
-import { existsSync } from 'https://deno.land/std/fs/mod.ts'
+import httpd from 'https://deno.land/x/httpd/mod.js'
 
 const TITLE = 'tracey jaquith likes to dev 🐋'
 const SLIDES = 'https://archive.org/~tracey/slides/'
@@ -244,26 +241,8 @@ function markup() {
 
 
 // Main web server
-// eslint-disable-next-line no-undef
-globalThis.finalHandler = (req) => {
-  const headers = new Headers()
-  headers.append('content-type', 'text/html')
-
-  const url = new URL(req.url)
-
-  if (url.pathname === '/')
-    return Promise.resolve(new Response(markup_pre().concat(markup()), { status: 200, headers }))
-
-  const index = `${url.pathname.replace(/^[./]*/, '').replace(/\.\.\//g, '')}index.html`
-  if (url.pathname.endsWith('/') && existsSync(index))
-    return Promise.resolve(new Response(Deno.readTextFileSync(index), { status: 200, headers }))
-
-
-  return Promise.resolve(new Response(
-    `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"></head><body>
-    🇫🇷 Merde, il n'y a rien ici! - Corentin`,
-    { status: 404, headers },
-  ))
-}
-
-main()
+// eslint-disable-next-line consistent-return
+httpd((req, headers) => {
+  if (new URL(req.url).pathname === '/')
+    return new Response(markup_pre().concat(markup()), { headers })
+}, { ls: false })
