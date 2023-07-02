@@ -13,6 +13,12 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    slug: 'dweb-2023',
+    slides: 'https://archive.org/~tracey/slides/dweb-2023',
+    title: 'Blogtini: Blogs & static Websites: Markdown + 1 line of Javascript',
+    img: 'dwebcamp.jpg',
+    descrip: 'DWebCamp 2023 Talk.<br>  Create blogs and websites with just MarkDown and a single JavaScript include.  Decentralize & Archive your content forever with content-first beautiful blogs & sites.  Host & serve it for free.  Change your theme with one line change.  <a href="https://blogtini.com">blogtini.com</a>',
+  }, {
     slug: 'aaron-swartz-day-2022',
     slides: 'https://archive.org/~tracey/slides/aaron-swartz-day-2022',
     title: 'Markdown & JS Blogs/Websites; Call for volunteers for IA JS project',
