@@ -31,7 +31,7 @@ const ME = {
     img: 'https://archive.org/~tracey/slides/images/view-source.jpg',
     descrip: 'Create free blogs and websites entirely from markdown leveraging one JavaScript file.  Take back control of your content with a newer vision for internetworked, decentralized social sharing with friends, family, and the world.  Your website will be archivable, decentralize-able, 100% content-first, and will live forever.  <a href="https://blogtini.com">blogtini.com</a>',
   }, {
-    slug: 'hashitalks-2022',
+    href: 'https://www.youtube.com/watch?v=NXsvhSgYKfk',
     slides: 'https://archive.org/~tracey/slides/hashitalks-2022',
     title: 'HashiTalks 2022',
     img: 'hashitalks-2022.jpg',
