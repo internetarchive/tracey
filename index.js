@@ -19,7 +19,7 @@ const ME = {
     img: 'dwebcamp.jpg',
     descrip: 'DWebCamp 2023 Talk.<br>  Create blogs and websites with just MarkDown and a single JavaScript include.  Decentralize & Archive your content forever with content-first beautiful blogs & sites.  Host & serve it for free.  Change your theme with one line change.  <a href="https://blogtini.com">blogtini.com</a>',
   }, {
-    slug: 'aaron-swartz-day-2022',
+    href: 'https://www.youtube.com/watch?v=dnPzJyfKTcg',
     slides: 'https://archive.org/~tracey/slides/aaron-swartz-day-2022',
     title: 'Markdown & JS Blogs/Websites; Call for volunteers for IA JS project',
     img: 'aaron2.jpg',
