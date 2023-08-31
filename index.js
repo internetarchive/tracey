@@ -13,7 +13,7 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
-    slug: 'dweb-2023',
+    href: 'https://archive.org/details/thunder_day2_1000_-_tracey_jaquith',
     slides: 'https://archive.org/~tracey/slides/dweb-2023',
     title: 'Blogtini: Blogs & static Websites: Markdown + 1 line of Javascript',
     img: 'dwebcamp.jpg',
