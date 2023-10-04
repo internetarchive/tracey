@@ -1,4 +1,4 @@
-<!doctype html><head>><meta charset="utf-8"/><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023 October</title></head><body>
+<!doctype html><head>><meta charset="utf-8"/><script>window.BASE='https://www-tracey.archive.org/~tracey/slides/eveal.js/reveal.js/'</script><script src="https://www-tracey.archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023 October</title></head><body>
 
 
 # Container Security Improvements
@@ -7,4 +7,39 @@
 #### Oct 26, 2023
 
 ---
-Slide one
+# How have Containers Helped Us?
+  xxx
+
+---
+# A New Way
+So now we are looking into lighterweight, more secure container runner
+
+- no docker daemon
+
+---
+# Risks
+- attack root process
+- attack root user or *any* user (if all your data is r/w by the same user, breaking out means can)
+- can run containers anywhere since no daemon, doesnt mess w/ `iptables` / routing
+- rootless means non-root user
+  - if you run as root, you can r/w all content & OS files w/ a breakout
+
+---
+# Help
+- `podman` could help with deriver container start/stop reliability
+
+
+---
+# Security++
+- Now with Rob K. on board, more focus on security
+- considering `podman` for our `nomad` clusters
+
+
+---
+# Bonus / After time:
+podman "rootless" techniques:
+- uid maps
+- rand user uid
+  - hybrid of "rootfull" and "rootless"
+  - better network & file r/w performance
+
