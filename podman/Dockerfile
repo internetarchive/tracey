@@ -1,7 +1,7 @@
-FROM denoland/deno
+FROM python:3-alpine
 
 WORKDIR /app
 COPY . .
 
-USER deno
-CMD  deno run --allow-net --allow-read --allow-env https://deno.land/std/http/file_server.ts -p5000 --no-dotfiles
+# basic/minimal webserver
+CMD python3 -m http.server 5000
