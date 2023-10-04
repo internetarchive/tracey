@@ -8,26 +8,47 @@
 
 ---
 # How have Containers Helped Us?
+
+![logo.jpg](logo.jpg)
+
+---
+### How have Containers Helped Us?
   xxx
 
 ---
-# A New Way
-So now we are looking into lighterweight, more secure container runner
+## Risks 😞
+(`rootless` means non-root user)
 
+- if you run as root, you can r/w all content & OS files w/ a breakout
+- attack root process
+  - eg: docker daemon
+- attack root user or *any* user
+  - if all your data is r/w by the same user:
+    - breaking out means can r/w _all that data_
+
+---
+# A New Way 🤔
+We look into a lighter weight container runner
+- security first
 - no docker daemon
 
----
-# Risks
-- attack root process
-- attack root user or *any* user (if all your data is r/w by the same user, breaking out means can)
-- can run containers anywhere since no daemon, doesnt mess w/ `iptables` / routing
-- rootless means non-root user
-  - if you run as root, you can r/w all content & OS files w/ a breakout
 
 ---
-# Help
+# Help 🙌🏻
+- `podman` can run containers anywhere
+  - since no `docker` daemon
+  - doesnt change `iptables` / routing
 - `podman` could help with deriver container start/stop reliability
 
+---
+# Demo
+"hello world" CGI page docker container
+
+https://ia902601.us.archive.org/hi.php?tester=tracey
+
+- `rootless`
+- runs as `www-priv`
+- no file r/w access
 
 ---
 # Security++
@@ -36,10 +57,43 @@ So now we are looking into lighterweight, more secure container runner
 
 
 ---
+# Rob
+
+
+
+---
+# The End 🎬
+Thanks! 🙏
+
+
+---
 # Bonus / After time:
 podman "rootless" techniques:
 - uid maps
-- rand user uid
+- random user uid
   - hybrid of "rootfull" and "rootless"
   - better network & file r/w performance
 
+
+---
+# Rootless More Info
+- [2023 rootless-podman-user-namespaces-in-plain-english](https://blog.podman.io/2023/05/rootless-podman-user-namespaces-in-plain-english/)
+- [2023 podman-performance-root-and-rootless](https://blog.podman.io/2023/07/podman-performance-root-and-rootless/)
+
+---
+## rootless -v- rootfull
+rootless slower than rootful:
+- networking & storage – must be done in user space instead of kernel space
+  - storage: FUSE filesystem `fuse-overlayfs`
+    - newer kernels (5.11+, jammy), `fuse-overlayfs` need removed: kernel allows `podman` to use `overlayfs` filesystem natively as a non-root user
+  - networking: a tool that manually reassembles & forwards packets to container `slirp4netns`
+    - can `podman run -net==host` to remedy, but `opsec--`
+
+---
+## rootless -v- rootfull:
+## random user id
+-  `podman run --userns=auto` allows root `podman` to:
+  - creates container w/ performance advantages of root
+    - (kernel-native overlayfs & bridge networking)
+  - runtime security advantages of rootless
+    - container has no access to the host’s root user
