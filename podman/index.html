@@ -1,4 +1,5 @@
 <!doctype html><head>><meta charset="utf-8"/><script>window.BASE='https://www-tracey.archive.org/~tracey/slides/eveal.js/reveal.js/'</script><script src="https://www-tracey.archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023 October</title></head><body>
+<!-- xxx ^^ www-tracey ^^ -->
 
 
 # Container Security Improvements
@@ -12,7 +13,7 @@
 ![logo.jpg](logo.jpg)
 
 - code, OS, libraries/dependencies all in one code repository
-- one built runtime "url" / file
+- one built runtime "url" / "file"
   - lightweight VM
 - `docker run hello-world`
 
@@ -21,8 +22,16 @@
 ## How have Containers Helped Us?
 - CI/CD (Continuous Integration / Deploy)
   - code `commit` => `push` =>
-    - builds, tests, deploys
+    - builds, tests, deploys 🚀
 - review apps great for org-wide testing
+
+---
+## How have Containers Helped Us?
+_deriver_ (makes our mp4, mp3, pdf):
+- process isolation
+  - r/w _single_ item dir
+  - can't see/corrupt other tasks/files
+- all intermediate file/changes removed at end
 
 ---
 ## Risks 😞
@@ -38,13 +47,13 @@
 - nodes attacking other nodes
 
 ---
-## Risks 😞
+## Risk Mitigation
 
 *LIMIT WHAT YOU CAN WRITE TO ON DISK[S]*
 
 ---
 # A New Way 🤔
-We look into a lighter weight container runner
+We look into a lightweight container runner
 - security first
 - no docker daemon
 
@@ -52,21 +61,21 @@ We look into a lighter weight container runner
 # Help 🙌🏻
 - `podman` from RedHat
 - opensource, free
-- `docker` CLI same args/features
+- `docker` same commandline/features
   - (drop-in replacement)
-- v1.0 Jan 2019
+- v1.0 on Jan 2019
 - [569 Contributors](https://github.com/containers/podman)
 
 ---
 # Help 🙌🏻
 - `podman` can run containers anywhere
   - since no `docker` daemon
-  - doesnt change `iptables` / routing
-- could help deriver container start/stop reliability
+  - no `iptables` / routing changes
+- may help deriver container start/stop reliability
 
 ---
 # Demo
-"hello world" CGI page podman container
+"hello world" web page podman container
 
 https://ia902601.us.archive.org/hi.php?tester=tracey
 
@@ -75,13 +84,46 @@ https://ia902601.us.archive.org/hi.php?tester=tracey
 - no file r/w access
 
 ---
-# TV "fixer" catalogd tasks
-- running ~300/day
-- r/w only single item dir
+# Demo
+```text
+user: www-priv
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+```
+
+---
+# R & D
+- TV "fixer" catalogd tasks
+  - r/w _single_ item dir
+  - running ~300/day
+
+- epub "on the fly" `daisy` format
+  - rootless container
+  - (scheduled for release)
 
 ---
 # Security++
-- Now with Rob K. on board, more focus on security
+- Rob K. more focus on security
 - considering `podman` for our `nomad` clusters
 
 
@@ -103,7 +145,7 @@ We'd love to talk to anyone interested afterwards
 - [focal] opensuse.org distro `/etc/apt/sources.list.d/`
 
 ---
-# apt packages:
+# apt packages
 - _podman_
 - _uidmap_: maps outside => inside userid/gid
 - _slirp4netns_: rootless networking
