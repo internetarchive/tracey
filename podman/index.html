@@ -12,7 +12,7 @@
 ![logo.png](logo.png)
 - Standardization, abstraction
  - Think cargo container for software
-- Single artifact
+- Single built file
   - "I want 10 copies of this container"
 
 ---
@@ -31,7 +31,7 @@
 - We standardized on Docker
 - Standardized testing and deployment
  - Automated tests are run in containers
- - Review apps run in containers
+ - Staging apps run in containers
 - Management
  - Auditability, repeatability
  - Ability to roll complex changes back
@@ -81,6 +81,8 @@
 ---
 
 ![podman_logo.png](podman_logo.png)
+- Easier to run securely
+  - Can run as unprivileged
 - Can run containers anywhere
   - no `docker` daemon
   - no `iptables` / routing changes
