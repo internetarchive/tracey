@@ -1,10 +1,11 @@
 <!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023/10</title></head><body>
 
 
-# Container Security Improvements
-## Tracey Jaquith, Rob Keizer
-### Internet Archive 🏛️
-#### Oct 6, 2023
+## Safer containers in 8 minutes or less
+
+### Tracey Jaquith, Rob Keizer
+#### Internet Archive 🏛️
+##### Oct 6, 2023
 
 ---
 ## What's a Container?
@@ -17,9 +18,9 @@
 ---
 ## What's a Container?
 ![logo.png](logo.png)
-- Lightweight, not a full virtual machine
 - Contains everything needed to run
-- Single unique identifier per container
+- Lightweight, not a full virtual machine
+- Unique identifier per container ( URI )
 - Run anywhere
  - Development laptops
  - On demand
@@ -92,18 +93,13 @@
 
 https://ia902601.us.archive.org/hi.php?tester=tracey
 
-- `rootless`
-- runs as `www-priv`
-- no file r/w access
-
 ---
 
 # Demo
 
- * Why it's cool
- * foo
- * bar
-
+ * `rootless`
+ * runs as `www-priv`
+ * no file r/w access
 
 ---
 # Current work
