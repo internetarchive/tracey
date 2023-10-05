@@ -26,7 +26,8 @@
  - Server clusters
 
 ---
-## How have Containers Helped Us?
+## How have containers Helped Us?
+- We standardized on Docker
 - Standardized testing and deployment
  - Automated tests are run in containers
  - Review apps run in containers
@@ -36,23 +37,9 @@
  - Increased availability (relatively easily)
 
 ---
-
-## _deriver_ in 10 seconds
-
- * At a high level
-  * Takes item content as input
-  * Works with the content
-  * Produces some output
-
- * Examples include
-  * Text version of PDF
-  * mp3 conversion
-  * ...
-
----
-
 ## Deriver containers!
 
+- Creates item `mp3`, `pdf`s, etc.
 - Provides isolation
   - Limited visibility ( _single_ item dir )
   - Unable to corrupt other tasks/files
@@ -60,12 +47,15 @@
   - Temporary files are removed automatically
 
 ---
-## A container platform?
-- Software that runs containers
-- Handles administrative actions
- - `start/stop`, `view logs`, etc.
-- Many different flavours
-  - (`docker`, `podman`, `runc`, `lxc`, `...` )
+
+## Current risks with Docker 😞
+
+ * Not designed for security, designed for abstraction
+ * Daemon is single point of failure
+ * Elevated privileges
+  - wide blast radius
+  - ability to read and write other files
+  - increased risk of breakout (eg shell escape)
 
 ---
 
@@ -97,28 +87,6 @@
 
 ---
 
-## Current Risks 😞
-
- * With docker
-  * Long running privileged management process
-  * Not designed for security, designed for abstraction
-
- * Elevated privileges
-  - Wide blast radius
-  - Ability to read and write other files
-  - Increased risk of lateral movement
-  - ( Assuming you break out of the container )
-
-
----
-## Going forward
-
- * Removing *all* elevated privileges
- * Simplifying architecture
- * Lowering latency on startup
-
----
-
 # Demo
 "hello world" web page podman container
 
@@ -129,35 +97,16 @@ https://ia902601.us.archive.org/hi.php?tester=tracey
 - no file r/w access
 
 ---
+
 # Demo
-```text
-user: www-priv
 
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
+ * Why it's cool
+ * foo
+ * bar
 
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-
-```
 
 ---
-# R & D
+# Current work
 - TV "fixer" catalogd tasks
   - r/w _single_ item dir
   - running ~300/day
@@ -223,3 +172,63 @@ rootless slower than rootful:
     - (kernel-native overlayfs & bridge networking)
   - runtime security advantages of rootless
     - container has no access to the host’s root user
+
+
+---
+
+## _deriver_ in 10 seconds
+
+ * At a high level
+  * Takes item content as input
+  * Works with the content
+  * Produces some output
+
+ * Examples include
+  * Text version of PDF
+  * mp3 conversion
+  * ...
+
+
+---
+## A container platform?
+- Software that runs containers
+- Handles administrative actions
+ - `start/stop`, `view logs`, etc.
+- Many different flavours
+  - (`docker`, `podman`, `runc`, `lxc`, `...` )
+
+---
+## Going forward
+
+ * Removing *all* elevated privileges
+ * Simplifying architecture
+ * Lowering latency on startup
+
+---
+# Demo
+```text
+user: www-priv
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+```
+
