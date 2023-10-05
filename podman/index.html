@@ -1,4 +1,4 @@
-<!doctype html><head>><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023 October</title></head><body>
+<!doctype html><head>><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023/10</title></head><body>
 
 
 # Container Security Improvements
@@ -36,14 +36,23 @@ _deriver_ (makes our mp4, mp3, pdf):
 ## Risks 😞
 (`rootless` means non-root user)
 
-- if you run as root, you can _r/w_all content & OS files_
-- attack root process
+<pre class="fragment fade-up">
+• If you run as root
+    you can r/w ALL content & OS files
+</pre>
+<pre class="fragment fade-up">
+• attack root process
   - eg: docker daemon
-- containers attacking other containers with same user
+</pre>
+<pre class="fragment fade-up">
+• containers attacking other containers with same user
   - root user or *any* user
-  - if all your data is r/w by the same user:
-    - breaking out means can r/w _all that data_
-- nodes attacking other nodes
+  - if all your data is r/w by same user:
+      breaking out can r/w ALL THAT DATA
+</pre>
+<pre class="fragment fade-up">
+• VMs/servers attacking other VMs/servers
+</pre>
 
 ---
 ## Risk Mitigation
@@ -127,7 +136,7 @@ For more examples and ideas, visit:
 
 
 ---
-# Rob
+# Rob 👤💰
 
 
 
