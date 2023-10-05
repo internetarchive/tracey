@@ -41,6 +41,28 @@ _deriver_ (makes our mp4, mp3, pdf):
 - All intermediate file/changes removed at end
 
 ---
+## Current Risks 😞
+<pre class="fragment fade-up">
+Long running management process that runs with elevated privileges
+</pre>
+<pre class="fragment fade-up">
+Lack of privilege separation by default
+</pre>
+<div class="fragment fade-up">
+If you break out of a container with elevated privileges
+</div>
+<pre class="fragment fade-up">
+ - wider blast radius
+</pre>
+<pre class="fragment fade-up">
+ - read and write to any file in the filesystem
+</pre>
+<pre class="fragment fade-up">
+ - increased risk of lateral movement
+</pre>
+
+
+---
 ## Risks 😞
 (`rootless` means non-root user)
 
