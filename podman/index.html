@@ -149,7 +149,7 @@ We'd love to talk to anyone interested afterwards
 ---
 # Bonus / After time:
 - [jammy+] `podman` apt/debian pkg
-- [focal] opensuse.org distro `/etc/apt/sources.list.d/`
+- [focal] opensuse.org distro => `/etc/apt/sources.list.d/`
 
 ---
 # apt packages
@@ -165,24 +165,26 @@ We'd love to talk to anyone interested afterwards
 podman "rootless" techniques:
 - uid maps
 - random user uid
-  - hybrid of "rootfull" and "rootless"
+  - hybrid of "rootfull" & "rootless"
   - better network & file r/w performance
 
 
 ---
 # Rootless More Info
-- [2023 rootless-podman-user-namespaces-in-plain-english](https://blog.podman.io/2023/05/rootless-podman-user-namespaces-in-plain-english/)
-- [2023 podman-performance-root-and-rootless](https://blog.podman.io/2023/07/podman-performance-root-and-rootless/)
+- [2023 rootless podman user namespaces in plain english](https://blog.podman.io/2023/05/rootless-podman-user-namespaces-in-plain-english/)
+- [2023 podman performance root and rootless](https://blog.podman.io/2023/07/podman-performance-root-and-rootless/)
 
 ---
 ## rootless -v- rootfull
 rootless slower than rootful:
 - networking & storage – must be done in _user space_ instead of _kernel space_
-  - _storage_: FUSE filesystem `fuse-overlayfs`
-    - newer kernels (5.11+, jammy), `fuse-overlayfs` need removed: kernel allows `podman` to use overlayfs` filesystem natively as a non-root user
-  - _networking_: a tool that manually reassembles & forwards packets to container `slirp4netns`
+  - _storage_:
+    - older kernels: FUSE filesystem `fuse-overlayfs`
+    - newer kernels (5.11+, jammy): kernel allows `podman` the `overlayfs` filesystem natively as non-root user
+  - _networking_: `slirp4netns` manually reassembles & forwards packets to container
     - speedup by r/w volume mounts
-    - can `podman run -net==host` to remedy, but `opsec--`
+    - OR `podman run --net=host`
+      - but `opsec` 📉
 
 ---
 ## rootless -v- rootfull:
