@@ -1,4 +1,4 @@
-<!doctype html><head>><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023/10</title></head><body>
+<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023/10</title></head><body>
 
 
 # Container Security Improvements
@@ -9,26 +9,43 @@
 ---
 ## What's a Container?
 ![logo.jpg](logo.jpg)
-- code, OS, libraries/dependencies all in one code repository
-- one built runtime "url" / "file"
-  - lightweight VM
-- `docker run hello-world`
+- Standardization, abstraction
+ - Think intermodal for software
+- Single artifact
+  - "I want 10 copies of this container"
 
+---
+## What's a Container?
+![logo.jpg](logo.jpg)
+- Lightweight, not a full virtual machine
+- Contains everything needed to run
+- One built runtime "url" / "file"*
+- "Off the shelf" software
+
+---
+## How have Containers Helped Us?
+- Standardized testing and deployment
+ - Automated tests are run in containers
+ - Review apps run in containers
+- Management
+ - Auditability, repeatability
+ - Ability to roll complex changes back
+ - Increased availability (relatively easily)
 
 ---
 ## How have Containers Helped Us?
 - CI/CD (Continuous Integration / Deploy)
   - code `commit` => `push` =>
     - builds, tests, deploys 🚀
-- review apps great for org-wide testing
+- Review apps great for org-wide testing
 
 ---
 ## How have Containers Helped Us?
 _deriver_ (makes our mp4, mp3, pdf):
-- process isolation
+- Process isolation
   - r/w _single_ item dir
   - can't see/corrupt other tasks/files
-- all intermediate file/changes removed at end
+- All intermediate file/changes removed at end
 
 ---
 ## Risks 😞
@@ -58,10 +75,20 @@ _deriver_ (makes our mp4, mp3, pdf):
 *LIMIT WHAT YOU CAN WRITE TO ON DISK[S]*
 
 ---
-# A New Way 🤔
-We look into a lightweight container runner
-- security first
-- no docker daemon
+## A container platform?
+- Software that runs containers
+- Handles administrative actions
+ - `start/stop`, `view logs`, etc.
+- Many different flavours
+  - (`docker`, `podman`, `runc`, `lxc`, `...` )
+
+---
+
+![docker_vs_podman.jpeg](docker_vs_podman.jpeg)
+- Currently using `docker`
+- Looking seriously at `podman`
+- Fewer moving parts
+- Unix philosophy ( do one thing well )
 
 ---
 # Help 🙌🏻
@@ -128,15 +155,10 @@ For more examples and ideas, visit:
   - (scheduled for release)
 
 ---
+
 # Security++
-- Rob K. more focus on security
-- considering `podman` for our `nomad` clusters
-
-
----
-# Rob 👤💰
-
-
+- `podman` is just a process
+- Going rootless
 
 ---
 # The End 🎬
