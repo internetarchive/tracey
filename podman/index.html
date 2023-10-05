@@ -2,13 +2,13 @@
 
 
 # Container Security Improvements
-## Tracey Jaquith, Rob Keizer, Scott Barnes
+## Tracey Jaquith, Rob Keizer
 ### Internet Archive 🏛️
-#### Oct 26, 2023
+#### Oct 6, 2023
 
 ---
 ## What's a Container?
-![logo.jpg](logo.jpg)
+![logo.png](logo.png)
 - Standardization, abstraction
  - Think intermodal for software
 - Single artifact
@@ -16,11 +16,14 @@
 
 ---
 ## What's a Container?
-![logo.jpg](logo.jpg)
+![logo.png](logo.png)
 - Lightweight, not a full virtual machine
 - Contains everything needed to run
-- One built runtime "url" / "file"*
-- "Off the shelf" software
+- Single unique identifier per container
+- Run anywhere
+ - Development laptops
+ - On demand
+ - Server clusters
 
 ---
 ## How have Containers Helped Us?
@@ -33,61 +36,28 @@
  - Increased availability (relatively easily)
 
 ---
-## How have Containers Helped Us?
-_deriver_ (makes our mp4, mp3, pdf):
-- Process isolation
-  - r/w _single_ item dir
-  - can't see/corrupt other tasks/files
-- All intermediate file/changes removed at end
+
+## _deriver_ in 10 seconds
+
+ * At a high level
+  * Takes item content as input
+  * Works with the content
+  * Produces some output
+
+ * Examples include
+  * Text version of PDF
+  * mp3 conversion
+  * ...
 
 ---
-## Current Risks 😞
-<pre class="fragment fade-up">
-Long running management process that runs with elevated privileges
-</pre>
-<pre class="fragment fade-up">
-Lack of privilege separation by default
-</pre>
-<div class="fragment fade-up">
-If you break out of a container with elevated privileges
-</div>
-<pre class="fragment fade-up">
- - wider blast radius
-</pre>
-<pre class="fragment fade-up">
- - read and write to any file in the filesystem
-</pre>
-<pre class="fragment fade-up">
- - increased risk of lateral movement
-</pre>
 
+## Deriver containers!
 
----
-## Risks 😞
-(`rootless` means non-root user)
-
-<pre class="fragment fade-up">
-• If you run as root
-    you can r/w ALL content & OS files
-</pre>
-<pre class="fragment fade-up">
-• attack root process
-  - eg: docker daemon
-</pre>
-<pre class="fragment fade-up">
-• containers attacking other containers with same user
-  - root user or *any* user
-  - if all your data is r/w by same user:
-      breaking out can r/w ALL THAT DATA
-</pre>
-<pre class="fragment fade-up">
-• VMs/servers attacking other VMs/servers
-</pre>
-
----
-## Risk Mitigation
-
-*LIMIT WHAT YOU CAN WRITE TO ON DISK[S]*
+- Provides isolation
+  - Limited visibility ( _single_ item dir )
+  - Unable to corrupt other tasks/files
+- Ephemeral storage
+  - Temporary files are removed automatically
 
 ---
 ## A container platform?
@@ -105,23 +75,50 @@ If you break out of a container with elevated privileges
 - Fewer moving parts
 - Unix philosophy ( do one thing well )
 
----
-# Help 🙌🏻
-- `podman` from RedHat
-- opensource, free
-- `docker` same commandline/features
-  - (drop-in replacement)
-- v1.0 on Jan 2019
-- [569 Contributors](https://github.com/containers/podman)
 
 ---
-# Help 🙌🏻
-- `podman` can run containers anywhere
-  - since no `docker` daemon
+
+![podman_logo.png](podman_logo.png)
+- Open Source, permissive license
+- Drop in replacement for `docker`
+- Supported
+  - Created & Maintained by RedHat
+  - [Hundreds of contributors](https://github.com/containers/podman)
+- Stable
+ - v1.0 released in Jan 2019
+
+---
+
+![podman_logo.png](podman_logo.png)
+- Can run containers anywhere
+  - no `docker` daemon
   - no `iptables` / routing changes
-- may help deriver container start/stop reliability
+- May help deriver container start/stop reliability
 
 ---
+
+## Current Risks 😞
+
+ * With docker
+  * Long running privileged management process
+  * Not designed for security, designed for abstraction
+
+ * Elevated privileges
+  - Wide blast radius
+  - Ability to read and write other files
+  - Increased risk of lateral movement
+  - ( Assuming you break out of the container )
+
+
+---
+## Going forward
+
+ * Removing *all* elevated privileges
+ * Simplifying architecture
+ * Lowering latency on startup
+
+---
+
 # Demo
 "hello world" web page podman container
 
@@ -170,13 +167,6 @@ For more examples and ideas, visit:
   - (scheduled for release)
 
 ---
-
-# Security++
-- `podman` is just a regular process
-- Moving towards `rootless`
-- Shrinking attack surface.
-
----
 # The End 🎬
 Thanks! 🙏
 
@@ -185,6 +175,7 @@ We'd love to talk to anyone interested afterwards
 ![logo.jpg](logo.jpg)
 
 ---
+
 # Bonus / After time:
 - [jammy+] `podman` apt/debian pkg
 - [focal] opensuse.org distro => `/etc/apt/sources.list.d/`
