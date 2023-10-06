@@ -1,11 +1,13 @@
-<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Containers Talk 2023/10</title></head><body>
+<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>Safer Containers - Internet Archive 2023/10</title></head><body>
 
 
-## Safer containers in 8 minutes or less
+# Safer Containers
+# in 8 minutes
 
-### Tracey Jaquith, Rob Keizer
-#### Internet Archive 🏛️
-##### Oct 6, 2023
+## Tracey Jaquith, Rob Keizer
+### Internet Archive 🏛️
+#### Oct 6, 2023
+
 
 ---
 ## What's a Container?
@@ -33,12 +35,12 @@
  - Automated tests are run in containers
  - Staging apps run in containers
 - Management
- - Auditable, repeatability
+ - Auditable, repeatable
  - Ability to roll complex changes back
  - Increased availability (relatively easily)
 
 ---
-## Deriver containers!
+## Deriver Containers
 
 - Creates item `mp3`, `pdf`s, etc.
 - Provides isolation
@@ -101,6 +103,24 @@ https://ia902601.us.archive.org/hi.php?tester=tracey
  * `rootless`
  * runs as `www-priv`
  * no file r/w access
+
+
+---
+# Demo
+
+```text
+user: www-priv
+podman run --rm mwendler/figlet hello archive
+
+ _          _ _                        _     _
+| |__   ___| | | ___     __ _ _ __ ___| |__ (_)_   _____
+| '_ \ / _ \ | |/ _ \   / _` | '__/ __| '_ \| \ \ / / _ \
+| | | |  __/ | | (_) | | (_| | | | (__| | | | |\ V /  __/
+|_| |_|\___|_|_|\___/   \__,_|_|  \___|_| |_|_| \_/ \___|
+
+
+```
+
 
 ---
 # Current work
@@ -201,31 +221,4 @@ rootless slower than rootful:
  * Simplifying architecture
  * Lowering latency on startup
 
----
-# Demo
-```text
-user: www-priv
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://hub.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/get-started/
-
-```
 
