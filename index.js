@@ -13,6 +13,12 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    href: 'https://archive.org/details/safer-containers-at-archive-2023',
+    slides: 'https://podman.dev.archive.org',
+    title: 'Safer Containers at the Archive in 2023',
+    img: 'safer-containers.jpg',
+    descrip: 'Tracey Jaquith & Rob Keizer talk about how to run docker containers more safely & quickly.<br>  Our team shares some high-level reasons why we\'re finding `podman` (a drop-in replacement for `docker` from RedHat) a more secure way to run containers',
+  }, {
     href: 'https://archive.org/details/thunder_day2_1000_-_tracey_jaquith',
     slides: 'https://archive.org/~tracey/slides/dweb-2023',
     title: 'Blogtini: Blogs & static Websites: Markdown + 1 line of Javascript',
