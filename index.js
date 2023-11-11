@@ -13,6 +13,12 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks': [{
+    // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
+    slug: 'aaron-swartz-day-2023',
+    title: 'What\'s on TV?  An editor and 2 robots walk into a bar..',
+    img: 'aaron.jpg',
+    descrip: 'coming soon!', // xxx
+  }, {
     href: 'https://archive.org/details/safer-containers-at-archive-2023',
     slides: 'https://podman.dev.archive.org',
     title: 'Safer Containers at the Archive in 2023',
