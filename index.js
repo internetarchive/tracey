@@ -15,9 +15,9 @@ const ME = {
   'Presentations & Talks': [{
     // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
     slug: 'aaron-swartz-day-2023',
-    title: 'What\'s on TV? <br> An editor and 2 robots walk into a bar..',
+    title: 'What\'s on TV? <br> 4 editors and 2 robots walk into a bar..',
     img: 'aaron.jpg',
-    descrip: 'Aaron Swartz Day 2023. <br> Using TV "chyron" text overlays in the "lower third" (from human editors), image-to-text (OCR), grouping/filtering, and gpt-4 to summarize; we social post hourly: <br> "What\'s on TV?"',
+    descrip: 'Aaron Swartz Day 2023. <br> Using TV news "chyron" text overlays in the "lower third" (from human editors), image-to-text (OCR), grouping/filtering, and AI gpt-4 to summarize --> we social post hourly: <br> "What\'s on TV?"',
   }, {
     href: 'https://archive.org/details/safer-containers-at-archive-2023',
     slides: 'https://podman.dev.archive.org',
