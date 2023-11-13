@@ -12,7 +12,7 @@ const ME = {
   //   [add] href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
-  'Presentations & Talks': [{
+  'Presentations & Talks [2023..2016]': [{
     // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
     slug: 'aaron-swartz-day-2023',
     title: 'What\'s on TV? <br> 4 editors and 2 robots walk into a bar..',
@@ -221,8 +221,19 @@ h2 {
 <body>
 <div class="container" style="width:98%; max-width:98%">
 
-<h1>${TITLE}</h1>
-👆 <i><b> expert plastic square presser</b></i>
+<h1>
+  ${TITLE}<br><br>
+  Founding Coder, Internet Archive<br>
+  TV Architect<br><br>
+</h1>
+<h2>
+  I focus on TV, video/audio, UI/UX, markdown, containers and devops.<br><br>
+</h2>
+</h3>
+  Find me at:
+  <a href="https://mastodon.social/@traceypooh">🦣 Tracey</a>
+  <a href="https://twitter.com/tracey_pooh">Jaquith 🐦</a>
+</h3>
 `
 }
 
@@ -258,9 +269,16 @@ function markup() {
 }
 
 
+function markup_post() {
+  return `
+  <hr>
+  👆 <i><b>i'm an expert plastic square presser</b></i>
+  `
+}
+
 // Main web server
 // eslint-disable-next-line consistent-return
 httpd((req, headers) => {
   if (new URL(req.url).pathname === '/')
-    return new Response(markup_pre().concat(markup()), { headers })
+    return new Response(`${markup_pre()}${markup()}${markup_post()}`, { headers })
 }, { ls: false })
