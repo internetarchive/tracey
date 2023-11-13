@@ -5,7 +5,7 @@
  */
 import httpd from 'https://deno.land/x/httpd/mod.js'
 
-const TITLE = 'Tracey Jaquith, Internet Archive'
+const TITLE = 'Tracey Jaquith, Internet Archive 🏛️'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   // When updating a "slides only" w/ a new video link:
@@ -228,8 +228,8 @@ a {
   Founding Coder<br>
   TV Architect<br><br>
 </h1>
-<b>
-I focus on TV, video/audio, UI/UX, markdown, 🦭 containers and devops 🐋.
+<br>
+I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & devops 🐋
 <b><br><br>
 Find me at:<br>
 <a href="https://mastodon.social/@traceypooh">🦣 mastodon</a><br>
