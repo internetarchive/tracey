@@ -5,7 +5,7 @@
  */
 import httpd from 'https://deno.land/x/httpd/mod.js'
 
-const TITLE = 'tracey jaquith likes to dev 🐋'
+const TITLE = 'Tracey Jaquith, Internet Archive'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   // When updating a "slides only" w/ a new video link:
@@ -16,7 +16,7 @@ const ME = {
     // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
     slug: 'aaron-swartz-day-2023',
     title: 'What\'s on TV? <br> 4 editors and 2 robots walk into a bar..',
-    img: 'aaron.jpg',
+    img: 'aaron3.jpg',
     descrip: 'Aaron Swartz Day 2023. <br> Using TV news "chyron" text overlays in the "lower third" (from human editors), image-to-text (OCR), grouping/filtering, and AI gpt-4 to summarize --> we social post hourly: <br> "What\'s on TV?"',
   }, {
     href: 'https://archive.org/details/safer-containers-at-archive-2023',
@@ -213,6 +213,8 @@ h2 {
 }
 .card a {
   display: block;
+}
+a {
   text-decoration: none;
 }
   </style>
@@ -222,18 +224,16 @@ h2 {
 <div class="container" style="width:98%; max-width:98%">
 
 <h1>
-  ${TITLE}<br><br>
-  Founding Coder, Internet Archive<br>
+  ${TITLE}<br>
+  Founding Coder<br>
   TV Architect<br><br>
 </h1>
-<h2>
-  I focus on TV, video/audio, UI/UX, markdown, containers and devops.<br><br>
-</h2>
-</h3>
-  Find me at:
-  <a href="https://mastodon.social/@traceypooh">🦣 Tracey</a>
-  <a href="https://twitter.com/tracey_pooh">Jaquith 🐦</a>
-</h3>
+<b>
+I focus on TV, video/audio, UI/UX, markdown, 🦭 containers and devops 🐋.
+<b><br><br>
+Find me at:<br>
+<a href="https://mastodon.social/@traceypooh">🦣 mastodon</a><br>
+<a href="https://twitter.com/tracey_pooh">🐦 twitter/X</a><br>
 `
 }
 
@@ -272,7 +272,7 @@ function markup() {
 function markup_post() {
   return `
   <hr>
-  👆 <i><b>i'm an expert plastic square presser</b></i>
+  👆 <i>i'm an expert plastic square presser</i>
   `
 }
 
