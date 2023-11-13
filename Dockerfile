@@ -12,4 +12,4 @@ COPY . .
 
 USER deno
 
-CMD [ "./index.js", "--watch" ]
+CMD ./index.js

@@ -1,18 +1,17 @@
-#!/usr/bin/env -S deno run --location https://tracey.dev.archive.org --unstable --no-check --allow-read --allow-net
+#!/usr/bin/env -S deno run --location https://tracey.dev.archive.org --allow-read --allow-net --watch
 
 /**
  * Our little web server
  */
 import httpd from 'https://deno.land/x/httpd/mod.js'
 
-const TITLE = 'Tracey Jaquith, Internet Archive 🏛️'
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   // When updating a "slides only" w/ a new video link:
   //   [add] href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
-  'Presentations & Talks [2023..2016]': [{
+  'Presentations & Talks [2023...2016]': [{
     // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
     slug: 'aaron-swartz-day-2023',
     title: 'What\'s on TV? <br> 4 editors and 2 robots walk into a bar..',
@@ -191,7 +190,7 @@ function markup_pre() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta property="title" content="${TITLE}">
+  <meta property="title" content="Tracey Jaquith, Internet Archive 🏛️">
   <link href="https://esm.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <style>
 .list {
@@ -223,17 +222,20 @@ a {
 <body>
 <div class="container" style="width:98%; max-width:98%">
 
-<h1>
-  ${TITLE}<br>
-  Founding Coder<br>
-  TV Architect<br><br>
-</h1>
-<br>
-I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & devops 🐋
-<b><br><br>
-Find me at:<br>
-<a href="https://mastodon.social/@traceypooh">🦣 mastodon</a><br>
-<a href="https://twitter.com/tracey_pooh">🐦 twitter/X</a><br>
+    <h1>
+      Tracey Jaquith<br>
+      Founding Coder, Internet Archive 🏛️<br>
+      TV Architect
+    </h1>
+    <h3>
+      I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & devops 🐋
+    </h3>
+    <b>
+    Find me at:
+    <a href="https://mastodon.social/@traceypooh">🦣 mastodon</a>
+    <a href="https://twitter.com/tracey_pooh">🐦 twitter/X</a>
+    </b>
+
 `
 }
 
