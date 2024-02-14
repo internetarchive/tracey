@@ -11,7 +11,7 @@ build:
     - export DOCKER_BUILDKIT=1
 
 lint:
-  image: registry.gitlab.com/internetarchive/eslint/main
+  image: ghcr.io/internetarchive/dyno:main
   stage: test
   script:
     - /app/lint
