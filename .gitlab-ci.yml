@@ -4,12 +4,6 @@ variables:
 include:
   - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
 
-build:
-  # kill docker-in-docker
-  services:
-  before_script:
-    - export DOCKER_BUILDKIT=1
-
 lint:
   image: ghcr.io/internetarchive/dyno:main
   stage: test
