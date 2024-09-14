@@ -12,4 +12,6 @@ COPY . .
 
 USER deno
 
+RUN deno cache index.js
+
 CMD ./index.js
