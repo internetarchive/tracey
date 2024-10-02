@@ -11,7 +11,7 @@ const ME = {
   //   [add] href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
-  'Presentations & Talks [2023...2016]': [{
+  'Presentations & Talks [2024...2016]': [{
     slug: 'demuxed-2024',
     title: 'Demuxed 2024:<br> What\'s on TV?<br> 4 editors and 2 robots walk into a bar..',
     img: 'demuxed-2024.jpg',
