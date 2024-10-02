@@ -12,6 +12,17 @@ const ME = {
   //   [add (derived from 'slug')] slides: 'https://archive.org/~tracey/slides/hashiconf',
   //   [drop] slug
   'Presentations & Talks [2023...2016]': [{
+    slug: 'demuxed-2024',
+    title: 'Demuxed 2024:<br> What\'s on TV?<br> 4 editors and 2 robots walk into a bar..',
+    img: 'demuxed-2024.jpg',
+    descrip: `We social post hourly: "What\'s on TV?"<br>
+from TV news "chyrons".<hr>
+
+The non-captions news text (eg: BIDEN VISITS MEXICO) which shows up at the bottom of the TV, are  written by human editors -- yet are not carried anywhere inside the TV streams.<br>
+What's a girl with robots to do?<hr>
+
+We use ffmpeg to crop the image area; tesseract to OCR the image into text; and GPT AI to summarize, remove ads, and cleanup the text.`,
+  },{
     // href: 'https://traceypooh.github.io/slides/aaron-swartz-day-2023',
     slug: 'aaron-swartz-day-2023',
     title: 'What\'s on TV? <br> 4 editors and 2 robots walk into a bar..',
