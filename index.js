@@ -1,10 +1,3 @@
-#!/usr/bin/env -S deno run --location https://tracey.dev.archive.org --allow-read --allow-net --watch
-
-/**
- * Our little web server
- */
-import httpd from 'https://deno.land/x/httpd/mod.js'
-
 const SLIDES = 'https://archive.org/~tracey/slides/'
 const ME = {
   // When updating a "slides only" w/ a new video link:
@@ -190,68 +183,7 @@ We use ffmpeg to crop the image area; tesseract to OCR the image into text; and 
 }
 
 
-/**
- * Returns beginning static markup for @see markup()
- *
- * @param string title  Page / H1 title
- */
-function markup_pre() {
-  return `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta property="title" content="Tracey Jaquith, Internet Archive 🏛️">
-  <link href="https://esm.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-  <style>
-.list {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
-  align-items: top;
-}
-h2 {
-  margin-top: 75px;
-}
-.card {
-  text-align: center;
-  display: initial;
-}
-.card a img {
-  max-width: 250px;
-  max-height: 250px;
-}
-.card a {
-  display: block;
-}
-a {
-  text-decoration: none;
-}
-  </style>
-</head>
-
-<body>
-<div class="container" style="width:98%; max-width:98%">
-
-    <h1>
-      Tracey Jaquith<br>
-      Founding Coder, Internet Archive 🏛️<br>
-      TV Architect
-    </h1>
-    <h3>
-      I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & devops 🐋
-    </h3>
-    <b>
-    Find me at:
-    <a href="https://mastodon.social/@traceypooh">🦣 mastodon</a>
-    <a href="https://twitter.com/tracey_pooh">🐦 twitter/X</a>
-    </b>
-
-`
-}
-
-
-function markup() {
+function main() {
   let str = ''
 
   for (const [header, list] of Object.entries(ME)) {
@@ -278,20 +210,10 @@ function markup() {
     str += '</div>'
   }
 
-  return str
+  document.querySelector('main').innerHTML = str
 }
 
 
-function markup_post() {
-  return `
-  <hr>
-  👆 <i>i'm an expert plastic square presser</i>
-  `
-}
-
-// Main web server
-// eslint-disable-next-line consistent-return
-httpd((req, headers) => {
-  if (new URL(req.url).pathname === '/')
-    return new Response(`${markup_pre()}${markup()}${markup_post()}`, { headers })
-}, { ls: false })
+document.addEventListener('DOMContentLoaded', () => {
+  main()
+})
