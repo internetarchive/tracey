@@ -1,5 +1,4 @@
-FROM nginx:alpine
+FROM caddy:alpine
 
-WORKDIR /usr/share/nginx/html/
+WORKDIR /usr/share/caddy/
 COPY . .
-
