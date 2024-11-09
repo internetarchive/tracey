@@ -1,3 +1,15 @@
-# tracey
+# Tracey Jaquith's slides, talks and projects - https://tracey.archive.org/
 
-pointers to slides/talks and projects
+See: https://tracey.archive.org/
+
+Tracey Jaquith
+
+Founding Coder, Internet Archive 🏛️
+
+TV Architect
+
+I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & devops 🐋
+
+Find me at:
+  [🦣 mastodon](https://mastodon.social/@traceypooh)
+  [🐦 twitter/X](https://twitter.com/tracey_pooh)
