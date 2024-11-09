@@ -72,7 +72,7 @@ We use ffmpeg to crop the image area; tesseract to OCR the image into text; and 
     slides: 'https://tracey.archive.org/demuxed',
     title: 'Demuxed 2021',
     img: 'demuxed.jpg',
-    descrip: '30,000 fps nginx - To Russia with Love<hr>Working a patch upstream to nginx mp4 module for exact start/end lossless server-side mp4 clipping<br><a href="https://2021.demuxed.com/">Demuxed 2021</a><hr><img style="float:right" src="tracey-memoji-love.png">I won audience favorite talk award for the day!',
+    descrip: '30,000 fps nginx - To Russia with Love<hr>Working a patch upstream to nginx mp4 module for exact start/end lossless server-side mp4 clipping<br><a href="https://2021.demuxed.com/">Demuxed 2021</a><hr><img style="float:right" src="images/tracey-memoji-love.png">I won audience favorite talk award for the day!',
   }, {
     href: 'https://www.youtube.com/watch?v=1n1gPMxg8bg',
     slides: 'https://tracey.archive.org/hashiconf',
@@ -201,7 +201,7 @@ function main() {
       str += `
         <div class="card card-body bg-light">
           <a href="${href}">
-            <img src="${card.img}"/>
+            <img src="images/${card.img}"/>
           </a>
           <h3>
             <a href="${href}">${card.title}</a>
