@@ -23,7 +23,7 @@ function req(file, callback) {
 // NOTE: these allow caller to override the default (2 different ways) and include us remotely.
 // NOTE: the `../eveal.js/` redundancy is for legacy setup
 if (window.REMOTE)
-  window.BASE = 'https://archive.org/~tracey/slides/eveal.js/reveal.js/'
+  window.BASE = 'https://tracey.archive.org/eveal.js/reveal.js/'
 const BASE = window.BASE ?? '../eveal.js/reveal.js/'
 
 req(`${BASE}lib/js/head.min.js`, () => {

@@ -1,10 +1,10 @@
-<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://archive.org/~tracey/slides/eveal.js/eveal.js"></script><title>DevOps Training: Week 5</title></head><body>
+<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://tracey.archive.org/eveal.js/eveal.js"></script><title>DevOps Training: Week 5</title></head><body>
 
 # 🚂 DevOps Training
 ## Week 5
 ### Mar 10, 2021
 
-Slides: https://archive.org/~tracey/slides/devops/
+Slides: https://tracey.archive.org/devops/
 
 ---
 ## Don't forget!
@@ -113,7 +113,7 @@ listen-address=127.0.0.1
 
 ---
 ### verify Network DNS still has 127.0.0.1 as first resolver
-- https://archive.org/~tracey/slides/devops/2021-02-24/#/17
+- https://tracey.archive.org/devops/2021-02-24/#/17
 - then:
 
 ```bash
@@ -210,9 +210,9 @@ wget -qO- \
 
 ---
 ## reregister runner
-- [Setup Runner](https://archive.org/~tracey/slides/devops/2021-02-17/#/22)
-- [GitLab Runner Register](https://archive.org/~tracey/slides/devops/2021-02-17/#/23)
-- [GitLab Runner Register](https://archive.org/~tracey/slides/devops/2021-02-17/#/24)
+- [Setup Runner](https://tracey.archive.org/devops/2021-02-17/#/22)
+- [GitLab Runner Register](https://tracey.archive.org/devops/2021-02-17/#/23)
+- [GitLab Runner Register](https://tracey.archive.org/devops/2021-02-17/#/24)
 
 ---
 ## new project pipeline
@@ -243,7 +243,7 @@ wget -qO- \
 
 ---
 ## nomad ACL re-bootstrap (official 🤔)
-first try [clear out nomad (& docker)](https://archive.org/~tracey/slides/devops/2021-03-10/#/6)
+first try [clear out nomad (& docker)](https://tracey.archive.org/devops/2021-03-10/#/6)
 ```bash
 nomad acl bootstrap
 ```
@@ -261,7 +261,7 @@ https://learn.hashicorp.com/tutorials/nomad/access-control-bootstrap#re-bootstra
 
 ---
 ## nomad ACL re-bootstrap (fallback)
-first try [clear out nomad (& docker)](https://archive.org/~tracey/slides/devops/2021-03-10/#/6)
+first try [clear out nomad (& docker)](https://tracey.archive.org/devops/2021-03-10/#/6)
 ```bash
 sudo brew services stop nomad
 sudo killall nomad
@@ -276,9 +276,9 @@ sed -i -e 's|<string>-dev</string>|<string>-config=/etc/nomad.d</string>|' \
 sudo brew services start nomad
 ```
 - "Nomad bootstrap - get ACL token"
-  -- [2021-02-24/#/36](https://archive.org/~tracey/slides/devops/2021-02-24/#/36)
+  -- [2021-02-24/#/36](https://tracey.archive.org/devops/2021-02-24/#/36)
 - "NOMAD_ADDR + NOMAD_TOKEN"
-  -- [2021-02-24/#/37](https://archive.org/~tracey/slides/devops/2021-02-24/#/37)
+  -- [2021-02-24/#/37](https://tracey.archive.org/devops/2021-02-24/#/37)
 
 - update new token value at:
   - GitLab https://git.x.archive.org/ia

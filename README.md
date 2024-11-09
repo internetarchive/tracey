@@ -13,3 +13,11 @@ I focus on TV, video/audio, UI/UX, javascript 🦕, markdown, 🦭 containers & 
 Find me at:
   [🦣 mastodon](https://mastodon.social/@traceypooh)
   [🐦 twitter/X](https://twitter.com/tracey_pooh)
+
+
+## TODO
+```sh
+gg xxx
+gg -F /~tracey
+wget crawl & find/fix 404s
+```
