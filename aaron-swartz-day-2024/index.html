@@ -14,7 +14,138 @@
 [tracey.archive.org](https://tracey.archive.org)
 
 ---
+## Operational Security Intro
+Keep systems & servers **secure**, reliable & performant
 
+Applies to:
+- server & VM management
+- cloud management (self-hosted & 3rd party)
+- database storage & access
+- code deployment
+- data handling
+
+---
+## Attack Surface Management
+Exposed Areas
+- PHP entry points
+- public endpoints
+- database access points
+- shell commands
+- JS cross site scripting
+
+---
+## Attack Surface Management mitigations
+- disable unnecessary modules, old code
+- lock down open ports
+- limit public access to APIs
+- prefer fewer ways in (centralize monitoring)
+
+---
+# Securing PHP
+- strict coding standards & linting
+- regular updates
+- disable dangerous functions (`eval()`, `escape()` shell args, etc.)
+- static analysis tools like `PHPStan` or `Psalm` to find vulnerabilities
+- `htmlentities` user input/metadata into pages (XSS)
+
+---
+# General Security
+## Principle of Least Privilege
+- Role Based Access Control to clouds
+- Limit DB access rights per service or user role
+- Don't add secrets/tokens if you don't need them
+- Run deploys as non-root
+- Restrict network & DB access
+- Prefer static file servers
+
+---
+# General Security
+- SQL Injection: Use `prepared statements`, escape arguments, etc.
+- Encryption: Encrypt sensitive data/secrets in transit & storage where possible
+
+---
+## Secure Command Line Calls
+- avoid `root` users
+- Defend against files named:
+  - `movie.mp4; find / -delete`
+- Sanitize inputs, use PHP `escapeshellarg()`
+- prefer pre-defined scripts -v- dynamic shell commands
+
+---
+# Secrets Management
+- Secure Storage: secrets management tools
+  - HashiCorp `vault`, AWS Secrets Manager
+- dont `git commit` secrets
+  - dont deploy `.git` subdir
+    - contains all prior "sins"
+- Use environment variables or dedicated storage for credentials/keys
+  - use orchestration (`kubernetes`, `nomad`) with automatic secrets managment
+    - env var injection into **container** at **runtime**
+
+---
+## Authentication & Access Control
+- Virtual Private Network (VPN)
+  - lockown access to servers only to ops/devs
+- 2FA (Two-Factor Authentication) for logins
+- `passkeys` - knock out spear/phishing
+
+---
+## Role-Based Access Control (RBAC)
+- Control access based on **roles** (principle of least privilege)
+  - deploy phase can only read registry
+  - dev groups with limited deploy access
+  - avoid "god" tokens
+
+---
+# Network Security
+- Firewall Rules: Enforce strict firewall rules for access to apps/deploys & DB servers
+- `nginx` Web Application Firewall
+- Zero Trust Architecture: Consider Zero Trust for internal/external network communications
+- assume private code might leak
+  - defensive coding
+  - secrets elsewhere
+
+---
+# Logging & Monitoring
+- Comprehensive Logging
+  - Log all significant actions
+    - login attempts, database access & command executions
+- Alerts setup for suspicious activities & abnormal patterns
+- Centralize logging, monitoring & alerting
+
+---
+# Clouds, CI/CD & Git Ops
+- dev makes commit & push
+- automatic Continuous Integration (CI)
+  - re/build container from `Dockerfile`
+  - re/test code & containers
+- automatic Continuous Deployment (CD)
+  - re/deploy to cloud when CI passes
+  - automatic healthchecking
+  - automatic rollback
+
+---
+## Automation in Security Operations
+- CI/CD Integration: Embed security checks in CI/CD pipelines
+  - static code analysis
+  - secrets/token scanning
+  - dependency scanning
+- Automated Response: playbooks for incident response (disable accounts, block IPs in real-time)
+
+---
+## Backup & Disaster Recovery
+- Regular Backups: Enforce frequent & tested backups for data integrity
+  - use checksums for tampering detection
+- Disaster Recovery Drills: Simulate recovery scenarios & test readiness
+- DB & data backups
+  - consider nonpublic data backup
+
+
+---
+## Conclusion & Key Takeaways
+xxx
+Checklist Summary: End with a checklist of security essentials discussed.
+Continuous Improvement: Emphasize the need for regular audits, updates, and staying informed on emerging security threats.
 
 
 ---
