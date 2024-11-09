@@ -1,6 +1,6 @@
-<!doctype html><head><meta charset="utf-8"/><script src="../eveal.js/eveal.js"></script><title>Microservices, Monoliths, and Operational Security - The Internet Archive in 2024</title></head><body>
+<!doctype html><head><meta charset="utf-8"/><script src="../eveal.js/eveal.js"></script><title>Microservices, Monoliths & Operational Security - The Internet Archive in 2024</title></head><body>
 
-# Microservices, Monoliths, and Operational Security
+# Microservices, Monoliths & Operational Security
 ## The Internet Archive in 2024
 
 ## [Aaron Swartz Day 2024](https://www.aaronswartzday.org/)
@@ -12,6 +12,12 @@
 #### TV Architect
 
 [tracey.archive.org](https://tracey.archive.org)
+
+---
+## Don't Bury the Lead
+## 🏛️ Internet Archive **badly hacked** sep/oct 2024
+- first time since our start (1996) where we took *all* servers off network
+- month+ of "opsec" work
 
 ---
 ## Operational Security Intro
@@ -47,6 +53,15 @@ Exposed Areas
 - disable dangerous functions (`eval()`, `escape()` shell args, etc.)
 - static analysis tools like `PHPStan` or `Psalm` to find vulnerabilities
 - `htmlentities` user input/metadata into pages (XSS)
+
+---
+# Cross Site Scripting (XSS)
+Welcome to example.com!
+
+Enter your page title here:
+```sh
+&lt;script> document.write("page is mine") &lt;/script>
+```
 
 ---
 # General Security
@@ -91,10 +106,10 @@ Exposed Areas
 
 ---
 ## Role-Based Access Control (RBAC)
-- Control access based on **roles** (principle of least privilege)
-  - deploy phase can only read registry
-  - dev groups with limited deploy access
-  - avoid "god" tokens
+Control access based on **roles** (principle of least privilege)
+- deploy phase can only **read** from container registry
+- dev groups with limited deploy access
+- avoid "god" tokens
 
 ---
 # Network Security
@@ -136,17 +151,56 @@ Exposed Areas
 ## Backup & Disaster Recovery
 - Regular Backups: Enforce frequent & tested backups for data integrity
   - use checksums for tampering detection
-- Disaster Recovery Drills: Simulate recovery scenarios & test readiness
+- Disaster Recovery Drills:
+  - simulate recovery scenarios & test readiness
 - DB & data backups
   - consider nonpublic data backup
 
 
 ---
-## Conclusion & Key Takeaways
-xxx
-Checklist Summary: End with a checklist of security essentials discussed.
-Continuous Improvement: Emphasize the need for regular audits, updates, and staying informed on emerging security threats.
+# Avoid monoliths
+- they **acrete** secrets, code, vulnerabilities & older pkgs/setups over time
+- slower CI/CD
+- hard for new people
+- hard for comprehensive opsec analysis & defense
 
+---
+# Embrace Microservices
+examples:
+- deploys for login systems
+- deploys for metatadata
+  - APIs can be used internally & externally
+- deploys for data processing
+  - eg: dynamically resize book page imagery
+
+---
+# Embrace Microservices
+- DB, network, or command line access can only be "opt-in" not the default
+- minimal or zero secrets/tokens per deploy
+- can be completely cutoff from data storage
+- web servers can be 100% read-only
+
+---
+# Houses -v- Farms
+- pets / "houses" fine to be self-managed VMs / baremetals
+- scalable systems "farms" easily "rebooted", moved, replaced, scaled
+  - automatic spin up/down 5 more deploys based on demand
+
+---
+## Stay up-to-date
+- Must continually improve
+  - regular audits & updates
+  - stay up-to-date on emerging security threats
+  - continual patching of OS, packages & deploys CVE (Common Vulnerabilities & Exposures)
+- dump unsupported OS, software, languages (eg: `python2`)
+
+---
+## Conclusions
+- Large complex systems increase opsec concerns & issues
+- Embrace containers, clouds & orchestration
+  - everything dev & ops do is already solved territory ☀️
+- Microservices where makes sense
+- Stay up on opsec, leverage industry best practices
 
 ---
 <!-- .slide: data-background="https://media.giphy.com/media/q4ICE9wYvOwBG/giphy.gif" -->
