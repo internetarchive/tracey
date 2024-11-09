@@ -148,6 +148,17 @@ Control access based on **roles** (principle of least privilege)
 - Automated Response: playbooks for incident response (disable accounts, block IPs in real-time)
 
 ---
+## Secrets & Tokens
+GitHub Actions/GitLab have easy repo/groups secrets mgmt
+![gitlab secrets management panel](https://gitlab.com/internetarchive/nomad/-/raw/master/img/secrets.jpg)
+
+- devs can self-administer secrets
+- secrets become environment variables in deploys
+- secrets easily "rotated"
+- secrets easily audited
+
+
+---
 ## Backup & Disaster Recovery
 - Regular Backups: Enforce frequent & tested backups for data integrity
   - use checksums for tampering detection

@@ -8,7 +8,7 @@ const ME = {
     slug: 'aaron-swartz-day-2024',
     title: 'Microservices, Monoliths, and Operational Security <br> The Internet Archive in 2024',
     img: 'first-big-break.jpg',
-    descrip: 'Aaron Swartz Day 2024.',
+    descrip: 'Aaron Swartz Day 2024',
   }, {
     slug: 'demuxed-2024',
     title: 'Demuxed 2024:<br> What\'s on TV?<br> 4 editors and 2 robots walk into a bar..',
@@ -48,7 +48,7 @@ We use ffmpeg to crop the image area; tesseract to OCR the image into text; and 
     slug: 'dweb-2022',
     slides: 'https://tracey.archive.org/dweb-2022',
     title: 'Decentralized Social via markdown Blogs (+JS)',
-    img: 'https://tracey.archive.org/images/view-source.jpg',
+    img: 'view-source.jpg',
     descrip: 'Create free blogs and websites entirely from markdown leveraging one JavaScript file.  Take back control of your content with a newer vision for internetworked, decentralized social sharing with friends, family, and the world.  Your website will be archivable, decentralize-able, 100% content-first, and will live forever.  <a href="https://blogtini.com">blogtini.com</a>',
   }, {
     href: 'https://www.youtube.com/watch?v=NXsvhSgYKfk',
@@ -201,7 +201,7 @@ function main() {
       str += `
         <div class="card card-body bg-light">
           <a href="${href}">
-            <img src="images/${card.img}"/>
+            <img src="${card.img?.startsWith('https://') ? '' : 'images/'}${card.img}"/>
           </a>
           <h3>
             <a href="${href}">${card.title}</a>
