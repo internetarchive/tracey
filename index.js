@@ -6,7 +6,7 @@ const ME = {
   //   [drop] slug
   'Presentations & Talks [2024...2016]': [{
     slug: 'aaron-swartz-day-2024',
-    title: 'Microservices, Monoliths, and Operational Security <br> The Internet Archive in 2024',
+    title: 'Microservices, Monoliths & Operational Security <br> The Internet Archive in 2024',
     img: 'first-big-break.jpg',
     descrip: 'Aaron Swartz Day 2024',
   }, {
