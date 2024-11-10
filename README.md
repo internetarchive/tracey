@@ -18,6 +18,6 @@ Find me at:
 ## TODO
 ```sh
 gg xxx
-gg -F /~tracey
 wget crawl & find/fix 404s
+drop regen.sh
 ```
