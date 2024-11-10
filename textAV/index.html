@@ -1,0 +1,148 @@
+<!doctype html><head><meta charset="utf-8"/><script src="../eveal.js/eveal.js"></script><title>Archive TV and Captions, textAV</title></head><body>
+
+# Archive TV and Captions
+### at textAV, NYU</br>July 2017
+
+<small>
+  by
+  [traceypooh](https://twitter.com/tracey_pooh)
+  <a href="https://github.com/traceypooh"><img style="margin:0" src="i/git.png"/></a>
+  <br/>
+</small>
+
+[tracey.archive.org](https://tracey.archive.org)
+
+
+<a href="https://archive.org">
+  <img src="https://archive.org/images/glogo.png" style="position:fixed; bottom:0; left:45%;"/>
+</a>
+
+<small>
+  _?_ for key shortcuts
+</small>
+
+---
+# archive.org/tv
+- recording 50 - 100 channels
+  - 24 x 7
+  - around the world
+  - since 2000
+- 2 million news shows
+- search captions
+
+---
+<!-- .slide: data-background="https://media.giphy.com/media/Gdjgn0hy8zBRK/giphy.gif" -->
+# Demo Time!
+
+---
+# The Third Eye
+- reading the "lower thirds"
+- compare networks
+  - editorial?
+  - angle?
+
+---
+# Comey -v- Sessions
+http://archive.org/~tracey/tv/comey.htm
+http://archive.org/~tracey/tv/sessions.htm
+
+
+---
+# Lower third tech
+- crop third every second
+- tesseract (OCR)
+- simhash
+  - similarity hash
+  - phrases nearly equal?
+- grouping ~repeated instances
+
+---
+# tweetybot
+
+https://twitter.com/tvThirdEye
+
+- CNN now
+- expand to MSNBC, FOXNEWS, BBCNEWS
+- launching soon
+
+---
+# BBCNEWS
+- ccextractor
+  - OCR caption glyphs (euro DVB)
+  - tesseract
+- avoid repeated / rolling windows
+  - compare two images:
+    - how to cook
+    - how to cook for humans
+  - some deduping and simhash
+
+---
+# congressional archives
+- _coming_ next week
+- trump administration, too
+- allow CC searching subsets
+- browsing easier
+- find most watched or cited pieces
+
+---
+# clips
+- little JSON annotations
+- arbitrary start/end
+- auto expands each clip to a "synthetic" document
+  - to elastic search
+- JSONPatch for changes
+- track play counts, some referers
+
+---
+# clip
+```json
+{
+    "268.1|269.1": {
+        "subject": [
+            "Criminal Activity"
+            "Crime"
+        ],
+        "factcheck": [
+            "http://www.factcheck.org/2016/07/factchecking-trumps-big-speech/"
+        ]
+    },
+    "266.7|267.2": {
+        "ad_id": "PolAd_DonaldTrump_d9dsn",
+        "type": "campaign",
+        "race": "PRES",
+        "cycle": "2016",
+        "message": "pro",
+        "sponsor": [
+            "Republican National Cmte"
+        ],
+        "sponsor_type": "PAC",
+        "subject": [
+            "Job Accomplishments"
+        ],
+        "person": [
+            "Donald Trump"
+        ]
+    },
+    "268.1|269.1": {
+        "collection": [
+            "nancy_pelosi_archive"
+        ],
+        "subject": [
+            "Voting",
+        ],
+    }
+}
+```
+
+---
+# other
+- popcorn
+  - https://archive.org/pop
+  - https://github.com/mozilla/popcorn-editor
+  - ted nelson likes transcludes!
+- more realtime experiments
+- ES6 JS
+
+---
+<!-- .slide: data-background="https://media.giphy.com/media/q4ICE9wYvOwBG/giphy.gif" -->
+# THE END
