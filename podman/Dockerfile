@@ -1,7 +1,4 @@
-FROM python:3-alpine
+FROM caddy:alpine
 
-WORKDIR /app
+WORKDIR /usr/share/caddy/
 COPY . .
-
-# basic/minimal webserver
-CMD python3 -m http.server 5000

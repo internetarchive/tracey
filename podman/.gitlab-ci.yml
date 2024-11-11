@@ -1,5 +1,0 @@
-variables:
-  NOMAD_VAR_HOSTNAMES: '["podman"]'
-
-include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
