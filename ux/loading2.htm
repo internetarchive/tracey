@@ -1,0 +1,43 @@
+<!-- Adapted from https://codepen.io/AlexKP/pen/YaYdVN -->
+
+<style>
+
+
+.loader-lines {
+  --bgcolor: white;
+  --line-height: 16px;
+}
+
+.loader-lines {
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #e1e1e1), color-stop(33%, #eeeeee));
+  background: linear-gradient(to right, #eeeeee 8%, #e1e1e1 18%, #eeeeee 33%);
+  background-size: 200% 50px;
+  animation: loader-lines-animation 2s infinite;
+}
+
+.loader-lines > div {
+  border: 8px solid var(--bgcolor);
+}
+
+.loader-line {
+  height: var(--line-height);
+}
+
+@keyframes loader-lines-animation {
+  from {
+    background-position: 75% 0;
+  }
+  to {
+    background-position: -75% 0;
+  }
+}
+</style>
+
+
+
+<div class="loader-lines" style="margin:25%">
+  <div class="loader-line"></div>
+  <div class="loader-line" style="border-right-width:50px"></div>
+  <div class="loader-line"></div>
+  <div class="loader-line" style="border-right-width:50px"></div>
+</div>

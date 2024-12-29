@@ -1,0 +1,19 @@
+<html>
+  <div id="container"></div>
+
+<script type="module">
+import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
+
+jwplayer('container').setup({
+  playlist: [{
+    file: 'https://archive.org/download/commute/commute_512kb.mp4',
+    image: 'https://archive.org/download/commute/format=Thumbnail',
+    title: 'The first video',
+  }, {
+    file: 'https://archive.org/download/camaro/camaro.mp4',
+    image: 'https://archive.org/download/camaro/format=Thumbnail',
+    title: 'The second video',
+  }],
+  base: jwbase,
+})
+</script>

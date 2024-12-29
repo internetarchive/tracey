@@ -1,0 +1,14 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-ALLOWCACHE:1
+#EXT-X-TARGETDURATION:60
+#EXT-X-MEDIA-SEQUENCE:1
+#EXTINF:16.0,
+https://cors.archive.org/cors/drake_saga1_shots/MVI_3983.mp4
+#EXTINF:14.0,
+https://cors.archive.org/cors/drake_saga1_shots/MVI_3984.mp4
+#EXTINF:14.0,
+https://cors.archive.org/cors/drake_saga1_shots/MVI_3985.mp4
+#EXTINF:18.0,
+https://cors.archive.org/cors/drake_saga1_shots/MVI_3986.mp4
+#EXT-X-ENDLIST

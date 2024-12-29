@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <title>Collections are special</title>
+    <link rel="stylesheet" href="https://esm.archive.org/bootstrap@^5.0.0/dist/css/bootstrap.min.css">
+  </head>
+
+  <body class="Unity">
+    <table border="1" class="table table-striped tablesorter">
+      <thead>
+        <tr>
+          <th>identifier</th>
+          <th>access_restricted</th>
+          <th>public_formats</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>webwidecrawl</td><td>1</td><td>Metadata,DAT</td></tr>
+        <tr><td>wide00000</td><td>1</td><td>Metadata,DAT</td></tr>
+        <tr><td>wide00001</td><td>1</td><td>Metadata,DAT</td></tr>
+        <tr><td>wide00002</td><td>1</td><td>Metadata,DAT</td></tr>
+        <tr><td>yahoovideo2011</td><td>1</td><td>Metadata,DAT</td></tr>
+        <tr><td>absenceofwax</td><td>0</td><td></td></tr>
+        <tr><td>al_reves</td><td>0</td><td></td></tr>
+        <tr><td>albertahomestead</td><td>0</td><td></td></tr>
+        <tr><td>americana</td><td>0</td><td></td></tr>
+        <tr><td>andersonuniversity</td><td>0</td><td></td></tr>
+        <tr><td>browardcollege</td><td>0</td><td></td></tr>
+      </tbody>
+    </table>
+  </body>
+
+  <script type="module">
+    import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+    window.jQuery = $
+    window.$ = $
+    await import('https://esm.archive.org/tablesorter?deps=jquery@3.6.1')
+
+    $('table.tablesorter').tablesorter({ textExtraction: 'complex' })
+  </script>
+
+</html>

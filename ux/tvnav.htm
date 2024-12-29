@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    div#lbar div, table tr td, table { border:1px solid gray; }
+    table { border-collapse:collapse; }
+    table tr td div { width:318px; height:198px; }
+    div#lbar div { height:53px; }
+    #grid2 { line-height: 0; }
+    img { display: inline-block; }
+  </style>
+  <script type="module">
+    import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+    window.$ = $
+    window.jQuery = $
+    $(() => {
+      $('#tbar').html('<table><tr><td><div style="width:196px"> </div></td><td><div>1am</div></td><td><div>2am</div></td><td><div>3am</div></td><td><div>4am</div></td><td><div>5am</div></td><td><div>6am</div></td><td><div>7am</div></td><td><div>8am</div></td><td><div>9am</div></td><td><div>10am</div></td><td><div>11am</div></td><td><div>12pm</div></td><td><div>1pm</div></td><td><div>2pm</div></td><td><div>3pm</div></td><td><div>4pm</div></td><td><div>5pm</div></td><td><div>6pm</div></td><td><div>7pm</div></td><td><div>8pm</div></td><td><div>9pm</div></td><td><div>10pm</div></td><td><div>11pm</div></td></tr></table>')
+      $('#grid2').html('<img src=http://archive.org/download/911/20010911_BBC.jpg><img src=http://archive.org/download/911/20010911_BET.jpg><img src=http://archive.org/download/911/20010911_CCTV3.jpg><img src=http://archive.org/download/911/20010911_CNN.jpg><img src=http://archive.org/download/911/20010911_GLVSN.jpg><img src=http://archive.org/download/911/20010911_IRAQ.jpg><img src=http://archive.org/download/911/20010911_MCM.jpg><img src=http://archive.org/download/911/20010911_NEWSW.jpg><img src=http://archive.org/download/911/20010911_NHK.jpg><img src=http://archive.org/download/911/20010911_NTV.jpg><img src=http://archive.org/download/911/20010911_TCN.jpg><img src=http://archive.org/download/911/20010911_WETA.jpg><img src=http://archive.org/download/911/20010911_WJLA.jpg><img src=http://archive.org/download/911/20010911_WORLDNET.jpg><img src=http://archive.org/download/911/20010911_WRC.jpg><img src=http://archive.org/download/911/20010911_WSBK.jpg><img src=http://archive.org/download/911/20010911_WTTG.jpg><img src=http://archive.org/download/911/20010911_WUSA.jpg><img src=http://archive.org/download/911/20010911_AZT.jpg><img src=http://archive.org/download/911/20010911_BBC.jpg><img src=http://archive.org/download/911/20010911_BET.jpg><img src=http://archive.org/download/911/20010911_CCTV3.jpg><img src=http://archive.org/download/911/20010911_CNN.jpg><img src=http://archive.org/download/911/20010911_GLVSN.jpg><img src=http://archive.org/download/911/20010911_IRAQ.jpg><img src=http://archive.org/download/911/20010911_MCM.jpg><img src=http://archive.org/download/911/20010911_NEWSW.jpg><img src=http://archive.org/download/911/20010911_NHK.jpg><img src=http://archive.org/download/911/20010911_NTV.jpg><img src=http://archive.org/download/911/20010911_TCN.jpg><img src=http://archive.org/download/911/20010911_WETA.jpg><img src=http://archive.org/download/911/20010911_WJLA.jpg><img src=http://archive.org/download/911/20010911_WORLDNET.jpg><img src=http://archive.org/download/911/20010911_WRC.jpg><img src=http://archive.org/download/911/20010911_WSBK.jpg><img src=http://archive.org/download/911/20010911_WTTG.jpg><img src=http://archive.org/download/911/20010911_WUSA.jpg><img src=http://archive.org/download/911/20010911_AZT.jpg>')
+      $('#lbar').html('<div>abc</div><div>nbc</div><div>fox</div><div>cbs</div><div>abc</div><div>xyz</div><div>kqed</div><div>kpfw</div><div>kcbs</div><div>wgbh</div><div>wusa</div><div>abc</div><div>nbc</div><div>fox</div><div>cbs</div><div>abc</div><div>xyz</div><div>kqed</div><div>kpfw</div><div>kcbs</div><div>wgbh</div><div>wusa</div><div>xyz</div><div>kqed</div><div>kpfw</div><div>kcbs</div><div>wgbh</div><div>kcbs</div><div>wgbh</div><div>wusa</div>')
+
+      // this allows us to be nicer for clients w/o JS...
+      $('#tbar').css({ position: 'fixed' })
+      $('#lbar').css({ position: 'fixed' })
+    })
+
+    let stop = 0
+    $(window).scroll(() => {
+      let stat
+      const newstop  = $(window).scrollTop()
+      const newsleft = $(window).scrollLeft()
+      if (newstop !== stop) {
+        stat = 'scrolling up/down'
+        $('#lbar').css({ top: -newstop })
+      } else {
+        stat = 'scrolling left/right'
+        $('#tbar').css({ left: -newsleft })
+      }
+
+      stat += ` window top/left: ${newstop}/${newsleft}`
+
+      $('#status').html(stat).show().fadeOut('slow')
+      stop = newstop
+    })
+  </script>
+</head>
+<body style="margin:0px; color:white">
+
+  <div>
+    <div id="tbar" style="position:absolute; top:0px; z-index:2; height:200px; width:7580px; background-color:red;">
+    </div>
+
+    <div id="lbar" style="position:absolute; margin-top:200px; top:0px; z-index:1; left:0px; height:2000px; width:200px; background-color:blue;">
+    </div>
+
+    <div id="grid2" style="margin-left:200px; margin-top:200px; width:7800px;"></div>
+  </div>
+
+
+  <div style="background-color:yellow; padding:3px 10px 3px 10px; border:1px solid black; position:fixed; z-index:3; top:300px; left:300px; color:black;" id="status">
+    Scroll me
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<div id="masonry">
+  <div>1<img src="https://archive.org/services/img/commute"/></div>
+  <div>2<img src="https://archive.org/services/img/stairs"/></div>
+  <div>3<img src="https://archive.org/services/img/poohBot"/></div>
+  <div>4<img src="https://archive.org/services/img/camels"/></div>
+  <div>5<img src="https://archive.org/services/img/camaro"/></div>
+  <div>6<img src="https://archive.org/services/img/prelinger"/></div>
+  <div>7<img src="https://archive.org/services/img/toronto"/></div>
+  <div>8<img src="https://archive.org/services/img/georgeblood"/></div>
+  <div>9<img src="https://archive.org/services/img/movies"/></div>
+  <div>10<img src="https://archive.org/services/img/audio"/></div>
+  <div>11<img src="https://archive.org/services/img/ellepurr"/></div>
+  <div>12<img src="https://archive.org/services/img/Cracker"/></div>
+  <div>13<img src="https://archive.org/services/img/audio"/></div>
+  <div>14<img src="https://archive.org/services/img/texts"/></div>
+</div>
+
+
+<style>
+body {margin:0;border:0; font-weight:bold; font-size:24px; }
+div#masonry {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-direction: column;
+    	flex-direction: column;
+	-ms-flex-wrap: wrap;
+    	flex-wrap: wrap;
+	height: 100vw;
+}
+div#masonry div {
+  display: inline-block;
+	width: 180px;
+  text-align: center;
+}
+img {
+  display: block;
+  max-width: 180px;
+}
+
+/* for older browsers*/
+@supports not (flex-wrap: wrap) {
+	div#masonry {
+		display: block;
+	}
+	div#masonry div {
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+
+/*responsive*/
+@media screen and (max-width: 500px) {
+	div#masonry { height: 200vw; }
+	div#masonry div { width: 50%; }
+}
+</style>

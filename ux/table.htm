@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<style type="text/css">
+html, body {
+  background: black;
+  overflow: hidden;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+#wooden-table {
+  position: absolute;
+  width: 800px;
+  height: 450px;
+  margin: auto;
+}
+#wooden-table > img {
+  width:100%
+}
+
+#lighttable {
+  position: relative;
+  width: 940px;
+  height: 590px;
+  background: #eee url(images/table.jpg);
+  margin: 0 auto;
+  border: 20px solid #111;
+  display: none;
+  overflow: hidden;
+}
+
+#lighttable img {
+  border: 10px solid #fff;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.9);
+  -moz-box-shadow: 0 0 1em rgba(0, 0, 0, 0.9);
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.9);
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+}
+
+#snub span {
+  position: absolute;
+  font-size: 40px;
+  font-family: Times;
+}
+</style>
+/head>
+<body>
+  <div id="wooden-table">
+    <img src="images/black.png"/>
+  </div>
+  <div id="lighttable">
+    <div id="snub" style="position:absolute; z-index:1; left:50%; right:0; bottom:10%;">
+      internet archive tv news
+    </div>
+  </div>
+</body>
+
+
+<script type="module">
+/* eslint-disable no-console */
+import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+window.$ = $
+window.jQuery = $
+
+await import('https://esm.archive.org/jqueryui@1.11.1/jquery-ui.min.js')
+
+let newImageZIndex = 1  // To make sure newly-loaded images land on top of images on the table
+let loaded = false      // Used to prevent initPhotos() running twice
+
+// When the wooden table image has loaded, start bringing in the photos
+function init() {
+  const woodenTable = $('#wooden-table img')
+  // eslint-disable-next-line no-use-before-define
+  woodenTable.on('load', initPhotos)
+  // eslint-disable-next-line no-use-before-define
+  outline()
+
+  // Hack for browsers that don't fire load events for cached images
+  if (woodenTable.get(0).complete)
+    $(woodenTable).trigger('load')
+}
+
+// Set up each of the photos on the table
+
+function dropImg(e) {
+  // Set a random position and angle for this photo
+  const left = Math.floor(Math.random() * 450 + 100)
+  const top = Math.floor(Math.random() * 100 + 100)
+  const angle = Math.floor(Math.random() * 60 - 30)
+  e.css('left', left)
+  e.css('top', top)
+  e.css('transform', `rotate(${angle}deg)`)
+
+  // Make the photo draggable
+  e.draggable({ containment: 'parent', stack: '#lighttable img', cursor: 'pointer' })
+
+  // Hide the photo for now, in case it hasn't finished loading
+  e.hide()
+
+  // When the photo image has loaded...
+  e.on('load', () => {
+    // (Ensure this function doesn't run twice)
+    if (e.data('loaded'))
+      return
+    e.data('loaded', true)
+    e.show()
+
+    // Record the photo's true dimensions
+    const imgWidth =  Math.min(360, 2 * e.width())
+    const imgHeight = imgWidth * (e.height() / e.width())
+
+    // Make the photo bigger, so it looks like it's high above the table
+    e.css('width', imgWidth * 2)
+    e.css('height', imgHeight * 2)
+
+    // Make it completely transparent, ready for fading in
+    e.css('opacity', 0.90)
+
+    // Make sure its z-index is higher than the photos already on the table
+    // eslint-disable-next-line no-plusplus
+    e.css('z-index', newImageZIndex++)
+
+    // Gradually reduce the photo's dimensions to normal, fading it in as we go
+    e.animate({ width: imgWidth, height: imgHeight, opacity: 1.00 }, 4500)
+  })
+
+  // Hack for browsers that don't fire load events for cached images
+  if (e.complete)
+    e.trigger('load')
+}
+
+
+function dropImgs(n) {
+  console.log(n)
+  const obj  = window.hits[n]
+  const $elm = $(`<a href="https://archive.org/details/${obj.identifier}"><img alt="${obj.title}" title="${obj.title}" src="https://archive.org/download/${obj.identifier}/format=Thumbnail"/></a>`)
+  const $img = $elm.find('img')
+  $('#lighttable').append($elm)
+  dropImg($img)
+
+  if (n + 1 < window.hits.length)
+    setTimeout(() => dropImgs(n + 1), 3000)
+}
+
+
+function initPhotos() {
+  // (Ensure this function doesn't run twice)
+  if (loaded)
+    return
+  loaded = true
+
+  // The table image has loaded, so bring in the table
+  $('#lighttable').fadeIn('slow')
+
+  // Process each photo in turn...
+  // skip newest 1000 results since they might not have derived yet..
+  const url = `https://archive.org/advancedsearch.php?q=collection%3Atvarchive&fl%5B%5D=identifier&fl%5B%5D=title&sort%5B%5D=publicdate+desc&output=json&page=20&rows=50&rand${Math.random()}`
+  $.getJSON(url, (data) => {
+    window.hits = data.response.docs
+    dropImgs(0)
+  })
+}
+
+
+function outline() {
+  const snub = document.getElementById('snub')
+  const message = snub.innerHTML
+  const thick = 2
+  const color2 = 'black'
+  const color1 = '#ddd'
+  let str = ''
+  for (let y = -thick; y <= thick; y++) {
+    for (let x = -thick; x <= thick; x++) {
+      if (x  ||  y)
+        str += `<span style="color:${color2}; left:${x}px; top:${y}px;">${message}</span>`
+    }
+  }
+  snub.innerHTML = `${str}<span style="color:${color1}; left:0; top:0;">${message}</span>`
+}
+
+$(init)
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="module">
+  import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
+
+  window.go = function go() {
+    const cfg = {
+      playlist: [],
+      width: 640,
+      height: 480,
+      base: jwbase,
+    }
+    // parse ending lines
+    for (const line of (document.getElementsByTagName('pre')[0]).innerHTML.split('\n')) {
+      if (line.match(/[a-z]/))
+        cfg.playlist.push({ file: `${line}&ignore=f.mp4` })
+    }
+    jwplayer('htm5').setup(cfg)
+  }
+</script>
+
+</head>
+<body onload="go()">
+<div id="htm5"></div>
+<h3>sources (that play in order for both above):</h3>
+<pre>
+https://archive.org/download/camels/format=h.264
+https://archive.org/download/commute/format=h.264
+https://archive.org/download/camaro/format=h.264
+https://archive.org/download/stairs/format=h.264

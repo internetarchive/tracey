@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Internet Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body class="tv" style="background-color:#222;">
+
+    <style type="text/css">
+      body.tv .tclock {
+        background-color:transparent;
+      }
+      body.tv .tclock > div {
+        background-color:black;
+        padding-top:7px;
+        font-size:24px;
+      }
+    </style>
+
+
+    <center style="overflow-x:hidden;">
+      <div style="padding-top:500px;">
+        <div class="tclock">
+          <!--year-->
+          <div class="posrel"><div class="posabs">8</div>2</div>
+          <div class="posrel"><div class="posabs">8</div>0</div>
+          <div class="posrel"><div class="posabs">8</div>1</div>
+          <div class="posrel"><div class="posabs">8</div>0</div>
+
+          <!--month-->
+          <div style="visibility:hidden; width:20px"></div>
+          <div class="posrel"><div class="posabs">8</div>j</div>
+          <div class="posrel"><div class="posabs">8</div>u</div>
+          <div class="posrel"><div class="posabs">8</div>l</div>
+
+          <!--day-->
+          <div style="visibility:hidden; width:20px"></div>
+          <div class="posrel"><div class="posabs">8</div>1</div>
+          <div class="posrel"><div class="posabs">w</div>0</div>
+
+          <!--hour-->
+          <div style="visibility:hidden; width:40px"></div>
+          <div class="posrel"><div class="posabs">8</div>1</div>
+          <div class="posrel"><div class="posabs">w</div>0</div>
+          <div>:</div>
+
+          <!--minute-->
+          <div class="posrel"><div class="posabs">8</div>3</div>
+          <div class="posrel"><div class="posabs">w</div>0</div>
+
+          <!--am/pm-->
+          <div class="posrel"><div class="posabs">5</div>p</div>
+          <div class="posrel"><div class="posabs">5</div>m</div>
+        </div><!--/.tclock-->
+        <div class="topinblock" style="background-color:black; padding:3px 10px; font-size:36px; color:#fdf6e3;">
+          <nobr>DESTINATION TIME</nobr>
+        </div>
+      </div>
+    </center>
+  </body>
+
+
+<style type="text/css">
+  @font-face { font-family:Digi7; src:url("digital-7.ttf"); }
+  .tclock {
+    color: white;
+    background-color: black;
+    font-size: 26px;
+    line-height: 1;
+  }
+  .tclock @media (max-width:1000px) {
+    font-size: 18px;
+  }
+  .tclock > div @media (max-width:1000px) {
+    margin: 0;
+    padding: 0;
+  }
+
+  .tclock.big > div {
+    font-size:128px !important;
+  }
+
+  .tclock > div {
+    border-radius: 3px;
+    display: inline-block;
+
+    -webkit-transition: font-size 3.0s ease;
+    -moz-transition   : font-size 3.0s ease;
+    -o-transition     : font-size 3.0s ease;
+    transition        : font-size 3.0s ease;
+    font-family: Digi7;
+    line-height:1;
+
+    padding:3px 5px 0 5px;
+    margin-left:1px;
+  }
+</style>
+
+
+<div id="cluck" class="tclock topinblock" style="padding:0 10px; text-align:center">
+</div>
+
+
+<script type="module">
+import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+$().ready(() => {
+  $('.tclock').toggleClass('big')
+
+  const d = new Date()
+  const yyyy = String(d.getFullYear())
+  const mmm  = d.toLocaleString('default', { month: 'long' })
+  const dd   = String(d.getDate()).padStart(2, '0')
+  const hh   = String(d.getHours() - (d.getHours() > 12 ? 12 : 0)).padStart(2, '0')
+  const mm   = String(d.getMinutes()).padStart(2, '0')
+  const amp  = d.getHours() > 12 ? 'PM' : 'AM'
+
+  $('#cluck').html(`
+    <div>${yyyy.split('').join('</div><div>')}</div>
+
+    <div style="visibility:hidden; width:10px"></div>
+    <div>${mmm.split('').join('</div><div>')}</div>
+
+    <div style="visibility:hidden; width:10px"></div>
+    <div>${dd.split('').join('</div><div>')}</div>
+
+    <div style="visibility:hidden; width:20px"></div>
+    <div>${hh.split('').join('</div><div>')}</div>
+    <div>:</div>
+    <div>${mm.split('').join('</div><div>')}</div>
+
+    <div>${amp.split('').join('</div><div>')}</div>
+  `)
+
+  setTimeout(() => {
+    $('.tclock .posabs').hide(() => {
+      $('.tclock .posabs').addClass('opac60').show(() => {
+        $('.tclock .posabs').fadeOut('slow')
+      })
+    })
+  }, 500)
+})
+</script>

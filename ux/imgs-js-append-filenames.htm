@@ -1,0 +1,22 @@
+<style>
+body { margin:0; padding:0; border:0; background-color:#999; }
+img { margin:7px; border-radius: 15px; }
+</style>
+<script>
+  window.load = function load() {
+    const body = document.getElementsByTagName('body')[0]
+    body.innerHTML = `<img src="images/${
+      body.innerHTML.trim().replace(/\n/g, '"/><img src="images/')
+    }"/>`
+  }
+</script>
+</head>
+<body onload="load()">
+pIrAte.png
+poohbot-only.png
+poohbot-pictures-text.png
+poohbot-pictures.png
+poohbot-text.png
+poohbot-text2.png
+poohbot.png
+earth.jpg

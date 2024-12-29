@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <item>
+      <title>Camaro</title>
+      <link>http://archive.org/details/camaro</link>
+      <media:thumbnail url="http://archive.org/download/camaro/format=Thumbnail?ignore=x.jpg"/>
+      <media:content url="http://archive.org/download/camaro/camaro.mp4" type="video/mp4" />
+    </item>
+
+    <item>
+      <title>Cape HD</title>
+      <link>http://archive.org/details/capeHD</link>
+      <media:thumbnail url="http://archive.org/download/capeHD/format=Thumbnail?ignore=x.jpg"/>
+      <media:content url="http://archive.org/download/capeHD/capeHD.mp4" type="video/mp4" />
+    </item>
+  </channel>
+</rss>

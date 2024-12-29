@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Internet Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <style>
+      .panel-body { text-align:justify;  text-justify:inter-word;  }
+      .panA .panel-body, .panB .panel-body { padding-bottom:0; }
+      .panB .panel-body, .panC .panel-body { padding-top:0; }
+      .panB { display:block; height:auto !important; }
+    </style>
+    <script type="module">
+      import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+      window.$ = $
+      window.jQuery = $
+      await import('https://esm.archive.org/bootstrap@^3.0.0')
+
+      $(() => {
+        // this makes it so *both* top and bottom panels can open/close together (not just top)
+        $('[data-toggle="collapse"]').click(() => {
+          $('.collapse.in').collapse('hide')
+        })
+      })
+    </script>
+
+
+    <center>
+      <a class="btn btn-primary btn-sm" data-toggle="collapse" data-parent="#sharedown" href=".hmm">Expand</a>
+    </center>
+    <div class="panel-group" id="sharedown" style="width:555px; margin:auto; text-align:center">
+      <div class="panel-default" style="padding-top:15px; padding-bottom:15px; border:0; background-color:transparent">
+        <div class="hmm panel-collapse collapse panA">
+          <div class="panel-body">
+            George Lucas, the creator of Star Wars
+            In 1971, Universal Studios agreed to make American Graffiti and Star Wars in a two-picture contract, although Star Wars was later rejected in its early concept stages. American Graffiti was completed in 1973 and, a few months later, Lucas wrote a short summary called "The Journal of the Whills", which told the tale of the training of apprentice CJ Thorpe as a "Jedi-Bendu" space commando by the legendary Mace Windy.[31] Frustrated that his story was too difficult to understand, Lucas then began writing a 13-page treatment called The Star Wars on April 17, 1973, which had thematic parallels with Akira Kurosawa's The Hidden Fortress.[32] By 1974, he had expanded the treatment into a rough draft screenplay, adding elements such as the Sith, the Death Star, and a protagonist named Annikin Starkiller.
+          </div>
+        </div>
+        <div class="hmm panel-collapse collapse in panB">
+          <div class="panel-body" style="color:rgb(254,121,95)">
+  John Williams, composer of the musical scores for all six films of the original and prequel trilogies.
+  At that point, Lucas was not expecting the film to become part of a series. The fourth draft of the script underwent subtle changes that made it more satisfying as a self-contained film, ending with the destruction of the Empire itself by way of destroying the Death Star. However, Lucas had previously conceived of the film as the first in a series of adventures. Later, he realized the film would not in fact be the first in the sequence, but a film in the second trilogy in the saga. This is stated explicitly in George Lucas' preface to the 1994 reissue of Splinter of the Mind's Eye:
+          </div>
+        </div>
+        <div class="hmm panel-collapse collapse panC">
+          <div class="panel-body">
+  It wasn't long after I began writing Star Wars that I realized the story was more than a single film could hold. As the saga of the Skywalkers and Jedi Knights unfolded, I began to see it as a tale that could take at least nine films to tell—three trilogies—and I realized, in making my way through the back story and after story, that I was really setting out to write the middle story.
+  The second draft contained a teaser for a never-made sequel about "The Princess of Ondos," and by the time of the third draft some months later Lucas had negotiated a contract that gave him rights to make two sequels. Not long after, Lucas met with author Alan Dean Foster, and hired him to write these two sequels as novels.[34] The intention was that if Star Wars were successful, Lucas could adapt the novels into screenplays.[35] He had also by that point developed an elaborate backstory to aid his writing process.[36]
+          </div>
+        </div>
+      </div>
+    </div><!--/.panel-group-->
+

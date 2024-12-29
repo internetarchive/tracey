@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+  <script src="https://av.prod.archive.org/jw/8/jwplayer.js"></script>
+<script>
+var ID = 'BFBS_Blandford_20190805_160000'
+var SEEK = '58:15'
+var SEC = (parseInt(SEEK, 10) * 60) + parseInt(SEEK.substr(SEEK.lastIndexOf(':') + 1), 10)
+var CC = 'that will absolutely change the lives of working frontline staff it will change the'
+</script>
+
+<h3>
+  <script>document.write(`<a href="/details/${ID}">${ID}</a> seek button seeks to: ${SEEK} / ${SEC}s`)</script>
+</h3>
+"<script>document.write(CC)</script>"
+
+<h2>m4a video tag</h2>
+<video id="m4a-v" controls height="50" width="100%"></video>
+<button onclick="document.getElementById('m4a-v').play(); document.getElementById('m4a-v').currentTime = SEC">seek</button>
+<script>document.getElementById('m4a-v').src = ID + '.m4a'</script>
+
+
+<h2>m4a jwplayer</h2>
+<div id="m4a-j"></div>
+<script> jwplayer('m4a-j').setup({ file: ID + '.m4a', width:"100%", height:30 }) </script>
+<button onclick="jwplayer('m4a-j').seek(SEC)">seek</button>
+
+
+<hr/>
+Research Jun 4, 2020:
+<table border="1" cellpadding="7">
+  <tr><td> .m4a plays in &lt;video&gt; tag            </td><td> chrome, safari, firefox, edge, iOS, opera, IE11 </td></tr>
+  <tr><td> .m4a plays in jwplayer                     </td><td> chrome, safari, firefox, edge, iOS, opera, IE11 </td></tr>
+  <tr><td> .m4a seeks accurately in &lt;video&gt; tag </td><td> chrome, safari, firefox, edge, iOS, opera, IE11 </td></tr>
+  <tr><td> .m4a seeks accurately in jwplayer          </td><td> chrome, safari, firefox, edge, iOS, opera, IE11 </td></tr>
+  <tr><td> .m4a plays "naked" in browser              </td><td> chrome, safari, <s>firefox</s>, edge, iOS, <s>opera</s>, <s>IE11</s> </td></tr>
+</table>
+<hr/>
+<hr/>
+
+
+<h2>aac video tag</h2>
+<video id="a5" controls height="50" width="100%"></video>
+<button onclick="document.getElementById('a5').play(); document.getElementById('a5').currentTime = SEC">seek</button>
+<script>document.getElementById('a5').src = ID + '.aac'</script>
+
+<h2>aac jwplayer</h2>
+<div id="aj"></div>
+<script> jwplayer('aj').setup({ file: ID + '.aac', width:"100%", height:30 }) </script>
+<button onclick="jwplayer('aj').seek(SEC)">seek</button>
+
+
+<h2>mp3 video tag</h2>
+<video id="m5" controls height="50" width="100%"></video>
+<button onclick="document.getElementById('m5').play(); document.getElementById('m5').currentTime = SEC">seek</button>
+<script>document.getElementById('m5').src = ID + '.mp3'</script>
+
+
+<h2>mp3 jwplayer</h2>
+<div id="mj"></div>
+<script> jwplayer('mj').setup({ file: ID + '.mp3', width:"100%", height:30 }) </script>
+<button onclick="jwplayer('mj').seek(SEC)">seek</button>
+
+
+<h2>mp4 video tag</h2>
+<video id="v5" controls height="50" width="100%"></video>
+<button onclick="document.getElementById('v5').play(); document.getElementById('v5').currentTime = SEC">seek</button>
+<script>document.getElementById('v5').src = ID + '.mp4'</script>
+
+
+<h2>mp4 jwplayer</h2>
+<div id="vj"></div>
+<script> jwplayer('vj').setup({ file: ID + '.mp4', width:"100%", height:30 }) </script>
+<button onclick="jwplayer('vj').seek(SEC)">seek</button>
+
+
+```bash
+
+ffmpeg -i BFBS_Blandford_20190805_160000.aac -c:a copy -bsf:a aac_adtstoasc -movflags faststart BFBS_Blandford_20190805_160000.m4a
+
+ffmpeg -i BFBS_Blandford_20190805_160000.aac -c:a copy -bsf:a aac_adtstoasc -movflags faststart BFBS_Blandford_20190805_160000.mp4
+```
+
+
+</html>

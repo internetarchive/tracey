@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- __ _ _ _ __| |_ (_)__ _____
+    / _` | '_/ _| ' \| |\ V / -_)
+    \__,_|_| \__|_||_|_| \_/\___| -->
+  <head>
+    <title>TV NEWS : Search Captions. Borrow Broadcasts : TV Archive : Internet Archive</title>
+
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="tv-coach.css" rel="stylesheet" type="text/css"/>
+
+ <script type="module">
+  import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+  window.$ = $
+  window.jQuery = $
+
+  const TV2 = {}
+  const TV = {}
+
+  TV2.numShows = '954,000'
+
+  // eslint-disable-next-line no-console
+  const log = console.log.bind(console)
+
+  TV.winWH = function winWH() {
+    let w = $(window).width()
+    let h = $(window).height()
+    if (TV.ios) {
+      // plus iOS bleah
+      w += 60
+      h += 60
+    }
+    return { width: w, height: h }
+  }
+
+  // (adapted) from http://www.queness.com/code-snippet/6853/center-an-element-on-the-screen-using-jquery
+  // then you can use it like:
+  //      $("#gridmini").center()
+
+  window.jQuery.fn.center = function center() {
+    const myheight = (this.height() +
+                  parseInt(this.css('padding-top'), 10) +
+                  parseInt(this.css('padding-bottom'), 10))
+
+    log(`myheight=${myheight}`)
+    log(`mywidth=${this.width()}`)
+    log(`w.height=${$(window).height()} ` +
+        `w.width=${$(window).width()} ` +
+        `w.scrollTop=${$(window).scrollTop()} ` +
+        `w.scrollLeft=${$(window).scrollLeft()} `)
+
+    let top  = ($(window).height() - myheight) / 2
+    let left = ($(window).width()  - this.width()) / 2
+
+    // for small viewports like iphone, when centering popups, ensure minimally +20px
+    top  = Math.max(20, top)
+    left = Math.max(20, left)
+
+    this.css({
+      position: 'fixed',
+      display: 'block',
+      top:  `${top}px`,
+      left: `${left}px`,
+    })
+
+    return this
+  } // end jQuery.fn.center
+
+
+  TV2.coach = function coach() {
+    if ($('.opcoach').length)
+      return TV2.uncoach()
+
+    let tmp
+    const v = 20   // visible bump/border around each div we want showing!
+    const v2 = 2 * v
+    const x1 = 25
+    const x2 = 2 * x1
+    const win = TV.winWH()
+    win.left = $(window).scrollLeft()
+    win.right = win.left + win.width
+    const search = true
+
+    const objs = { searchtoggler: $('#searchtoggler') }
+    const es   = { }
+
+    // find the visible left and right edges of the screen
+    const iw = $('#infotray').outerWidth()
+    const visibleL = win.left  + iw
+    const visibleR = win.right - iw
+
+
+    if (search) {
+      tmp = $('#timegraf .ptrR')
+      if (tmp.length)
+        objs.timegraf = tmp
+
+      tmp = $('#infotray .facet')
+      if (tmp.length)
+        objs.facet = tmp
+    } else {
+      // for super narrow, search inside checkbox becomes a narrow icon, so we wont coach that
+      if (!search  &&  win.width >= 768) {
+        // wide enough -- coach it!
+        tmp = $('#searchin input[type=checkbox]')
+        if (tmp.length) {
+          objs.searchin = tmp
+        }
+      }
+
+      objs.borrow = $('#tvborrow')
+      // get hero share icon, ideally, else
+      // get 2nd share icon that is visible, else
+      // get 1st share icon that is visible
+      tmp = $($('.tvcolx .snipshare').filter((idx, val) => { const l = $(val).offset().left; return l > visibleL  &&  (l + $(val).width()) < (visibleL + win.width) }).get(0))
+      if (!tmp.length) {
+        tmp = $('.tvcol .snipshare').filter((idx, val) => $(val).offset().left > visibleL).slice(0, 2)
+        if (tmp.length === 2)
+          tmp = $(tmp.get(1))
+        else if (tmp.length === 1)
+          tmp = $(tmp.get(0))
+      }
+      if (tmp.length)
+        objs.share = tmp
+
+
+      // get first share icon that is visible
+      const quote_finder = function quote_finder() {
+        tmp = $($('.tvcol .tvquote').filter((idx, val) => { const l = $(val).offset().left; return l > visibleL  &&  ((l + $(val).width()) < visibleR) }).get(0))
+        if (tmp.length) {
+          log('coaching: visible quote found!')
+          objs.quote = tmp
+          // flip on the visible "# plays" tooltip for the quote!
+          TV2.qtip = tmp.find('a')
+          if (TV2.qtip)
+            TV2.qtip.tooltip('show')
+          return true
+        }
+        return false
+      }
+
+      if (!quote_finder()) {
+        // We gonna temporarily fake/place one on the page...
+        // Get 1st visible non-hero column..
+        tmp = $($('.tvcol').not('.tvcolx').filter((idx, val) => $(val).offset().left > visibleL).get(0))
+        if (!tmp.length)
+          tmp = $('.tvcolx') // (none such.  fallback to hero column...)
+        if (tmp.length) {
+          log('coaching: FAKING A QUOTE!')
+          tmp.append($('<div/>')
+            .attr({ id: 'coaching-fake-quote', class: 'tvquote' })
+            .css({ position: 'absolute', top: 100, right: 0 })
+            .html('<a href="#" data-toggle="tooltip" title="13 plays" data-placement="left"><div> </div></a>'))
+        }
+
+        quote_finder()
+      }
+    }
+
+
+    let welcome_top = -1
+
+    const htms = $('<div/>')
+    let prev = {
+      top: 0, bottom: 0, height: 0, width: win.width, left: win.left, right: win.left + win.width,
+    }
+    // eslint-disable-next-line guard-for-in
+    for (const kind in objs) {
+      const obj = objs[kind]
+      const e = obj.offset()
+      // eslint-disable-next-line no-nested-ternary
+      const scale = (kind === 'quote' ? 2.5 : (kind === 'timegraf' ? 2 : 1))
+      log(`coaching: processing kind: ${kind}`)
+      e.kind    = kind
+      e.left    -= (v * scale)
+      e.top     -= (v * scale)
+      e.width   =  obj.width()  + (v2 * scale)
+      e.height  =  obj.height() + (v2 * scale)
+      if (kind === 'quote') {
+        // adjust the circle's focus slightly..
+        e.left -= 35
+      } else if (kind === 'borrow') {
+        // Impure thoughts and cheating a little -- "shrink" vertical surround area of borrow div.
+        // Ensures the "tiramisu" layers we are making dont overlap for tvborrow and searchtoggler.
+        tmp = Math.max(31, prev.bottom - e.top)
+        log(`tvborrow top moving down px: ${tmp}`)
+        e.top     += tmp
+        e.height  -= (tmp + 15)
+        e.width   -= 20// has a 20px border-right (really a margin)
+      } else if (kind === 'searchin') {
+        e.width += 50
+        e.top   += 7
+        e.height -= 14
+      } else if (kind === 'timegraf') {
+        // adjust the circle's focus slightly..
+        e.top  -= 20
+        e.left -= 15
+      } else if (kind === 'facet') {
+        e.height = Math.min(e.height, 120)
+        // get minimum width of (up to) 1st 3 rows
+        obj.find('.li .cnt').slice(0, 3).each((idx, val) => {
+          e.width = Math.min(e.width, ($(val).offset().left + $(val).width()) + (v2 * scale))
+          log(`EW: ${e.width}`)
+        })
+        e.width = Math.max(125, e.width)
+      }
+      e.bottom  = e.top + e.height
+      e.right   = e.left + e.width
+      // log(e);
+
+
+      // store copy for later in case we need to know more about where every oval is!
+      es[kind] = e
+
+
+      // track where the "welcome" splash top should be
+      if (search) {
+        welcome_top = e.bottom
+        log(`WELCOME_TOP: ${welcome_top}`)
+      } else if (kind === 'quote') {
+        welcome_top = prev.bottom + 60
+      }
+
+
+      // blinder 100% width row between row of thing we wanna circle & row of prev thing wanna circle
+      const blinderHeight = e.top - prev.bottom
+      if (blinderHeight > 0  &&  !(objs.searchin  &&  (prev.kind === 'searchin'  ||  prev.kind === 'searchtoggler'))) {
+        htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+          top: prev.bottom,
+          left: win.left,
+          height: blinderHeight,
+          width: win.width,
+        }))
+      }
+
+      if (!(objs.searchin  &&  kind === 'searchtoggler')) {
+        // blinder at same top/height, but left of thing we wanna circle
+        htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+          top: e.top,
+          left: win.left,
+          height: e.height,
+          width: e.left - win.left,
+        }))
+      }
+
+      if (kind !== 'searchin') {
+        // blinder at same top/height, but right of thing we wanna circle
+        htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+          top: e.top,
+          left: e.right,
+          height: e.height,
+          width: win.left + win.width - e.right,
+        }))
+      }
+
+
+      // add (just) colored circle/oval frame/border (transparent inner/outer) over thing wanna circle
+      htms.append($('<div/>').attr({ class: `coach-frame coach-frame-${kind}` }).css({
+        left: e.left, top: e.top, width: e.width, height: e.height,
+      }))
+
+      // add a CSS clipped (to *perfect* dimens of rect we are "circling") larger width/height and
+      // thicker bordered translucent/screen colored circle that slides just under the one above
+      htms.append($('<div/>').attr({ class: 'coach-frameU' }).css({
+        left: e.left - x1, top: e.top - x1, width: e.width + x2, height: e.height + x2, clip: `rect(${x1}px,${e.width + x1}px,${e.height + x1}px,${x1}px)`,
+      }))
+
+
+      // add the coaching text near the circled thingie!
+      if (kind === 'borrow') {
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css({ top: e.bottom + 10, left: e.right - 200 - 5, width: 200 }).html("BORROW ANY SHOW, WE'LL MAIL YOU THE DVD."))
+      } else if (kind === 'share') {
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css({ top: e.top + 15, left: e.left - 250 - 5, width: 250 }).html('VIEW AND SHARE SHORT CLIPS FROM ANY SHOW.'))
+      } else if (kind === 'searchtoggler') {
+        const css = { width: 200 }
+        if (objs.searchin) {
+          css.top  = e.top - 25
+          css.left = e.left - 190
+        } else {
+          css.top  = e.top + 30
+          css.left = e.left - 210
+        }
+
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css(css).html(`SEARCH TRANSCRIPTS OF ${TV2.numShows ? `${TV2.numShows}+ ` : ''}US NEWS SHOWS.`))
+      } else if (kind === 'timegraf'  ||  kind === 'infotray') {
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css({ top: e.top, left: e.right + 10, width: 300 }).html('SEE SEARCH HITS GRAPHED OVER TIME.<br/>SLIDE BUTTONS TO CHANGE DATE RANGE.'))
+      } else if (kind === 'facet') {
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css({
+          top: e.top + 5, left: e.right + 5, width: 400, 'text-align': 'left',
+        }).html('SEE STATS ABOUT YOUR SEARCH RESULTS.<br/>CLICK A LINK TO REFINE YOUR RESULTS.'))
+      } else if (kind === 'searchin') {
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css({ top: e.top + 8, left: (e.left - 210), width: 200 }).html('SEARCH INSIDE THIS SHOW.'))
+      } else {
+        // we are circling quote marker...
+        const css = { top: e.top + 25, width: 260 }
+        if (e.left - win.left > 300)
+          css.left = e.left - 260
+        else
+          css.left = e.right + 10
+        htms.append($('<div/>').attr({ class: 'coach-txt' }).css(css).html('VIEW SHARED CLIPS (AKA QUOTES) AND TRACK POPULARITY OVER TIME.'))
+      }
+
+      prev = e
+    }
+
+    // blinder 100% width row starting at bottom of LAST thing we wanna circle & goes to screen bottom
+    tmp = win.height - prev.bottom
+    if (tmp > 0) {
+      htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+        top: prev.bottom,
+        left: win.left,
+        height: tmp,
+        width: win.width,
+      }))
+    }
+
+
+    htms.append($('<div/>').attr({ id: 'coach-welcome', class: 'coach-txt' }).css({ width: 450 }).html('Welcome to the new TV News Archive!<br/><center><div style="margin-top:5px; font-size:16px">Discover even <a href="https://blog.archive.org/2014/04/01/tv-news-intro">more new features.</a></div><div class="topinblock roundbox3" style="font-size:200%; text-decoration:underline; background-color:black; padding:5px 20px 15px 20px; margin-top: 15px; font-weight:200;">ok</div></center>'))
+
+
+    if (!search  &&  es.searchin  &&  es.searchtoggler) {
+      // HACK CITY!  These 2 objects are on the same logical "row" basically!
+      // $left and $rite each have set:  top left width height right bottom
+      const $left = es.searchin
+      const $rite = es.searchtoggler
+
+      // put a blinder *in between* the $left and $rite circled areas
+      htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+        top: $rite.top,
+        left: $left.right,
+        height: $rite.height,
+        width: $rite.left - $left.right,
+      }))
+      // add blinder in currently uncovered horiz. sliver above $left, going all way to window left
+      htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+        top: $rite.top,
+        left: win.left,
+        height: $left.top - $rite.top,
+        width: $left.right,
+      }))
+
+      // add blinder in currently uncovered horizontal sliver to the right of the bottom end of $rite
+      htms.append($('<div/>').attr({ class: 'opcoach' }).css({
+        top: $left.bottom,
+        left: win.left,
+        height: $rite.bottom - $left.bottom,
+        width: $left.right,
+      }))
+    }
+
+
+    htms.append('<img class="opcoach" style="top:10px; left:20px;" src="https://archive.org/images/ia-logo-horiz.png"/>')
+
+    $('body').prepend(`<div id="coaching">${htms.html()}</div>`)
+
+    $('#coach-welcome').center()
+    if (welcome_top > 0)
+      $('#coach-welcome').center().css({ top: welcome_top })
+
+
+    // make clicking any part of screens or welcome dismiss.
+    // make any browser resize or mobile (esp.) rotation also dismiss.
+    $('.opcoach, #coach-welcome').click(TV2.uncoach)
+    window.addEventListener('resize',           TV2.uncoach, false)
+    window.addEventListener('orientationchange', TV2.uncoach, false)
+
+    return false
+  }
+
+  TV2.uncoach = function uncoach() {
+    if (TV2.qtip) {
+      // hide the flipped on visible "# plays" tooltip for the quote
+      TV2.qtip.tooltip('hide')
+      TV2.qtip = false
+    }
+
+    $('#coaching, #coaching-fake-quote').remove()
+  }
+
+  $(() => $('#coach-me').click(TV2.coach))
+</script>
+  </head>
+
+  <body>
+    <div id="nav-tray">
+      <div id="searchbar">
+
+      <div id="tv-logo" style="position:absolute; top:15px; left:5px; font-size:18px;">
+        <a class="stealth" href="https://archive.org/details/tv">
+          <b>TV News</b> Archive
+        </a>
+      </div>
+
+        <form class="form" id="searchform" role="form" action="https://archive.org/details/tv" onsubmit="return TV.search()">
+          <input class="form-control input-sm" tabindex="1" name="q" placeholder="Search captions (2009 to yesterday)" type="text" value="ghost busters midnight" method="get"/>
+
+          <div id="searchtoggler"><a style="color:#333" title="Advanced Search &amp; sort options" data-toggle="tooltip" data-placement="right" ><div class="glyphicon glyphicon-search"> </div></a></div>
+          <input class="search2submit" type="submit" value=""/>
+        </form>
+
+
+      </div><!--/#searchbar-->
+    </div><!--/#nav-tray-->
+
+    <!-- Begin page content -->
+    <div class="container container-ia">
+      <a name="maincontent" id="maincontent"></a>
+
+<div class="posrel">
+  <div id="infotray">
+    <h3>
+      About your Search
+    </h3>
+    <div class="posrel" style="margin-top:20px;">
+
+    <div id="timegraf" style="height:80px;width:285px;">
+      <div class="ptrR">TIMEGRAF WUZ HERE</div>
+    </div>
+
+    <div class="facet">
+      <div class="fttl">SHOW</div>
+      <div class="li">
+        <span class="term">
+          <a href="https://archive.org/details/tv?&q=ghost%20busters%20midnight&fq=program:%22FOX+and+Friends%22">FOX and Friends</a>
+        </span>
+        <span class="cnt">1</span>
+      </div>
+    </div>
+    <div class="facet">
+      <div class="fttl">STATION</div>
+      <div class="li">
+        <span class="term">
+          <a href="https://archive.org/details/tv?&q=ghost%20busters%20midnight&fq=channel:%22FOXNEWSW%22">FOXNEWSW</a>
+        </span>
+        <span class="cnt">1</span>
+      </div>
+    </div>
+    <div class="facet">
+      <div class="fttl">DATE</div>
+      <div class="li">
+        <span class="term">
+          <a href="https://archive.org/details/tv?q=ghost+busters+midnight&time=2013">2013</a>
+        </span>
+        <span class="cnt">1</span>
+      </div>
+    </div>
+    <div class="facet">
+      <div class="fttl">LANGUAGE</div>
+      <div class="li">
+        <span class="term">
+          <a href="https://archive.org/details/tv?&q=ghost%20busters%20midnight&fq=lang:%22eng%22">English</a>
+        </span>
+        <span class="cnt">1</span>
+      </div>
+    </div>
+
+    </div>
+  </div><!--#infotray-->
+
+
+
+
+
+<div id="cols">
+  <h1><a href="#" id="coach-me" style="font-size:25px">COACH ME</a></h1>
+
+  <div class="tvpager"><div>Search Results 0 to 0 of about 1</div></div>
+
+  <div class="tvcol topinblock">
+    <a href="https://archive.org/details/FOXNEWSW_20130301_110000_FOX_and_Friends?q=ghost+busters+midnight#start/208/end/268" title="Play this clip" alt="Play this clip">
+      <div class="th">
+        <img src="https://archive.org/download/FOXNEWSW_20130301_110000_FOX_and_Friends/FOXNEWSW_20130301_110000_FOX_and_Friends.thumbs/FOXNEWSW_20130301_110000_FOX_and_Friends_000195.jpg"/>
+      </div>
+    </a>
+
+    <div class="sniptitle">
+      <div><a href="https://archive.org/details/FOXNEWSW_20130301_110000_FOX_and_Friends?q=ghost+busters+midnight#start/208/end/268">FOX and Friends</a></div>
+      <div>FOX News</div>
+      <div>Mar 1, 2013 3:00am PST</div>
+    </div>
+
+    <div class="snippet">
+             they <b>said</b> <b>in</b> <em>ghost</em> <em>busters</em> <b>with</b> <b>cats</b> and dogs living together. that's hysteria when these 2% cuts go into effect. >>gretchen: there is a meeting today at 10 kaofpl a.m. -- at 10:00 a.m. with top four congressional leaders. e-mail us. do you think anything will get done. >>brian: we'll find out. i think it is kind of an interesting tactic to wait till the very last day when the deadline is hours away as opposed to wednesday, thursday? tuesday, your schedule available? >>steve: joe biden grounded himself. he's going to take the choo-choo. >>gretchen: other headlines. developing stories in california. look at this new video, a man trying to save his home from a massive fire standing inches from the flames trying to put them out with a house. fire burning throughout the night in riverside county. the flames destroying 150 acres. a mobile home was burned to the ground. luckily no one hurt. >> a woman who works for the state department is dead murdered on vacation in brazil. the 38-year-old was found in a hotel strangled in rio de janeiro. a man admits being in the room with her but police    </div><!--/.snippet-->
+  </div><!--/.tvcol-->  <div class="tvpager"><div>Search Results 0 to 0 of about 1</div></div>
+</div><!--/#cols-->
+</div><!--/.posrel-->
+
+
+
+          </div><!--/.container-->
+
+      </div>
+  </body>
+</html>

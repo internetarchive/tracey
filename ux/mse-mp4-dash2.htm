@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+  <title>MediaSource API Demo</title>
+</head>
+<body>
+
+  <h1>Appending video chunks using the Media Source API</h1>
+
+  <video controls width="320" height="240"></video>
+
+
+
+<script>
+  /* eslint-disable no-console */
+  const url = 'commute_dashinit.mp4'
+  const url2mediasource = () => {
+    // Need to be specific for Blink regarding codecs
+    // ./mp4info frag_bunny.mp4 | grep Codec
+    const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+    const video = document.querySelector('video')
+
+    if (!('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec))) {
+      console.error('Unsupported MIME type or codec: ', mimeCodec)
+      return
+    }
+
+    const mediaSource = new MediaSource()
+    // console.log(mediaSource.readyState); // closed
+    video.src = URL.createObjectURL(mediaSource)
+    mediaSource.addEventListener('sourceopen', () => {
+      console.log('sourceopen')
+      const sourceBuffer = mediaSource.addSourceBuffer(mimeCodec)
+
+      console.log(url)
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', url)
+      xhr.responseType = 'arraybuffer'
+      xhr.onload = function onload() {
+        console.log('onload-ed')
+        sourceBuffer.addEventListener('updateend', () => {
+          mediaSource.endOfStream()
+          console.log('try to play now')
+          video.play()
+          console.log(mediaSource.readyState) // ended
+        })
+        sourceBuffer.appendBuffer(xhr.response)
+      }
+      xhr.send()
+    })
+}
+
+url2mediasource()
+</script>

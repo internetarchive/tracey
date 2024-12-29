@@ -1,0 +1,16 @@
+play 2 5s clips
+
+<div style="background-color:red">
+  <video playsinline controls id="a1" src="/~tracey/_/ios/1704292135.mp4.mp3"></video>
+</div>
+
+<script>
+  const a1 = document.getElementById('a1')
+  let done = false
+  a1.addEventListener('ended', () => {
+    if (done) return
+    done = true
+    a1.src = '/~tracey/_/ios/1704292136.mp4.mp3'
+    a1.play()
+  })
+</script>

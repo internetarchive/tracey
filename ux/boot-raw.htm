@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+<!-- __ _ _ _ __| |_ (_)__ _____
+    / _` | '_/ _| ' \| |\ V / -_)
+    \__,_|_| \__|_||_|_| \_/\___| -->
+  <head>
+    <title>Internet Archive: Digital Library of Free Books, Movies, Music & Wayback Machine</title>
+
+        <meta name="viewport" content="width=640"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+   <meta name="DESCRIPTION" content="Internet Archive is a non-profit digital library offering free universal access to books, movies & music, as well as 376 billion archived web pages."/>
+   <link rel="alternate" type="application/xml" title="RSS" href="http://archive.org/services/collection-rss.php"/>
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+#ia-content .forumTable tbody tr td {
+  word-wrap: break-word !important;
+}
+#ia-content #col1 .forumTable tbody tr td {
+  overflow-x:hidden !important;
+  max-width:160px;
+}
+#ia-content .forumTable tbody tr td {
+  word-break:break-all;
+}
+    </style>
+    <link rel="SHORTCUT ICON" href="images/glogo.jpg"/>
+      </head>
+  <body class="top">
+
+    <!-- Wraps all page content -->
+    <div id="wrap">
+
+
+            <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-lg hidden-xs" href="https://archive.org/"><img style="width:20px;height:20px;" src="https://av.prod.archive.org/jw/glogo20x20.png"></a>
+            <a class="navbar-brand hidden-md hidden-sm hidden-xs" href="https://archive.org/"><img style="width:226px;height:21px;" src="images/ia-logo-horiz.png"></a>
+            <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="https://archive.org/"><img style="width:226px;height:21px;margin-left:-10px;" src="images/ia-logo-horiz.png"></a>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+
+                            <li><a href="https://archive.org/web/">Web</a></li>
+
+                            <li><a href="https://archive.org/details/movies">Video</a></li>
+
+                            <li><a href="https://archive.org/details/texts">Texts</a></li>
+
+                            <li><a href="https://archive.org/details/audio">Audio</a></li>
+
+                            <li class=""><a href="https://archive.org/details/software">Software</a></li>
+
+              <li class="dropdown active">
+                <a href="https://archive.org/about" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="https://archive.org/about">About us</a></li>
+                  <li><a href="https://archive.org/donate">Donate <span class="glyphicon glyphicon-gift"></span></a></li>
+                  <li><a href="https://store.archive.org">Store</a></li>
+                  <li><a href="https://blog.archive.org">Blog</a></li>
+                  <li><a href="https://archive.org/about/faqs.php">FAQ <span class="glyphicon glyphicon-question-sign"></span></a></li>
+                  <li><a href="https://archive.org/about/jobs.php">Jobs</a></li>
+                  <li><a href="https://archive.org/about/volunteerpositions.php">Volunteer</a></li>
+                  <li><a href="https://archive.org/about/contact.php">Contact</a></li>
+                  <li><a href="https://archive.org/about/bios.php">Bios</a></li>
+                  <li><a href="https://archive.org/iathreads/forums.php">Forums</a></li>
+                  <li><a href="https://archive.org/projects">Projects</a></li>
+                  <li><a href="https://archive.org/about/terms.php">Terms, Privacy, &amp; Copyright</a></li>
+                </ul>
+              </li>
+
+                            <li class=""><a href="https://archive.org/details/tv">TVNews</a></li>
+
+              <li class="hidden-sm"><a href="https://openlibrary.org">OpenLibrary</a></li>
+              <li class="dropdown ">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                                    <li><a href="https://archive.org/services/exit.php"><i>Return to normal UI</i> <span class="glyphicon glyphicon-remove-circle"></span></a></li>
+
+
+                  <li><a href="https://archive.org/account/login.php">Sign in <span class="glyphicon glyphicon-transfer"></a></li>
+                  <li><a href="https://archive.org/account/login.createaccount.php">Sign up <span class="glyphicon glyphicon-heart-empty"></span></a></li>
+
+                </ul>
+              </li>
+              <!--<li><a class="btn btn-primary navbar-btn" style="padding:1px 6px; max-width:100px; margin-top:4px; color:white;" href="https://archive.org/create">Upload</a></li> -->
+            </ul>
+            <a class="btn btn-primary navbar-btn" alt="Upload your files to the Archive" title="Upload your files to the Archive" style="padding:1px 6px; margin-top:4px;" href="https://archive.org/create"><span class="hidden-md hidden-sm">Upload</span><span class="hidden-xs hidden-lg glyphicon glyphicon-cloud-upload"></span></a>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container -->
+      </div><!--/.navbar-->
+
+
+      <!-- Begin page content -->
+      <div id="ia-content" class="container">
+
+
+    <br class="visible-xs clearfix searchbar"/>
+
+        <div class="motto searchbar hidden-md hidden-sm hidden-xs" style="letter-spacing:15px; font-size:24px;">UNIVERSAL ACCESS TO ALL KNOWLEDGE</div>
+    <div class="motto searchbar hidden-lg hidden-sm hidden-xs" style="letter-spacing:15px; font-size:18px;">UNIVERSAL ACCESS TO ALL KNOWLEDGE</div>
+    <div class="motto searchbar hidden-lg hidden-md hidden-xs" style="letter-spacing:10px; font-size:16px;">UNIVERSAL ACCESS TO ALL KNOWLEDGE</div>
+    <div class="motto searchbar hidden-lg hidden-md hidden-sm" style="letter-spacing: 5px; font-size:14px;">UNIVERSAL ACCESS TO ALL KNOWLEDGE</div>
+
+
+    <div class="row searchbar" style="margin-bottom:10px;">
+            <div class="col-md-1 hidden-xs"></div>
+      <div class="col-md-10">
+
+        <form class="form-inline" id="searchform" method="post" role="form" xxxstyle="width:900px" action="https://archive.org/searchresults.php">
+          <div class="input-group">
+            <input class="form-control input-sm" tabindex="1" size="25" name="search" placeholder="Enter search" type="text" value="" style="width:90px"/>
+            <select class="form-control input-sm" tabindex="2" name="mediatype" style="width:125px">
+              <option value="all">All Media Types</option>
+              <option value="web">&nbsp;&nbsp;Wayback Machine</option>
+
+              <option  value="movies">&nbsp;&nbsp;Video</option>
+<option value="movies.animationandcartoons">&nbsp;&nbsp;&nbsp;&nbsp;Animation & Cartoons</option>
+<option value="movies.artsandmusicvideos">&nbsp;&nbsp;&nbsp;&nbsp;Arts & Music</option>
+<option value="movies.opensource_movies">&nbsp;&nbsp;&nbsp;&nbsp;Community Video</option>
+<option value="movies.computersandtechvideos">&nbsp;&nbsp;&nbsp;&nbsp;Computers & Technology</option>
+<option value="movies.culturalandacademicfilms">&nbsp;&nbsp;&nbsp;&nbsp;Cultural & Academic Films</option>
+<option value="movies.ephemera">&nbsp;&nbsp;&nbsp;&nbsp;Ephemeral Films</option>
+<option value="movies.moviesandfilms">&nbsp;&nbsp;&nbsp;&nbsp;Movies</option>
+<option value="movies.newsandpublicaffairs">&nbsp;&nbsp;&nbsp;&nbsp;News & Public Affairs</option>
+<option value="movies.prelinger">&nbsp;&nbsp;&nbsp;&nbsp;Prelinger Archives</option>
+<option value="movies.spiritualityandreligion">&nbsp;&nbsp;&nbsp;&nbsp;Spirituality & Religion</option>
+<option value="movies.sports">&nbsp;&nbsp;&nbsp;&nbsp;Sports Videos</option>
+<option value="movies.television">&nbsp;&nbsp;&nbsp;&nbsp;Television</option>
+<option value="movies.gamevideos">&nbsp;&nbsp;&nbsp;&nbsp;Videogame Videos</option>
+<option value="movies.vlogs">&nbsp;&nbsp;&nbsp;&nbsp;Vlogs</option>
+<option value="movies.youth_media">&nbsp;&nbsp;&nbsp;&nbsp;Youth Media</option>
+<option  value="texts">&nbsp;&nbsp;Texts</option>
+<option value="texts.americana">&nbsp;&nbsp;&nbsp;&nbsp;American Libraries</option>
+<option value="texts.toronto">&nbsp;&nbsp;&nbsp;&nbsp;Canadian Libraries</option>
+<option value="texts.universallibrary">&nbsp;&nbsp;&nbsp;&nbsp;Universal Library</option>
+<option value="texts.opensource">&nbsp;&nbsp;&nbsp;&nbsp;Community Texts</option>
+<option value="texts.gutenberg">&nbsp;&nbsp;&nbsp;&nbsp;Project Gutenberg</option>
+<option value="texts.iacl">&nbsp;&nbsp;&nbsp;&nbsp;Children's Library</option>
+<option value="texts.biodiversity">&nbsp;&nbsp;&nbsp;&nbsp;Biodiversity Heritage Library</option>
+<option value="texts.additional_collections">&nbsp;&nbsp;&nbsp;&nbsp;Additional Collections</option>
+<option  value="audio">&nbsp;&nbsp;Audio</option>
+<option value="audio.audio_bookspoetry">&nbsp;&nbsp;&nbsp;&nbsp;Audio Books & Poetry</option>
+<option value="audio.opensource_audio">&nbsp;&nbsp;&nbsp;&nbsp;Community Audio</option>
+<option value="audio.audio_tech">&nbsp;&nbsp;&nbsp;&nbsp;Computers & Technology</option>
+<option value="audio.GratefulDead">&nbsp;&nbsp;&nbsp;&nbsp;Grateful Dead</option>
+<option value="audio.etree">&nbsp;&nbsp;&nbsp;&nbsp;Live Music Archive</option>
+<option value="audio.audio_music">&nbsp;&nbsp;&nbsp;&nbsp;Music, Arts & Culture</option>
+<option value="audio.netlabels">&nbsp;&nbsp;&nbsp;&nbsp;Netlabels</option>
+<option value="audio.audio_news">&nbsp;&nbsp;&nbsp;&nbsp;News & Public Affairs</option>
+<option value="audio.audio_foreign">&nbsp;&nbsp;&nbsp;&nbsp;Non-English Audio</option>
+<option value="audio.audio_podcast">&nbsp;&nbsp;&nbsp;&nbsp;Podcasts</option>
+<option value="audio.radioprograms">&nbsp;&nbsp;&nbsp;&nbsp;Radio Programs</option>
+<option value="audio.audio_religion">&nbsp;&nbsp;&nbsp;&nbsp;Spirituality & Religion</option>
+<option  value="education">&nbsp;&nbsp;Education</option>
+<option value="education.msri">&nbsp;&nbsp;&nbsp;&nbsp;Math Lectures from MSRI</option>
+<option value="education.uchannel">&nbsp;&nbsp;&nbsp;&nbsp;UChannel</option>
+<option value="education.chinese_u_lectures">&nbsp;&nbsp;&nbsp;&nbsp;Chinese University Lectures</option>
+<option value="education.ap_courses">&nbsp;&nbsp;&nbsp;&nbsp;AP Courses from MITE</option>
+<option value="education.mit_ocw">&nbsp;&nbsp;&nbsp;&nbsp;MIT OpenCourseWare</option>
+
+              <option value="forums" >Forums</option>
+              <option value="faqs"   >FAQs</option>
+            </select>
+            <button class="btn button-default label-primary input-sm" style="color:white;" type="submit" tabindex="3">GO!</button>
+
+            <p class="form-control-static pull-right">
+              <a style="padding-left:10px;" href="https://archive.org/advancedsearch.php">Advanced Search</a>
+            </p>
+            <input type="hidden" name="limit" value="100"/>
+            <input type="hidden" name="start" value="0"/>
+            <input type="hidden" name="searchAll" value="yes"/>
+            <input type="hidden" name="submit" value="this was submitted"/>
+          </div><!--/.input-group -->
+        </form>
+      </div>
+          </div><!--/.row-->
+
+
+<div class="ro1 row" style="margin-top:50px;">
+  <div class="box topinblock col-md-3" >
+    <a name="announcements"></a>
+    <h1 style="margin-top:0px;">Announcements <span style="font-size:12px;font-weight:normal;">(<a href="https://blog.archive.org/category/announcements/">more</a>)</span></h1>
+    <div class="wplinks"><a href="https://blog.archive.org/2014/01/01/servers-for-the-new-year-thank-you/">Servers for the New Year: Thank you!</a></div><div class="wplinks"><a href="https://blog.archive.org/2013/12/25/dreams-reflected-in-bitcoin/">Dreams Reflected in Bitcoin</a></div><div class="wplinks"><a href="https://blog.archive.org/2013/12/13/mapping-400000-hours-of-u-s-tv-news/">Mapping 400,000 Hours of U.S. TV News</a></div>  </div>
+
+
+  <div class="box topinblock col-md-6 col-xs-12" >
+    <div class="well well-sm" style="min-height:150px">
+      <h1>
+      <!--
+      <div style="float:right; font-size:10pt;">
+        <a href="https://archive.org/about/faqs.php#The_Wayback_Machine">Learn more</a>
+      </div>
+      -->
+      <a href="https://archive.org/web/" style="font:bold 12pt Verdana, Arial;">Web</a>
+              376 billion pages saved over time
+    </h1>
+      <form action="https://archive.org/searchresults.php" method="post"
+   onsubmit="document.location.href='//web.archive.org/web/*/'+document.getElementById('wwmurl').value;return false;">
+    <table style="text-align:center; width:100%; height:100%; padding-top:20px; vertical-align:center;"><tbody>
+     <tr>
+       <td style="padding-right:0; vertical-align:middle; width:150px;">
+         <a href="https://archive.org/web/">
+           <img src="https://archive.org/images/wayback_logo.png" style="width:141px;height:52px;border:0;" alt="(wayback logo)"/>
+         </a>
+       </td>
+       <td>
+         <input style="width:100%;" id='wwmurl' tabindex="4" type="text" name="search" value="http://"/>
+       </td>
+       <td style="text-align: center; vertical-align:center; width:150px;">
+        <input type="hidden" name="mediatype" value="web"/>
+        <input class="btn btn-xs btn-default" type="submit" name="Submit" value="BROWSE HISTORY"/>
+      </td>
+     </tr>
+     </tbody></table>
+  </form>
+      </div>
+  </div>
+
+
+  <div class="box topinblock col-md-3" >
+        <div class="pull-right">
+      <a class="label label-success" href="https://archive.org/services/collection-rss.php">RSS</a>
+    </div>
+    <h1 style="margin-top:0px;">
+      Welcome
+    </h1>
+        <div style="font-size:9pt; padding:7px;">
+      The Internet Archive, a 501(c)(3) non-profit, is building a digital library of Internet sites and other cultural artifacts in digital form. Like a paper library, we provide free access to researchers, historians, scholars, the print disabled, and the general public.    </div>
+  </div>
+</div>
+
+
+<h3 style="margin:30px 0px 10px 0px">Explore our collections</h3>
+
+<div class="ro2 row">
+    <div class="box topinblock col-md-3 col-xs-12">
+    <div class="well well-sm">
+            <h3 class="pull-right">
+        <a style="font-size:60%" href="https://archive.org/mediatypes-browse.php?mediatype=movies">Browse</a>
+      </h3>
+      <h2>
+        <a href="https://archive.org/details/movies">Video</a><br/>
+        <nobr>
+          <small style="font-size:14px;">
+            1,501,423 movies
+          </small>
+        </nobr>
+      </h2>
+
+      <div>
+        <h2>
+          <nobr>
+            Curator's Choice
+            <span style="font-size:8pt;font-weight:normal;">
+              (<a href="https://archive.org/details/movies#picks">more</a>)
+            </span>
+          </nobr>
+        </h2>
+          <div style="text-align:center;height:79px;">
+    <a href="https://archive.org/details/1960-05-23_u2_at_un"><img alt="(movies pick)" style="border:0;max-width:150px;height:76px;" src="https://archive.org/services/get-item-image.php?identifier=1960-05-23_u2_at_un&amp;collection=universal_newsreels&amp;mediatype=movies"/></a>
+  </div>
+  <div class="ro2_0"><div>
+    <a href="https://archive.org/details/1960-05-23_u2_at_un">U-2 At U.N. Reds Now Charge U.S. Menaces Peace,...</a><br/>
+    <span class="serif">
+     At NY HQ of UN, 11-member Security Council hears arguments by Gromyko, Henry Cabot Lodge; Lodge...    </span>
+  </div></div>
+        </div>
+
+      <h2>Recent Review</h2>
+      <div class="ro2_1">
+        <div>
+          <a href="https://archive.org/details/IkarieXb1jindrichPolk1963">Ikarie XB 1 (Jindrich PolÃ¡k, 1963)</a><br/><span class="serif" style="font-size:9pt;">Average rating:</span> <span class="glyphicon glyphicon-star" alt="4.13 out of 5 stars" title="4.13 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.13 out of 5 stars" title="4.13 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.13 out of 5 stars" title="4.13 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.13 out of 5 stars" title="4.13 out of 5 stars"></span><br/><br/>
+        </div>
+      </div><!--/.ro2_1-->
+
+    </div><!--/.well-->
+  </div><!--/.box-->
+    <div class="box topinblock col-md-3 col-xs-12">
+    <div class="well well-sm">
+            <h3 class="pull-right">
+        <a style="font-size:60%" href="https://archive.org/browse.php?collection=etree&field=%2Fmetadata%2Fcreator">Browse</a>
+      </h3>
+      <h2>
+        <a href="https://archive.org/details/etree">Live Music</a><br/>
+        <nobr>
+          <small style="font-size:14px;">
+            123,756 concerts
+          </small>
+        </nobr>
+      </h2>
+
+      <div>
+        <h2>
+          <nobr>
+            Curator's Choice
+            <span style="font-size:8pt;font-weight:normal;">
+              (<a href="https://archive.org/details/etree#picks">more</a>)
+            </span>
+          </nobr>
+        </h2>
+          <div style="text-align:center;height:79px;">
+    <a href="https://archive.org/details/gd1977-05-08.shure57.stevenson.29303.flac16"><img alt="(etree pick)" style="border:0;max-width:150px;height:76px;" src="https://archive.org/services/get-item-image.php?identifier=gd1977-05-08.shure57.stevenson.29303.flac16&amp;collection=GratefulDead&amp;mediatype=etree"/></a>
+  </div>
+  <div class="ro2_0"><div>
+    <a href="https://archive.org/details/gd1977-05-08.shure57.stevenson.29303.flac16">Grateful Dead Live at Barton Hall - Cornell...</a><br/>
+    <span class="serif">
+     Set 1 New Minglewood Blues Loser El Paso They Love Each Other Jack Straw Deal Lazy Lightnin' ->...    </span>
+  </div></div>
+        </div>
+
+      <h2>Recent Review</h2>
+      <div class="ro2_1">
+        <div>
+          <a href="https://archive.org/details/DE2013-09-07">Drew Emmitt Band Live at Shoe-Fest / Camp Shaw-Wah-Nas-See on 2013-09-07</a><br/><span class="serif" style="font-size:9pt;">Average rating:</span> <span class="glyphicon glyphicon-star" alt="4.00 out of 5 stars" title="4.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.00 out of 5 stars" title="4.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.00 out of 5 stars" title="4.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="4.00 out of 5 stars" title="4.00 out of 5 stars"></span><br/><br/>
+        </div>
+      </div><!--/.ro2_1-->
+
+    </div><!--/.well-->
+  </div><!--/.box-->
+    <div class="box topinblock col-md-3 col-xs-12">
+    <div class="well well-sm">
+            <h3 class="pull-right">
+        <a style="font-size:60%" href="https://archive.org/mediatypes-browse.php?mediatype=audio">Browse</a>
+      </h3>
+      <h2>
+        <a href="https://archive.org/details/audio">Audio</a><br/>
+        <nobr>
+          <small style="font-size:14px;">
+            1,825,390 recordings
+          </small>
+        </nobr>
+      </h2>
+
+      <div>
+        <h2>
+          <nobr>
+            Curator's Choice
+            <span style="font-size:8pt;font-weight:normal;">
+              (<a href="https://archive.org/details/audio#picks">more</a>)
+            </span>
+          </nobr>
+        </h2>
+          <div style="text-align:center;height:79px;">
+    <a href="https://archive.org/details/12rec.047"><img alt="(audio pick)" style="border:0;max-width:150px;height:76px;" src="https://archive.org/services/get-item-image.php?identifier=12rec.047&amp;collection=12rec&amp;mediatype=audio"/></a>
+  </div>
+  <div class="ro2_0"><div>
+    <a href="https://archive.org/details/12rec.047">Muhr - Anthèmes pour les Regrets [12rec.047]</a><br/>
+    <span class="serif">
+     Not only a musician for approximately ten years now, Vincent Fugère a.k.a. “Muhr” was around...    </span>
+  </div></div>
+        </div>
+
+      <h2>Recent Review</h2>
+      <div class="ro2_1">
+        <div>
+          <a href="https://archive.org/details/TheRatsInTheWalls">the rats in the walls</a><br/><span class="serif" style="font-size:9pt;">Average rating:</span> <span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><br/><br/>
+        </div>
+      </div><!--/.ro2_1-->
+
+    </div><!--/.well-->
+  </div><!--/.box-->
+    <div class="box topinblock col-md-3 col-xs-12">
+    <div class="well well-sm">
+            <h3 class="pull-right">
+        <a style="font-size:60%" href="https://archive.org/mediatypes-browse.php?mediatype=texts">Browse</a>
+      </h3>
+      <h2>
+        <a href="https://archive.org/details/texts">Texts</a><br/>
+        <nobr>
+          <small style="font-size:14px;">
+            5,670,558 texts
+          </small>
+        </nobr>
+      </h2>
+
+      <div>
+        <h2>
+          <nobr>
+            Curator's Choice
+            <span style="font-size:8pt;font-weight:normal;">
+              (<a href="https://archive.org/details/texts#picks">more</a>)
+            </span>
+          </nobr>
+        </h2>
+          <div style="text-align:center;height:79px;">
+    <a href="https://archive.org/details/DreiAufsaumltzeuumlberDenInnerenKonflikt_612"><img alt="(texts pick)" style="border:0;max-width:150px;height:76px;" src="https://archive.org/services/get-item-image.php?identifier=DreiAufsaumltzeuumlberDenInnerenKonflikt_612&amp;collection=CollectionOfTheInternationalPsychoanalyticUniversityBerlin&amp;mediatype=texts"/></a>
+  </div>
+  <div class="ro2_0"><div>
+    <a href="https://archive.org/details/DreiAufsaumltzeuumlberDenInnerenKonflikt_612">Drei Aufsätze über den inneren Konflikt</a><br/>
+    <span class="serif">
+     1920, Markus & Weber, Berlin    </span>
+  </div></div>
+        </div>
+
+      <h2>Recent Review</h2>
+      <div class="ro2_1">
+        <div>
+          <a href="https://archive.org/details/PassioncaLLGiRlInDehradun07837843783MussoorieCaLLGiRlSERvicEInDehradunPassion">Passion%%caℒℒ Giℛl In Dehradun 07837843783 Mussoorie Caℒℒ Giℛl Sℰℛvicℰ In Dehradun Passion</a><br/><span class="serif" style="font-size:9pt;">Average rating:</span> <span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><span class="glyphicon glyphicon-star" alt="5.00 out of 5 stars" title="5.00 out of 5 stars"></span><br/><br/>
+        </div>
+      </div><!--/.ro2_1-->
+
+    </div><!--/.well-->
+  </div><!--/.box-->
+  </div><!--/.row-->
+
+
+<script type="module">
+  import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+  window.$ = $
+  window.jQuery = $
+  await import('https://esm.archive.org/bootstrap@^3.0.0')
+
+  function roSizer() {
+    // eslint-disable-next-line func-names
+    const h1 = Math.max.apply(null, $('.ro1 div.box').map(function () { return $(this).height() }).get())
+    $('.ro1 div.box').height(h1)
+
+    // eslint-disable-next-line func-names
+    const h2 = Math.max.apply(null, $('.ro2 h1').map(function () { return $(this).height() }).get())
+    $('.ro2 h1').height(h2)
+
+    // eslint-disable-next-line func-names
+    const h3 = Math.max.apply(null, $('.ro2_0 div').map(function () { return $(this).height() }).get())
+    $('.ro2_0').height(h3)
+
+    // eslint-disable-next-line func-names
+    const h4 = Math.max.apply(null, $('.ro2_1 div').map(function () { return $(this).height() }).get())
+    $('.ro2_1').height(h4)
+  }
+  $(() => {
+    roSizer()
+
+    // make search input wide as possible
+    $('#searchform input[type=text]').width(Math.max(90, $('#searchform').width() - $('#searchform .input-group').width() + 60))
+  })
+
+  // Bind window resize to resize the above
+  $(window).resize(() => { roSizer() })
+</script>
+
+
+
+<div class="row">
+  <div class="col-md-1 hidden-xs hidden-sm"></div>
+  <div class="col-md-10">
+          <div class="box">
+      <h1>Most recent posts (write a post by going to a forum) <a href="https://archive.org/iathreads/posts-display-new.php?limit=50">more</a>...</h1>
+
+    <!-- NOTE: extra div required by IE bec. table width=100% is set -->
+    <div>
+      <table class="forumTable  table table-striped table-condensed table-hover" width="100%" border="0"
+             cellpadding="5" cellspacing="0">
+
+                <tr class="backColor1 forumRowHead">
+                    <td>Subject</td>
+                    <td>Poster</td>
+                    <td>Forum</td>
+                    <td>Replies</td>
+                    <td>Date</td>
+                  </tr>
+                  <tr valign="top" class="eve forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008634">While dumpster diving</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=hgoodall">hgoodall</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/iathreads/forum-display.php?forum=general">general</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">10 minutes ago</nobr>
+          <nobr class="hidden-md hidden-lg">10m ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="odd forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008633">Re: Finally! video of 12/31/81 Dark Star. HAPPY NEW YEAR!</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=amosearle">amosearle</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">23 minutes ago</nobr>
+          <nobr class="hidden-md hidden-lg">23m ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="eve forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008632">Re: Non-Dead … Jer's Pal at his early best</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=amosearle">amosearle</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">31 minutes ago</nobr>
+          <nobr class="hidden-md hidden-lg">31m ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="odd forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008631">Re: Text File Archive - New Browsing Software and Download Counter</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=MikeMikey">MikeMikey</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/texts#forum">texts</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="eve forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008630">Re: Need show deleted for re-upload</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=heynow1">heynow1</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/etree#forum">etree</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="odd forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008629">Re: hey BD (non-dead)</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=bluedevil">bluedevil</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="eve forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008628">Re: the captures of my site are so sparse</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=Michael%20Ronayne">Michael Ronayne</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/about/faqs.php#forum">faqs</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="odd forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008627">Re: Joan Osborn</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=Left%20Hand%20Monkey">Left Hand Monkey</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="eve forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008626">Re: Joan's DIY Dead Set 11-21-13</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=user%20unknown">user unknown</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">2 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">2h ago</nobr>
+        </td>
+              </tr>
+          <tr valign="top" class="odd forumRow">
+        <td>
+                    <a href="https://archive.org/post/1008625">Re: Joan Osborn</a>
+                  </td>
+
+                <td>
+          <a href="https://archive.org/iathreads/forum-display.php?poster=user%20unknown">user unknown</a>
+        </td>
+
+                 <td>
+          <a href="https://archive.org/details/GratefulDead#forum">GratefulDead</a>
+        </td>
+
+                <td>
+          0        </td>
+
+
+                <td>
+          <nobr class="hidden-sm hidden-xs">3 hours ago</nobr>
+          <nobr class="hidden-md hidden-lg">3h ago</nobr>
+        </td>
+              </tr>
+          </table>
+          </div>
+        </div>
+          </div>
+  <div class="col-md-1 hidden-xs hidden-sm"></div>
+</div><!--/.row-->
+
+
+
+<div class="row">
+  <div class="col-md-1 hidden-xs hidden-sm"></div>
+  <div class="col-md-10 box" style="text-align:center">
+  <h1 style="text-align:center">Institutional Support</h1>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#alexa">Alexa Internet</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#hp">HP Computer</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#prelinger">Prelinger Archives</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#kahle">The Kahle/Austin Foundation</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#nsf">National Science Foundation</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#loc">Library of Congress</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/credits.php#lt">LizardTech</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="http://www.sloan.org">Sloan Foundation</a>
+  </div>
+    <div class="topinblock" style="width:30%; float:left;">
+    <a href="https://archive.org/about/contributors.php">Individual contributors</a>
+  </div>
+    </div>
+  <div class="col-md-1 hidden-xs hidden-sm"></div>
+</div><!--/.row-->
+
+
+      </div><!--/.container-->
+    </div><!--/#wrap-->
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted credit popover-wider popover-up">
+                    <a href="https://archive.org/about/terms.php">Terms of Use</a> (10 Mar 2001)
+                  </p>
+      </div>
+    </div>
+  </body>
+</html>

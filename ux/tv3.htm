@@ -1,0 +1,252 @@
+<head>
+  <meta name="viewport"
+    content="height=device-height, user-scalable=0, initial-scale=0.9999, minimum-scale=0.9999, maximum-scale=0.9999"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+  <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<style>
+html, body {
+  height: 100%;
+}
+.topinblock {
+    vertical-align: top;
+    display: inline-block;
+}
+
+ #wrap {
+   height:75px; min-height:75px; /*@navbarHT*/
+ }
+ #cols {
+   white-space:nowrap;
+   min-height: 100%;
+   height: 100%;
+ }
+ .colspacer, .tvcol {
+   position:relative;
+   min-height: 100%;
+   height: 100%;
+   background-color:rgb(67,71,83);/*@theatreBG*/
+ }
+ .tvcol {
+   transition: all 1s ease;
+   width:170px;
+   white-space:normal;
+   border-right:10px solid rgb(67,71,83);/*@theatreBG*/
+ }
+ .timeline {
+   position:absolute;
+   height:5px;
+   top:78px;
+   left:0;
+   right:-10px;
+   border-bottom:5px solid gray;
+   z-index:2;
+ }
+ .sniptitle {
+   position:absolute;
+   z-index:1;
+   background-color:transparent;
+   color:white;
+   top:35px;
+   left:50%;
+   transform: rotate(-45deg);
+ }
+ .th img {
+   width:100%;
+   margin-top: 110px;
+   border-bottom:11px solid rgb(67,71,83);/*@theatreBG*/
+ }
+ .snippet {
+   background-color:white;
+   padding:5px;
+   overflow:hidden;
+   height:100%;
+   max-height:100%;
+
+ }
+ .quoteoff {
+   position:relative;
+   font-size:14px;
+   height:14px;
+   width:20px;
+   overflow:hidden;
+   left:50%;
+   margin-left:-10px;
+   margin-top:-14px; // ~1/2 quote height
+   z-index:1;
+ }
+ .iconochive-quote {
+   color:#fe795f; /*@orangeTV*/
+ }
+ .colfoot {
+   position:absolute;
+   width:100%;
+   bottom:150px;
+   height:10%;
+   background-color:rgb(67,71,83);/*@theatreBG*/
+ }
+ @media (max-width: 600px) {
+   .tvcol { width:50px; }
+ }
+ @media (max-height: 600px) {
+   .tvcol { width:50px; }
+   .colfoot {
+     height:5%;
+   }
+   .quoteoff {
+     font-size:9px;
+     height:10px;
+     width:14px;
+     margin-top:-10px;
+   }
+ }
+
+ #tvmeta {
+   position:relative;
+   top:-150px;
+   height:150px;
+   background-color:white;
+ }
+ #tvmeta-wrap {
+   position:absolute;
+   left:0;
+   right:0;
+   border-top:75px solid #f7f7f7;/*@tvnavHT*/
+   background-color:white;
+ }
+ #tvmeta-wrap > div {
+   margin-top:-75px;/*@tvnavHT*/
+ }
+ #tvmeta-wrap.tvmeta-fixed {
+   position:fixed;
+   height:100px;
+   bottom:0;
+ }
+ #tvmeta-wrap.tvmeta-fixed .iconochive-tv {
+   color:orange;
+ }
+</style>
+<script type="module">
+  import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+  window.jQuery = $
+  window.$ = $
+
+  /* global TV3 */
+  window.TV3 = {
+    leftPrev: -1,
+    topPrev: -1,
+    tvmetaFixed: false,
+    tvmetaSetWidth() {
+      const ww = $(window).width()
+      $('#tvmeta').css({ width: ww })
+    },
+  }
+
+  $(window).on('load  resize  orientationchange', (evt) => {
+    if (evt.type === 'load') {
+      // client has JS!  remove this non-JS page load hack/improvement for no-JS folks
+      $('#tvmeta-wrap .container-ia:first-child').css({ 'margin-left': '' })
+
+
+      const para = '<p>Brackett finished her first draft in early 1978; Lucas has said he was disappointed with it, but before he could discuss it with her, she died of cancer.[40] With no writer available, Lucas had to write his next draft himself. It was this draft in which Lucas first made use of the "Episode" numbering for the films; Empire Strikes Back was listed as Episode II.[41] As Michael Kaminski argues in The Secret History of Star Wars, the disappointment with the first draft probably made Lucas consider different directions in which to take the story.[42] He made use of a new plot twist: Darth Vader claims to be Luke\'s father. According to Lucas, he found this draft enjoyable to write, as opposed to the yearlong struggles writing the first film, and quickly wrote two more drafts,[43] both in April 1978. He also took the script to a darker extreme by having Han Solo imprisoned in carbonite and left in limbo.</p>'
+
+
+      let cols = '<div class="colspacer topinblock" style="width:50px"><div class="timeline"></div></div>'
+      for (let i = 0; i < 20; i++) {
+        cols += `<div class="tvcol topinblock">
+      <div class="timeline"></div>
+      <div class="sniptitle">10:${10 + i}&nbsp;am</div>
+      <div class="th">
+        <img src="images/pIrAte.png">
+      </div>
+      <div class="snippet">
+        ${para}${para}${para}
+      </div>
+      <div class="colfoot">
+        <div class="quoteoff"><span class="iconochive-quote"></span></div>
+      </div>
+    </div><!--/.tvcol-->`
+      }
+      cols += '<div class="colspacer topinblock" style="width:100px"><div class="timeline" style="right:25px"></div></div>'
+      $('#cols').html(cols)
+
+
+      // add 9 lipsum paragraphs to the meta/description area
+      $('#tvmeta-wrap .container').append(`${[...Array(9).keys()].map((e) => `${e}: ${para}`).join('')}`)
+
+
+      // just for fun
+      $('.tvcol').click((e) => {
+        const $e = $(e.target).parents('.tvcol')
+        if (!$e.attr('wide3x')) {
+          const w = $e.width()
+          $e.attr('wide3x', w)
+          $e.width(3 * w)
+        } else {
+          const w = $e.attr('wide3x')
+          $e.attr('wide3x', '')
+          $e.width(w)
+        }
+      })
+
+      TV3.tvmetaSetWidth()
+
+      // setup a watcher to get an event on every scroll event
+      $(window).scroll(() => {
+        const $w = $(window)
+        const leftNew = $w.scrollLeft()
+        const topNew  = $w.scrollTop()
+
+        if (leftNew !== TV3.leftPrev  &&  topNew <= 25  &&  !TV3.tvmetaFixed) {
+          $('#tvmeta-wrap').addClass('tvmeta-fixed')
+          TV3.tvmetaFixed = true
+        } else if (topNew !== TV3.topPrev) {
+          $('#tvmeta-wrap').removeClass('tvmeta-fixed')
+          TV3.tvmetaFixed = false
+        }
+
+        if (leftNew !== TV3.leftPrev) {
+          // console.log('scrolled left/right to: '+leftNew);
+          $('#tvmeta').css({ left: leftNew })
+        }
+
+        TV3.leftPrev = leftNew
+        TV3.topPrev = topNew
+      })
+    } else {
+      $.doTimeout('TV3.tvmetaSetWidth', 250, TV3.tvmetaSetWidth)
+    }
+  })
+  </script>
+
+<script type="module" src="https://esm.archive.org/@internetarchive/ia-topnav"></script>
+<style>
+  body, html { margin: 0; font-size: 10px; }
+  #cols, #tvmeta { font-size: 16px; }
+</style>
+
+<body class="navia">
+  <div id="wrap">
+    <ia-topnav style="position:fixed; left:0; right:0; z-index:10;" localLinks="false"></ia-topnav>
+  </div>
+  <div id="cols">
+  </div>
+
+  <div id="tvmeta">
+    <div id="tvmeta-wrap">
+      <div class="container container-ia" style="margin-left:0">
+
+        <div id="nav-tray" style="height:50px;font-size:40px;">
+          TV NAV GOES HERE
+        </div>
+
+        <div>
+          <span class="iconochive-tv"></span>
+          TV PROGRAM SUPER HAPPY FUN MAR 2016
+        </div>
+
+      </div>
+    </div>
+  </div><!--/#tvmeta-->

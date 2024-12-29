@@ -1,0 +1,100 @@
+<head>
+<style>
+.pixgrid {
+  margin: 0 auto;
+  justify-content: center;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-template-rows: repeat(auto-fill, 200px);
+  grid-auto-flow: dense;
+}
+.pixgrid img {
+  border-radius: 10px;
+  min-height: 200px;
+  min-width: 200px;
+  max-height: 415px;
+  max-width: 415px;
+  cursor: pointer;
+  object-fit: cover;
+  object-position: center;
+}
+</style>
+</head>
+<body>
+  <div class="pixgrid">
+  </div>
+</body>
+<script type="module">
+  import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+  // NOTE: Most all this JS is for CORS loading a search of JSON imagery results
+  // and making some 'wide'/'tall' imagery span 2 rows/columns.
+  // CSS Grid is doing nearly all the layout and work!
+
+  // this colletion at: archive.org/details/..
+  const collex = location.search.substr(1) // can override like ...?brooklynmuseum
+  const COLLECTION = (collex || 'solarsystemcollection')
+  const TOP_VIEWED = 500 // shuffle up to this many results
+  const SHOW_NUMBER = 30 // show this many results
+  const ASPECT_TALL = 0.75
+  const ASPECT_WIDE = 1.1
+  const CELL_WH = 200
+  const GAP = 15
+
+  function shuffle(a) {
+    for (let i = a.length; i; i--) {
+      const j = Math.floor(Math.random() * i)
+      const x = a[i - 1]
+      // eslint-disable-next-line no-param-reassign
+      a[i - 1] = a[j]
+      // eslint-disable-next-line no-param-reassign
+      a[j] = x
+    }
+  }
+
+  window.sizer = function sizer(e) {
+    const $img = $(e)
+    const w = $img.width()
+    const h = $img.height()
+    const css = {}
+    const aspect = w / h
+    css.width = CELL_WH
+    css.height = CELL_WH
+    if (aspect <= ASPECT_TALL) {
+      // imagery is relatively 'tall' -- make 2 rows
+      css['grid-row-end'] = 'span 2'
+      css.height = 2 * CELL_WH + GAP
+    } else if (aspect >= ASPECT_WIDE) {
+      // imagery is relatively 'wide' -- make 2 columns
+      css['grid-column-end'] = 'span 2'
+      css.width = 2 * CELL_WH + GAP
+    }
+    $img.css(css)
+  }
+
+  window.retry_thumb = function retry_thumb(e, identifier) {
+    // console.log('RETRY ' + identifier)
+    const url = `https://archive.org/download/${identifier}/format=JPEG+Thumb`
+    $(e).attr('onerror', '').attr('src', url)
+  }
+
+  fetch(`https://archive.org/advancedsearch.php?q=collection:${COLLECTION}+AND+format:JPEG&fl[]=identifier&sort[]=downloads+desc&rows=${TOP_VIEWED}=1&output=json`).then((e) => e.json()).then((data) => {
+    const ary = []
+    // eslint-disable-next-line guard-for-in
+    for (const idx in data.response.docs)
+      ary.push(data.response.docs[idx].identifier)
+
+    shuffle(ary)
+
+    // Since have to counter CORS issues, load the imagery as normal <img src=..> tags
+    // Onload, we'll detect width/height...
+    $(ary.slice(0, SHOW_NUMBER)).each((idx, identifier) => {
+      const click = `https://archive.org/details/${identifier}`
+      const url = `https://archive.org/download/${identifier}/format=JPEG`
+      $('.pixgrid').append(`<img onload="sizer(this)" onError="window.retry_thumb(this, '${identifier
+      }')" onclick="location.href='${
+        click}'" src="${url}"/>`)
+    })
+  })
+</script>

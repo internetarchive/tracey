@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<body>
+  <h4>Adapted from <a href="https://developer.apple.com/library/safari/#documentation/AudioVideo/Conceptual/Using_HTML5_Audio_Video/ControllingMediaWithJavaScript/ControllingMediaWithJavaScript.html#//apple_ref/doc/uid/TP40009523-CH3-SW5">apple article</a></h4>
+
+  <video autoplay controls src="http://archive.org/download/Cracker1996-03-28.KCRW/Cracker1996-03-28-KCRW-t01.mp3"> </video>
+
+  <script>
+    window.TRACKNO = 2
+    document.getElementsByTagName('video')[0].addEventListener('ended', () => {
+      const vid = document.getElementsByTagName('video')[0]
+      vid.src = `http://archive.org/download/Cracker1996-03-28.KCRW/Cracker1996-03-28-KCRW-t0${window.TRACKNO}_vbr.mp3`
+      window.TRACKNO += 1
+      vid.load()
+      vid.play()
+      // eslint-disable-next-line no-console
+      console.log(`playing ${vid.src}`)
+    }, false)
+  </script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Page Layout Inspired by Flipboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="description" content="Page Layout Inspired by Flipboard" />
+        <meta name="keywords" content="flip, pages, flipboard, layout, responsive, web, web design, grid, ipad, jquery, css3, 3d, perspective, transitions, transform" />
+        <meta name="author" content="" />
+        <link rel="shortcut icon" href="favicon.ico">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="flip/demo.css"/>
+        <link rel="stylesheet" type="text/css" href="flip/style.css"/>
+    <script src="flip/modernizr.custom.08464.js"></script>
+    <script id="pageTmpl" type="text/x-jquery-tmpl">
+      <div class="${theClass}" style="${theStyle}">
+        <div class="front">
+          <div class="outer">
+            <div class="content" style="${theContentStyleFront}">
+              <div class="inner">{{html theContentFront}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="back">
+          <div class="outer">
+            <div class="content" style="${theContentStyleBack}">
+              <div class="inner">{{html theContentBack}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </script>
+  </head>
+  <body>
+
+    <header class="main-title">
+      <h1>Page Layout <strong>Inspired by Flipboard</strong></h1>
+      <p>Swipe or drag to flip the pages, click to open items </p>
+      <p><strong>Best viewed in a Webkit browser (Safari, Chrome), iPad, or Firefox</strong></p>
+      <p>(sorry iPhone!)</p>
+    </header>
+
+    <div id="flip" class="container">
+
+      <div class="f-page f-cover">
+        <div class="cover-elements">
+          <div class="logo">
+            Pageflip
+            <a class="f-ref" href="https://www.flickr.com/photos/nasahqphoto/">Cover image from NASA</a>
+          </div>
+          <h1>
+            Flipping Pages with CSS3 &amp; jQuery
+            <span>Inspired by <a href="https://flipboard.com/">Flipboard</a></span>
+
+            · <a href="flip.htm?prelinger">prelinger videos</a><br>
+            · <a href="flip.htm?poohbot">poohbot.com</a><br>
+            · <a href="flip.htm?movies">IA videos</a><br>
+            · <a href="flip.htm?moviespick">IA "picked" videos</a><br>
+            · <a href="flip.htm?hunter">hunter website</a><br>
+
+          </h1>
+          <div class="f-cover-story">
+            <span>Cover Story</span>
+            tracey has an idea for a demo
+          </div>
+        </div>
+        <div class="f-cover-flip">&lt; Flip</div>
+      </div>
+
+    </div>
+  </body>
+
+
+<script type="module">
+/* global Modernizr */ // see <script> tag above
+import $ from 'https://esm.archive.org/jquery@3.6.1'
+import jwplayer from 'https://av.prod.archive.org/js/jwplayer.js'
+
+import Parser from 'https://esm.archive.org/rss-parser'
+
+window.$ = $
+window.jQuery = $
+
+// eslint-disable-next-line no-console
+const log = console.log.bind(console)
+
+let p1 = ''
+let p2 = ''
+let mindescrip = 0
+const rows_get = 400
+const rows_show = 50
+let rss = false
+let where = false
+
+
+// toggle pick one!
+if (location.search.match('poohbot')) {
+  rss = 'https://poohbot.com/index.xml'
+} else if (location.search.match('moviespick')) {
+  where = 'mediatype:movies AND format:thumbnail AND pick:1'
+  mindescrip = 200
+} else if (location.search.match('movies')) {
+  where = 'mediatype:movies AND FORMAT:thumbnail AND NOT collection:tvnews AND NOT collection:opensource_movies'
+  mindescrip = 400
+} else if (location.search.match('hunter')) {
+  // NOTE: CORS blocked as of changeover from PHP to JS 5/2024
+  rss = 'https://www.hunterleebrown.com/blog/fetch.php'
+} else if (location.search.match('prelinger')) {
+  where = '35mmstockfootage AND mediatype:movies'
+  p1 = "Internet Archive's 35mm stock footage collection consists of material especially shot for stock footage purposes as well as feature film outtakes and unused material that were conserved for future use in other productions."
+  p2 = 'Rights to this collection are held by Internet Archive. You may download and reuse material under the <a href="https://creativecommons.org/licenses/by/2.0/">Creative Commons Attribution License</a>. If you require higher-quality material or a written license agreement, please contact <a href="https://www.gettyimages.com">Getty Images</a> for licensing information.'
+} else {
+  where = 'poohBot' // ' AND mediatype:movies'
+}
+
+
+function get1(o) {
+  // log({ o })
+  if (o === null || o === undefined)
+    return ''
+
+  if (typeof o === 'object') {
+    log({ o })
+    // eslint-disable-next-line no-param-reassign
+    o = o.shift()
+    if (typeof o === 'object') {
+      // eslint-disable-next-line no-param-reassign
+      o = o.shift()
+      if (typeof o === 'object')
+        return o.length ? o.shift() : ''
+    }
+    if (typeof o === 'string')
+      return o
+    return ''
+  }
+  if (typeof o === 'string')
+    return o
+
+  return ''
+}
+
+
+if (!rss) {
+  rss = `https://archive.org/advancedsearch.php?q=${encodeURIComponent(where)}&sort%5B%5D=publicdate+desc&sort%5B%5D=&sort%5B%5D=&rows=${rows_get}&output=rss`
+}
+log({ rss })
+
+const opts = { customFields: { item: ['media:keywords'] } }
+new Parser(opts).parseURL(rss).then((map) => {
+  // const map = str.replace(/(<\/*)[a-z]+:/, '$1') // namespace nixing xxx
+  log({ map })
+
+  let mat
+  for (const i of map.items) {
+    log({ i })
+    if ('encoded' in i)
+      i.description = get1(i.encoded)
+    else
+      i.description = get1(i.description)
+    if (!i.description && i.content)
+      i.description = i.content
+
+    i.thumbnail = get1(i.thumbnail) // chexx all these assignments
+    i.link = get1(i.link)
+    i.title = get1(i.title)
+    mat = i.description.match(/<img.*?src="([^"]+).*?>/i)
+    if (mat) {
+      if (!i.thumbnail)
+        // eslint-disable-next-line prefer-destructuring
+        i.thumbnail = mat[1]
+      i.description = i.description.replace(/<img.*?src="([^"]+).*?>/i, '')
+    }
+
+    mat = get1(i.encoded).match(/(https:\/\/(wwww.)*archive.org\/embed\/([^/?&"]+))/)
+    if (mat) {
+      // eg: offset embedding, eg: poohBot.com
+      // eslint-disable-next-line prefer-destructuring
+      i.iaid = mat[3] // chexxx
+      i.thumbnail = `https://archive.org/download/${mat[3]}/format=Thumbnail`
+      i.description = i.description.replace(/<iframe([^>]+)>\s*<\/iframe>/, '')
+    } else {
+      mat = get1(i.enclosure?.url).match(/(https:\/\/archive.org\/download\/(.*?)\/format=)/)
+      if (mat)
+        // eslint-disable-next-line prefer-destructuring
+        i.iaid = mat[2] // chexxx
+    }
+
+    if (!i.thumbnail) { // eg: wordpress RSS
+      mat = get1(i.encoded).match(/<img.*?src="([^"]+).*?>/i)
+      if (mat)
+        // eslint-disable-next-line prefer-destructuring
+        i.thumbnail = mat[1]
+    }
+
+    if (i.keywords)
+      i.subjects = get1(i.keywords) // IA RSS
+    else if (i['media:keywords'])
+      i.subjects = get1(i['media:keywords'])// IA RSS
+    else if (i.category)
+      i.subjects = get1(i.category) // wordpress RSS
+
+    if (!i.iaid && i.link)
+      i.iaid = i.link.split('/').pop()
+
+    if (!i.thumbnail && i.iaid)
+      i.thumbnail = `https://archive.org/services/img/${i.iaid}/full/pct:200/0/default.jpg`
+
+
+    // log(get1(i.enclosure))
+    log({ i })
+  }
+
+  // eslint-disable-next-line max-len
+  const items = map.items.filter((e) => (mindescrip ? get1(e.description).length > mindescrip : e)).slice(0, rows_show)
+
+
+  const lay = [
+    // leaf1
+    [
+      'box w-25 h-70',
+      'box w-50 h-70 box-b-l box-b-r',
+      'box w-25 h-70',
+      'box w-50 h-30 box-b-r title-top box-img-left',
+      'box w-50 h-30 title-top box-img-right',
+    ],
+    // leaf2
+    [
+      'box w-70 h-50 box-b-r title-top box-img-left',
+      'box w-30 h-50',
+      'box w-30 h-50 box-b-r title-top',
+      'box w-70 h-50 title-top box-img-left',
+    ],
+    // leaf3
+    [
+      'box w-30 h-60 box-b-r title-top',
+      'box w-70 h-60 box-img-left title-top',
+      'box w-40 h-40 box-img-left box-b-r title-top',
+      'box w-30 h-40 box-b-r title-top',
+      'box w-30 h-40 title-top',
+    ],
+  ]
+
+
+  let css = 'span.iaid { display:none; visibility:hidden; }'
+  for (const [idx, i] of Object.entries(items)) {
+    log({ idx, i })
+    css += `.img-${Number(idx) + 1} { background-image: ${i.thumbnail ? `url(${i.thumbnail})` : 'none'}; }`
+  }
+
+
+  function add_css(str) {
+    const e = document.createElement('style')
+    e.setAttribute('type', 'text/css')
+    e.appendChild(document.createTextNode(str))
+
+    const head = document.getElementsByTagName('head')[0]
+    head.appendChild(e)
+  }
+  add_css(css)
+
+
+  let page = 0
+  let idx = 0
+  let htm = ''
+  while (items.length) {
+    for (const lays of lay) {
+      if (!items.length) break
+      page += 1
+      htm += `
+      <div class="f-page">
+        <div class="f-title">
+          <a href="https://archive.org"><img src="flip/glogo50x50.png"></a>
+          <h2>Multimedia Demo for rOcktober</h2>
+          <div style="float:right; padding-right:30px;">Page ${page}</div>
+          <a href="https://tympanus.net/codrops/2012/05/07/experimental-page-layout-inspired-by-flipboard/">The Codrops source/article</a>
+        </div>`
+
+      for (const clas of lays) {
+        if (!items.length) break
+        const i = items.shift()
+        idx += 1
+        htm += `
+        <div class="${clas}">
+          <div class="img-cont img-${idx}"></div>
+          <h3>
+            <a href="${i.link}">${i.title}</a>
+            <!-- pubDate eg: 'Tue, 19 Dec 2023 05:26:04 GMT' -->
+            <span>Published ${get1(i.pubDate).split(' ').slice(1, 4).join(' ')}</span>
+          </h3>
+          <p>
+            ${i.description}
+          </p>
+          ${i.subjects ? `<p>Subjects: ${i.subjects}</p>` : ''}
+          <p>${p1}</p>
+          <p>${p2}</p>
+          <span class="iaid">${i.iaid}</span>
+        </div>`
+      }
+      htm += '</div>'
+    }
+  }
+  htm += `
+    <div class="f-page f-cover-back">
+      <div id="codrops-ad-wrapper"></div>
+    </div>`
+  log({ htm })
+
+  $('#flip').append(htm)
+})
+
+
+function jwpx() {
+  const j = jwplayer()
+  if (j) {
+    if (j.getState  &&  j.getState() === 'PLAYING')
+      j.pause()
+    if (j.stop)
+      j.stop()
+  }
+  $('#jwp').remove()
+  $('#jwplacer').remove()
+}
+
+// eslint-disable-next-line no-unused-vars
+function jwp() {
+  const $elm = $('.box-expanded')
+  const iaid = $elm.find('.iaid').text()
+
+  if (!iaid)
+    return
+  jwpx()
+
+
+  const cfg = {
+    // autoPlay: true,
+    file: `/download/${iaid}/format=h.264&ignore=x.mp4`,
+    image: `/download/${iaid}/format=Thumbnail`,
+    width: 640,
+    height: 480,
+  }
+  // log(cfg)
+
+  const img = $elm.find('.img-cont')
+  img.css({ width: 640, height: 480 })
+  img.removeClass('')
+
+  $('body').prepend('<div style="visibility:hidden; position:absolute; z-index:10000;"><div id="jwp"> </div></div>')
+
+  jwplayer('jwp').setup(cfg)
+  jwplayer('jwp').onReady(() => {
+    const off = img.offset()
+    // log(off)
+    const top  = Math.max(50, off.top)
+    const left = Math.max(50, off.left)
+
+    $('#jwp').parent().css({
+      visibility: 'visible',
+      top,
+      left,
+    })
+  })
+}
+
+
+const $container  = $('#flip')
+const $pages      = $container.children().hide()
+
+Modernizr.load({
+  test: Modernizr.csstransforms3d && Modernizr.csstransitions,
+  yep: [
+    'flip/jquery.tmpl.min.js',
+    'flip/jquery.history.js',
+    'flip/core.string.js',
+    'flip/jquery.touchSwipe-1.2.5.js',
+    'flip/jquery.flips.js',
+  ],
+  nope: 'flip/fallback.css',
+  callback(url) {
+    if (url === 'flip/fallback.css') {
+      $pages.show()
+    } else if (url === 'flip/jquery.flips.js') {
+      $container.flips()
+    }
+  },
+})
+</script>
+</html>

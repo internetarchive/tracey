@@ -1,0 +1,65 @@
+<html>
+<h2>jwplayer</h2>
+<div id="avtag"></div>
+
+<script type="module">
+  import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
+
+  const p = jwplayer('avtag').setup({
+    playlist: [
+      { file: 'https://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t02.mp3' },
+      { file: 'https://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t03.mp3' },
+    ],
+    width: '100%',
+    height: 400,
+    base: jwbase,
+  })
+
+  const prv = '<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-next" style="transform: rotate(180deg)" viewBox="0 0 240 240"><path d="M165,60v53.3L59.2,42.8C56.9,41.3,55,42.3,55,45v150c0,2.7,1.9,3.8,4.2,2.2L165,126.6v53.3h20v-120L165,60L165,60z"></path></svg>'
+
+  const nxt = '<svg xmlns="http://www.w3.org/2000/svg" class="jw-svg-icon jw-svg-icon-next" viewBox="0 0 240 240"><path d="M165,60v53.3L59.2,42.8C56.9,41.3,55,42.3,55,45v150c0,2.7,1.9,3.8,4.2,2.2L165,126.6v53.3h20v-120L165,60L165,60z"></path></svg>'
+
+  p.addButton(nxt, 'next',     () => { p.playlistNext() }, 'btn-nxt')
+  p.addButton(prv, 'previous', () => { p.playlistPrev() }, 'btn-prv')
+</script>
+
+
+<hr>
+
+
+<h2>videojs alt player</h2>
+
+<video
+  id="myvid"
+  class="video-js"
+  controls
+  preload="auto"
+  width="640"
+  height="264"
+  poster="images/glogo.png"
+  data-setup="{}"
+></video>
+
+<link  href="https://esm.archive.org/video.js/dist/video-js.css" rel="stylesheet"/>
+
+<script type="module">
+  import videojs from 'https://esm.archive.org/video.js/dist/video.js'
+  import playlist from 'https://esm.archive.org/videojs-playlist/dist/videojs-playlist.js'
+
+  videojs.registerPlugin('playlist', playlist)
+
+  const player = videojs('myvid')
+  player.playlist([{
+    sources: [{
+      src: 'https://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t02.mp3',
+      type: 'audio/mp3',
+    }],
+  }, {
+    sources: [{
+      src: 'https://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t03.mp3',
+    }],
+  }])
+
+  // Play through the playlist automatically.
+  player.playlist.autoadvance(0)
+</script>

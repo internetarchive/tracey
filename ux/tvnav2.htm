@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  body { margin:0px; }
+  p { color:green; }
+  span { color:red; display:none; }
+  </style>
+</head>
+<body>
+
+  <div>
+  <div id="tbar" style="
+                        height:200px; width:3000px; background-color:red;">
+    <table><tr>
+    <td><div  style="width:100px">1am</div></td>
+    <td><div  style="width:100px">2am</div></td>
+    <td><div  style="width:100px">3am</div></td>
+    <td><div  style="width:100px">4am</div></td>
+    <td><div  style="width:100px">5am</div></td>
+    <td><div  style="width:100px">6am</div></td>
+    <td><div  style="width:100px">7am</div></td>
+    <td><div  style="width:100px">8am</div></td>
+    <td><div  style="width:100px">9am</div></td>
+    <td><div  style="width:100px">10am</div></td>
+    <td><div  style="width:100px">11am</div></td>
+    <td><div  style="width:100px">12pm</div></td>
+    <td><div  style="width:100px">1pm</div></td>
+    <td><div  style="width:100px">2pm</div></td>
+    <td><div  style="width:100px">3pm</div></td>
+    <td><div  style="width:100px">4pm</div></td>
+    <td><div  style="width:100px">5pm</div></td>
+    <td><div  style="width:100px">6pm</div></td>
+    <td><div  style="width:100px">7pm</div></td>
+    <td><div  style="width:100px">8pm</div></td>
+    <td><div  style="width:100px">9pm</div></td>
+    <td><div  style="width:100px">10pm</div></td>
+    <td><div  style="width:100px">11pm</div></td>
+    </tr></table>
+  </div>
+
+  <div style="position:relative; margin-left:200px;">
+    <div id="innah">
+      <div style="position:absolute; width:2000px; height:5px; background-color:yellow;"> </div>
+      <div style="position:absolute; width:5px; height:2000px; background-color:green;"> </div>
+
+      <div style="color:blue;">Try scrolling the iframe.</div>
+      <p>Paragraph - <span>Scroll happened!</span></p>
+      <script type="module">
+      import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+      window.$ = $
+      window.jQuery = $
+
+      let stop = 0
+
+      $('p').clone().appendTo(document.body)
+      $('p').clone().appendTo(document.body)
+      $('p').clone().appendTo(document.body)
+      $(window).scroll(() => {
+        $('span').css('display', 'inline').fadeOut('slow')
+
+        const newstop  = $(window).scrollTop()
+        if (newstop !== stop)
+          // eslint-disable-next-line no-console
+          console.log('scrolling up/down')
+        else
+          // eslint-disable-next-line no-console
+          console.log('scrolling left/right')
+        stop = newstop
+      })
+      </script>
+
+    </div>
+  </div>
+
+  <div id="lbar" style="z-index:1; margin-top:200px; position:fixed; top:0px;
+                        left:0px; height:3000px; width:200px; background-color:blue;">
+    <div style="height:100px">abc</div>
+    <div style="height:100px">nbc</div>
+    <div style="height:100px">fox</div>
+    <div style="height:100px">cbs</div>
+    <div style="height:100px">abc</div>
+    <div style="height:100px">xyz</div>
+    <div style="height:100px">kqed</div>
+    <div style="height:100px">kpfw</div>
+    <div style="height:100px">kcbs</div>
+    <div style="height:100px">wgbh</div>
+    <div style="height:100px">wusa</div>
+  </div>
+
+  </div>
+
+</body>
+</html>

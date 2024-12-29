@@ -1,0 +1,73 @@
+<head>
+  <base href="../Downloads/"/>
+  <style>
+.pixgrid {
+  display:grid;
+  margin: 0 auto;
+  justify-content: center;
+  grid-gap: 15px;
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-auto-flow: dense;
+  /*grid-auto-rows: repeat(200px, 200px);*/
+}
+.pixgrid > div {
+  border-radius: 10px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+  </style>
+</head>
+
+<body>
+  <div class="pixgrid">
+  </div>
+</body>
+
+<script type="module">
+  import $ from 'https://esm.ext.archive.org/jquery@3.7.1'
+
+  const log = console.log.bind(console)
+
+  /**
+   * Shuffles array in place.
+   * @param {Array} a items The array containing the items.
+   */
+  function shuffle(a) {
+    for (let i = a.length; i; i--) {
+      const j = Math.floor(Math.random() * i)
+      const x = a[i - 1]
+      // eslint-disable-next-line no-param-reassign
+      a[i - 1] = a[j]
+      // eslint-disable-next-line no-param-reassign
+      a[j] = x
+    }
+  }
+
+  const htm = (await (await fetch('../Downloads/')).text()) ||
+    (await (await fetch('../images/')).text())
+
+  const dir = htm.match(/href="([^"]+)"/i)[1]
+  log({dir})
+
+  const ary = [...htm.matchAll(/href="([^"]+)"/gi)].map((e) => `${dir}${e[1]}`).filter((e) => e.match(/\.(jpg|png)$/i))
+  log({ ary })
+  shuffle(ary)
+
+  $(ary.slice(0, 50)).each((idx, url) => {
+    const bgImg = $('<img />')
+    bgImg.hide()
+    bgImg.bind('load', function load() {
+      const aspect = $(this).width() / $(this).height()
+      let css = 'text-align:right;'
+      if (aspect <= 0.75)
+        css = 'grid-row-end: span 2'
+      else if (aspect >= 1.3)
+        css = 'grid-column-end: span 2'
+
+      $('.pixgrid').append(`<div style="${css}; background-image: url('${url}')"><a href="${url}">⬇️</a></div>`)
+    })
+    bgImg.attr('src', url)
+    $('body').append(bgImg)
+  })
+</script>

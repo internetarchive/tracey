@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Internet Archive</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+
+    <style>
+     div { border:1px dashed red; padding:20px; }
+    </style>
+
+    <pre>
+xs/sm/md:
+ ----------------- -----------------
+|        1        |        5        |
+ ----------------- -----------------
+|     2     |     3     |     4     |
+ ----------- ----------- -----------
+
+lg:
+ --------- ----- ----- ----- ---------
+|    1    |  2  |  3  |  4  |    5    |
+ --------- ----- ----- ----- ---------
+
+<textarea style="width:100%;font-size:10px" rows="5">
+<div class="col-lg-3 col-xs-6">1</div>
+<div class="col-lg-3 col-xs-6 col-lg-push-6">5</div>
+<div class="col-lg-2 col-xs-4 col-lg-pull-3">2</div>
+<div class="col-lg-2 col-xs-4 col-lg-pull-3">3</div>
+<div class="col-lg-2 col-xs-4 col-lg-pull-3">4</div></textarea>
+
+    </pre>
+
+    <div class="col-lg-3 col-xs-6">1</div>
+    <div class="col-lg-3 col-xs-6 col-lg-push-6">5</div>
+    <div class="col-lg-2 col-xs-4 col-lg-pull-3">2</div>
+    <div class="col-lg-2 col-xs-4 col-lg-pull-3">3</div>
+    <div class="col-lg-2 col-xs-4 col-lg-pull-3">4</div>

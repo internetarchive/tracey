@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <style>
+body { padding:0px; margin:0px 10px 0px 5px; background-color:#111; color:white; }
+body > div > a { color:yellow !important; }
+
+.jwrow {
+  font-family: Helvetica, Arial, sans-serif; font-size:14px;
+  padding:2px 5px 2px 5px;
+  color:#ccc;
+}
+div[class~="jwrow"][class~="playing"] { color:#00ADEF; }
+
+.jwrow {
+  background-color: rgb(31,31,31);
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAAeCAQAAAA8sevsAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAAAEgAAABIAEbJaz4AAAAJdnBBZwAAASwAAAAeABeKTC8AAAFtSURBVHja7dsxbsJAEIXht4tx0qRMR0VFkSJVbsSpuFFOkIqKUxg8k8LrtQN0Ywmh/B8FEgVy8fQ8O5j0kbVd7ddtoywgxnTRuesPOqbPt/Td7lo1Wj36qvD0el3Uqfvxr2ad0+ZVL1rTWAgznZXlG89NUrLx4/To68JT8/KeTGpcktcXEDElqSFWWM6UpNpYxo0QYXYbLJdFvxX/3k1jGbHCAqx0ltSYEjMWFjIb3l1DzkysGxDjJUklWF6DBcRYzdLsVEhjIcZvT4WmzJSFMJ+G92HGorEQ5yVJ5VSouh4lWIjwMrrXGcvYu2MR46nw6kdoIMbvDe+0FmJ8PrybUikwYoUo/7sg9dJZQIzVnWhdN/B0A+J8WjeMM1biVoiwqwUpZ0Is484TpAQLcbNgjadCboWIm50Khz/t0FhYgpc0DY2Vh76isRBVGiu7mt508p2pJ1gIc5l69SdZes9pm/a5pbMQVVbtnR/8+Au63vctcE28LQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxMS0xMS0zMFQwMDozNToxOSswMDowMKq3M50AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTEtMTEtMzBUMDA6MzU6MTkrMDA6MDDb6oshAAAAAElFTkSuQmCC);
+  background-size: 100% 100%;
+  background-repeat: repeat-x;
+}
+.jwrow:hover {
+  cursor:pointer;
+  color:white;
+  background-image:none;
+}
+
+.jwrow .n  {
+  width:30px;
+  text-align:right;
+  border-right:1px solid gray;
+  padding-right:5px;
+  margin-right:5px;
+  height:100%;
+}
+.jwrow .ttl {
+  width:65%; /*starting width; adjust with JS*/
+  overflow-x:hidden !important;
+/*  word-wrap: break-word !important;*/  /* this wraps long urls in IE */
+}
+.jwrow .tm {
+  float:right;
+  height:100%;
+}
+
+.jwrow .n, .jwrow .ttl, .jwrow .tm {
+  vertical-align:top;
+  display:inline-block;
+  *display:inline; /*for IEv8, at least*/
+  zoom:1; /*for IEv7*/
+}
+    </style>
+
+    <center><h1>JWPlayer testing</h1></center>
+
+    <script src="./jw-test.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<head>
+  <title>gleam the cube</title>
+  <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+</head>
+<div style="height:100%">
+  <h1 style="text-align:center">infinite scroll, both up & down 😻</h1>
+  <div class="results"></div>
+  <center class="more_search"><a href="#">mo</center>
+</div>
+
+<style>
+  .well-sm{ margin:20px; }
+  #nav-tophat, .navbar { position:fixed; left:0; right:0; }
+  .results { padding-top:100px; margin:auto; max-width:900px; }
+  .more_search { text-align:center; opacity:0.1; margin-top:50px; }
+</style>
+
+
+<script type="module">
+/* eslint-disable no-console */
+import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+window.jQuery = $
+window.$ = $
+
+const log = console.log.bind(console)
+const NUM = 30
+let start = 100
+let cangoup = false
+let more_searching = false
+let adding_top = false
+
+// `quotes.json` was grouped multiple requests from:  https://zenquotes.io/api/quotes
+fetch('quotes.json').then((e) => e.json()).then((quotes) => {
+  function add_quotes(scroll = null, up = false) {
+    if (scroll !== null) {
+      start = scroll
+      if (up)
+        start -= NUM
+    }
+
+    let htm = ''
+    for (let n = start; n <= start + NUM - 1; n++) {
+      const quote = quotes.pop() ?? 'hi thats the end of the film'
+      htm += `<div id="i${n}" class="well well-sm"><h4>${n}</h4>${quote}</div>`
+    }
+    if (up)
+      $('.results').prepend(htm)
+    else
+      $('.results').append(htm)
+  }
+  add_quotes()
+
+
+  const scrolled2 = () => {
+    const newtop = $(window).scrollTop()
+    // log('scrolled to', { newtop })
+
+    if (!cangoup) {
+      if (newtop > 200) {
+        cangoup = true
+        $('h1').hide()
+      }
+    } else if (newtop < 2) {
+      if (!adding_top) {
+        adding_top = true
+        setTimeout(() => {
+        // if (!confirm('going up?')) return;
+          const $first = $('.well-sm:first > h4')
+          const  first = parseInt($first.text(), 10)
+          const bump = $first.offset().top
+          log({ first, bump })
+          add_quotes(first, true)
+          $(window).scrollTop($first.offset().top - bump)
+          adding_top = false
+        }, 500)
+      }
+    }
+    if (newtop < 50)
+      return
+
+    const selector = '.more_search:visible'
+    const $e = $(selector)
+    if (!$e.length)
+      return
+
+    // make the edge detect for "hit bottom" 40 pixels from the bottom
+    const check = $e.offset().top + $e.outerHeight() - $(window).height() - 40
+    // log('-v- check', check)
+    if (newtop > check) {
+      log('hit rock bottom > ', check)
+      if (!more_searching)
+        $(`${selector} > a`).click()
+    }
+  }
+
+  // register for scroll updates (for infinite search results)
+  $(window).scroll(scrolled2)
+
+  $('.more_search > a').click(() => {
+    const last = parseInt($('.well-sm:last > h4').text(), 10)
+    log({ last })
+    add_quotes(last + 1)
+
+    more_searching = false
+    return false
+  })
+})
+</script>

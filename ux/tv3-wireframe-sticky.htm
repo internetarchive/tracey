@@ -1,0 +1,94 @@
+<style>
+  body,  body *,  body *:before,  body *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing:    border-box;
+    box-sizing:         border-box;
+    width: auto;
+  }
+  #wrap {
+    position: relative;
+    width: auto;
+    height: auto;
+  }
+  #cols {
+    position: relative;
+    white-space: nowrap;
+    border-top: 10px solid #333;
+    border-bottom: 10px solid #333;
+    overflow: visible;
+    width: auto;
+    height: auto;
+    background-color: #333;
+  }
+  #cols > * {
+    white-space: normal;
+    background-color: white;
+  }
+  .tvcol {
+    transition: all 0.5s ease;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 335px;
+    border-left: 15px solid #333;
+  }
+  .tvcol.big {
+    width: 600px;
+  }
+  .tvcol > div {
+    padding: 5px;
+  }
+  .tvcol img {
+    width: 100%;
+    height: auto;
+  }
+  #peek {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: wheat;
+    padding: 20px;
+    opacity: .7;
+    width: 100vw;
+  }
+  #rest {
+    position: sticky;
+    left: 0;
+    padding: 20px;
+    width: 100vw;
+  }
+</style>
+<script>
+  const p = '<p>Brackett finished her first draft in early 1978; Lucas has said he was disappointed with it, but before he could discuss it with her, she died of cancer.[40] With no writer available, Lucas had to write his next draft himself. It was this draft in which Lucas first made use of the "Episode" numbering for the films; Empire Strikes Back was listed as Episode II.[41] As Michael Kaminski argues in The Secret History of Star Wars, the disappointment with the first draft probably made Lucas consider different directions in which to take the story.[42] He made use of a new plot twist: Darth Vader claims to be Luke\'s father. According to Lucas, he found this draft enjoyable to write, as opposed to the yearlong struggles writing the first film, and quickly wrote two more drafts,[43] both in April 1978. He also took the script to a darker extreme by having Han Solo imprisoned in carbonite and left in limbo.</p>'
+
+  window.render = function render() {
+    return `
+    <div id="cols">${[...Array(8).keys()].map(() => `<div
+      class="tvcol" onclick="this.classList.toggle('big')">
+        <img src="images/glogo.png"/>
+        <div>
+          ${p} ${p}
+        </div>
+      </div>`).join('')}
+      <div id="peek">
+        ${p}
+      </div><div id="rest">
+        ${[...Array(8).keys()].map(() => p).join('')}
+      </div>
+    </div>`
+  }
+
+  window.resize = function resize() {
+    const ncols = document.getElementsByClassName('tvcol').length
+    const colW  = document.getElementsByClassName('tvcol')[0].offsetWidth
+    const tvcolMaxW = window.innerWidth * 0.6
+    document.getElementById('cols').style.width = (ncols * colW) + tvcolMaxW
+  }
+</script>
+<body style="border:0; padding:0; margin:0" onload="window.resize()">
+  <div id="wrap">
+    <script>document.write(window.render())
+</script>
+  </div></div>
+</body>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TV example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://esm.archive.org/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+  </head>
+  <body>
+    <h3>Query Results:</h3>
+    <div id="result" class="well">
+    </div>
+
+    <script type="module">
+      import $ from 'https://esm.archive.org/jquery@3.6.1'
+
+      fetch('https://archive.org/details/tv?output=json&q=baloney').then((e) => e.json()).then((data) => {
+        // eslint-disable-next-line no-console
+        console.log(data)
+        $(data).each((n, obj) => {
+          // eslint-disable-next-line guard-for-in
+          for (const key in obj) {
+            $('#result').append(`<div class="row"><div class="col-md-2"><b>${key}</b></div><div class="col-md-10">${obj[key]}</div>`)
+          }
+          $('#result').append('<hr/>')
+        })
+      })
+    </script>
+  </body>
+</html>

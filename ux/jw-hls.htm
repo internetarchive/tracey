@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1> open in safari 😜 </h1>
+  <div id="html5"></div>
+</body>
+<script type="module">
+  import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
+
+  jwplayer('html5').setup({
+    file: 'https://tvnixrmd.archive.org/index.php?m3u=RT&suffix=ts&mins=3',
+    type: 'm3u8',
+    base: jwbase,
+  })
+</script>

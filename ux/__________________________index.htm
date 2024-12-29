@@ -1,0 +1,58 @@
+<link href="https://esm.ext.archive.org/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+<h1>tracey's ux sandbox</h1>
+<hr>
+<div id="x"></div>
+
+<style>
+  #x {
+    display: grid;
+    column-gap: 2rem;
+    row-gap: 0.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min-content, 200px));
+    margin: 0 225px 0 25px; /* 25 + whatever is in minmax() above */
+  }
+  a {
+    display: block;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  h1 {
+    text-align: center;
+  }
+  h2 {
+    font-size: 150%;
+    display: block;
+  }
+</style>
+<script>
+/* eslint-disable no-console */
+
+const log = console.log.bind(console)
+
+const highlights = [
+  '__timestream.htm',
+  'boot-text-fills.htm',
+  'codepen-css-grid-masonic.htm',
+  'flip.htm',
+  'grid-pix-nasa.htm',
+  'jw-test.htm',
+  'poohBot.htm',
+  'sticky-911.htm',
+  'sticky-tv-wireframe.htm',
+  'table.htm',
+  'tv-coach.htm',
+  'tv3-wireframe-sticky.htm',
+]
+
+fetch('./').then((e) => e.text()).then((txt) => {
+  log([...txt.matchAll(/href="([^"]+)"/g)])
+  const hrefs = [...txt.matchAll(/href="([^"]+)"/g)].map((e) => e[1].replace(/\/$/, '').replace(/^\.\/+/, ''))
+    .filter((e) => e.match(/\.(htm|m3u|m3u8)$/i) && !e.startsWith('___'))
+  log({ hrefs })
+  document.getElementById('x').innerHTML = hrefs.map((e) => {
+    const high = highlights.includes(e)
+    return `${high ? '<h2>' : ''}<a href=${e}>${e}</a>${high ? '</h2>' : ''}`
+  }).join('')
+})
+</script>

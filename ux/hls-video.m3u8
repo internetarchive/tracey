@@ -1,0 +1,14 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-ALLOWCACHE:0
+#EXT-X-TARGETDURATION:60
+#EXT-X-MEDIA-SEQUENCE:1
+#EXTINF:5,v1
+https://archive.org/~tracey/_/ios/1704292135.mp4
+#EXTINF:5,v2
+https://archive.org/~tracey/_/ios/1704292136.mp4
+#EXTINF:5,v3
+https://archive.org/~tracey/_/ios/1704292137.mp4
+#EXTINF:5,v4
+https://archive.org/~tracey/_/ios/1704292138.mp4
+#EXT-X-ENDLIST

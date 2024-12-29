@@ -1,0 +1,65 @@
+<style>
+/* https://codepen.io/vamptvo/pen/gRLgQV */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+}
+
+header,
+footer {
+  background: rgb(200, 200, 100);
+}
+
+main {
+  flex: 1 1 auto;
+  background: rgb(100, 200, 100);
+}
+
+aside {
+  flex: 1 1 auto;
+  background: rgb(200, 100, 100);
+}
+
+.contents {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column;
+}
+
+@media (min-width: 35.5rem) {
+  .contents {
+    flex-flow: row;
+  }
+
+  main {
+    order: 1;
+  }
+
+  aside {
+    flex: 0 0 7rem;
+  }
+
+  aside:first-of-type {
+    order: 0;
+  }
+
+  aside:last-of-type {
+    order: 2;
+  }
+}
+</style>
+
+
+<header>Header</header>
+<div class="contents">
+  <main>Main</main>
+  <aside>Sidebar 1</aside>
+  <aside>Sidebar 2</aside>
+</div>
+<footer>Footer</footer>

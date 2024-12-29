@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    body { background-color:black; overflow:hidden; }
+
+    div.space { position:absolute; overflow:hidden; }
+       .space { width:1440px;height:900px; }
+
+
+    /* near the end, we will make "windowshades" creep down from top and up from bottom,
+     * to make the visible part of the image shorter */
+    div.space {
+      clip:rect(200px,1440px,600px,0px);
+      -webkit-animation: cropper 16s linear;
+         -moz-animation: cropper 16s linear;
+           -o-animation: cropper 16s linear;
+              animation: cropper 16s linear;
+    }
+    @-webkit-keyframes cropper { 0% { clip:rect(  0px,1440px,900px,0px); } 85% { clip:rect(  0px,1440px,900px,0px); }  100% { clip:rect(200px,1440px,600px,0px); }}
+       @-moz-keyframes cropper { 0% { clip:rect(  0px,1440px,900px,0px); } 85% { clip:rect(  0px,1440px,900px,0px); }  100% { clip:rect(200px,1440px,600px,0px); }}
+         @-o-keyframes cropper { 0% { clip:rect(  0px,1440px,900px,0px); } 85% { clip:rect(  0px,1440px,900px,0px); }  100% { clip:rect(200px,1440px,600px,0px); }}
+            @keyframes cropper { 0% { clip:rect(  0px,1440px,900px,0px); } 85% { clip:rect(  0px,1440px,900px,0px); }  100% { clip:rect(200px,1440px,600px,0px); }}
+
+
+    /* logo will fade in.  start at 10% opacity, and fade to 50% in next 6 seconds */
+    #logo-short {
+     -webkit-animation: fadein 16s linear; /* Chrome, Safari 5 */
+        -moz-animation: fadein 16s linear; /* firefox 5-15 */
+          -o-animation: fadein 16s linear; /* opera 12+ */
+             animation: fadein 16s linear; /* chrome, firefox 16+, ie 10+, safari 5 */
+      position:absolute;
+      top:750px;
+      width:454px;
+      height:80px;
+      right:200px;
+      opacity:0.0;
+    }
+    @-webkit-keyframes fadein { 0% { opacity: 0.1; } 30% { opacity: 0.5; } 75% { opacity: 0.5; } 100% { opacity: 0.0; } }
+       @-moz-keyframes fadein { 0% { opacity: 0.1; } 30% { opacity: 0.5; } 75% { opacity: 0.5; } 100% { opacity: 0.0; } }
+         @-o-keyframes fadein { 0% { opacity: 0.1; } 30% { opacity: 0.5; } 75% { opacity: 0.5; } 100% { opacity: 0.0; } }
+            @keyframes fadein { 0% { opacity: 0.1; } 30% { opacity: 0.5; } 75% { opacity: 0.5; } 100% { opacity: 0.0; } }
+
+
+    /* this is the "final logo" -- astronaut and logo text -- will fade in at the end */
+    #logo-full {
+     -webkit-animation: fadein2 20s linear; /* Chrome, Safari 5 */
+        -moz-animation: fadein2 20s linear; /* firefox 5-15 */
+          -o-animation: fadein2 20s linear; /* opera 12+ */
+             animation: fadein2 20s linear; /* chrome, firefox 16+, ie 10+, safari 5 */
+      position:absolute;
+      top:300px;
+      left:100px;
+      width:1000px;
+      height:100px;
+      opacity:1.0;
+    }
+    @-webkit-keyframes fadein2 { 0% { opacity: 0.0; } 85% { opacity: 0.0; } 100% { opacity: 1.0; } }
+       @-moz-keyframes fadein2 { 0% { opacity: 0.0; } 85% { opacity: 0.0; } 100% { opacity: 1.0; } }
+         @-o-keyframes fadein2 { 0% { opacity: 0.0; } 85% { opacity: 0.0; } 100% { opacity: 1.0; } }
+            @keyframes fadein2 { 0% { opacity: 0.0; } 85% { opacity: 0.0; } 100% { opacity: 1.0; } }
+
+
+    /* tip o' the hat for simple circles in CSS http://www.useragentman.com/blog/2013/03/03/animating-circular-paths-using-css3-transitions/
+
+       poohBot/astronaut image will rotate in orbit over the earth; play/animate the arc 1 time.
+       and yes, the cat image and paws of the astronaut *is* my wonderful 17-year-old, "thinks she's a wolf",
+       wonderfully social, longhaired kitteh named "Elle" 8-)
+       (the MP3 sound file played during the 1st rotation is her, too 8-)
+     */
+    #poohBot {
+      position:absolute;
+      width:64px;
+      height:97px;
+      z-index:1;
+      top:1400px;
+      right:inherit;
+      left:720px;
+
+      -webkit-animation: orbital 20s linear 0s 1; /* Chrome, Safari 5 */
+         -moz-animation: orbital 20s linear 0s 1; /* firefox 5-15 */
+           -o-animation: orbital 20s linear 0s 1; /* opera 12+ */
+              animation: orbital 20s linear 0s 1; /* chrome, firefox 16+, ie 10+, safari 5 */
+    }
+    /* Setup start and end point transforms for the otherwise simple "astronaut" image.
+       We're going to start in the center of a perfect circle.
+       Then, before we start, we're going to specify the radius of the circle with the translate X.
+       We start the image at logical 3 o'clock (-180deg) due to the "translate/slide X pixels to the right".
+       Next, we specify the start location in a circle, where -180 degrees is the start at
+       logical 9 o'clock.  The astronaut itself would now be flippe/mirrored, so do a 180 degree rotation
+       of the image itself so the astronaut's head is perfectly pointed "up".
+       So that's the start!
+       We tell CSS to end the animation at logical 3 o'clock (0deg), where at this point
+       the astronaut's head would be perfectly pointed up (so the final rotation arg is 0deg).
+
+       That's it!
+       CSS Animations will take care of the rest, interpolating all the points in between!
+
+       My "trick" is to ensure the logical "perfect circle" is mostly "off screen" -- so instead
+       of seeing a normal/boring cirlce over the earth, we only "see" the top part of the circle --
+       which is effectively *exactly* the ellipse I was truly after
+       (but don't think can be done w/ 100% pure CSS and no JS ;-)
+       Neat, right?!  8-)
+     */
+    @-webkit-keyframes orbital {
+        0% { -webkit-transform: rotate(-180deg) translateX(1200px) rotate( 180deg); }
+      100% { -webkit-transform: rotate(   0deg) translateX(1200px) rotate(   0deg); }}
+    @-moz-keyframes    orbital {
+        0% {    -moz-transform: rotate(-180deg) translateX(1200px) rotate( 180deg); }
+      100% {    -moz-transform: rotate(   0deg) translateX(1200px) rotate(   0deg); }}
+    @-o-keyframes      orbital {
+        0% {      -o-transform: rotate(-180deg) translateX(1200px) rotate( 180deg); }
+      100% {      -o-transform: rotate(   0deg) translateX(1200px) rotate(   0deg); }}
+    @keyframes         orbital {
+        0% {         transform: rotate(-180deg) translateX(1200px) rotate( 180deg); }
+      100% {         transform: rotate(   0deg) translateX(1200px) rotate(   0deg); }}
+
+
+
+    /* in parallel with the orbital, make the bot swell to 3x size in the middle, then back */
+    #poohBot img {
+      width:64px;
+      height:97px;
+      -webkit-animation: swell 20s linear 0s 3; /* Chrome, Safari 5 */
+         -moz-animation: swell 20s linear 0s 3; /* firefox 5-15 */
+           -o-animation: swell 20s linear 0s 3; /* opera 12+ */
+              animation: swell 20s linear 0s 3; /* chrome, firefox 16+, ie 10+, safari 5 */
+    }
+    @-webkit-keyframes swell {
+        0% { -webkit-transform: scale(1,1); }
+       25% { -webkit-transform: scale(1,1); }
+       50% { -webkit-transform: scale(3,3); }
+       75% { -webkit-transform: scale(1,1); }
+      100% { -webkit-transform: scale(1,1); }}
+    @-moz-keyframes    swell {
+        0% {    -moz-transform: scale(1,1); }
+       25% {    -moz-transform: scale(1,1); }
+       50% {    -moz-transform: scale(3,3); }
+       75% {    -moz-transform: scale(1,1); }
+      100% {    -moz-transform: scale(1,1); }}
+    @-o-keyframes      swell {
+        0% {      -o-transform: scale(1,1); }
+       25% {      -o-transform: scale(1,1); }
+       50% {      -o-transform: scale(3,3); }
+       75% {      -o-transform: scale(1,1); }
+      100% {      -o-transform: scale(1,1); }}
+    @keyframes         swell {
+        0% {         transform: scale(1,1); }
+       25% {         transform: scale(1,1); }
+       50% {         transform: scale(3,3); }
+       75% {         transform: scale(1,1); }
+      100% {         transform: scale(1,1); }}
+  </style>
+</head>
+
+<body>
+  <div style="position:relative; width:1440px; height:900px; margin:auto;">
+    <div class="space">
+      <img src="images/earth.jpg" class="space"/>
+      <img id="logo-short"  src="images/poohbot-text2.png"/>
+      <img id="logo-full" src="images/poohbot-pictures.png"/>
+      <div id="poohBot">
+        <img src="images/poohbot-only.png"/>
+      </div>
+    </div>
+  </div>
+  <audio src="https://archive.org/download/poohbot-logo/elle-12.mp3" autoplay></audio>
+</body>
+</html>

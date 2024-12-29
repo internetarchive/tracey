@@ -1,0 +1,72 @@
+<h1>play.js</h1>
+<div id="v">video</div>
+<div id="a">audio</div>
+
+<script type="module">
+/* global Play */
+import 'https://av.prod.archive.org/js/play.js'
+
+
+const aplay = [
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t01.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t01.ogg' }], title: 'Intro', duration: 30 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t02.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t02.ogg' }], title: 'One Fine Day', duration: 120 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t03.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t03.ogg' }], title: 'Gimme One More Chance', duration: 110 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t04.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t04.ogg' }], title: 'The Riverside', duration: 180 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t05.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t05.ogg' }], title: 'Teen Angst', duration: 210 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t06.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t06.ogg' }], title: '100 Flower Power Maximum', duration: 240 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t07.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t07.ogg' }], title: 'Mr. Wrong', duration: 400 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t08.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t08.ogg' }], title: 'Lonesome Johnny Blues', duration: 250 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t09.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t09.ogg' }], title: 'Turn On Tune In Drop Out and then tracey added a very long title kind of thing for testing...', duration: 321 },
+  { sources: [{ file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t10.mp3' }, { file: 'http://archive.org/download/cracker2008-09-06.teac.me80.ad20.flac16/cracker2008-09-06d1t10.ogg' }], title: 'EurotrashGirlanonbreakingsuperlongwordorsuchthatwillrequirebreakingoroverflowxhiddenkindofthingomanihopethispersonfinallystopstypingwhathaveidonetodeservethis', duration: 190 },
+]
+
+const vplay = [
+  {
+    sources: [
+      {
+        file: 'https://archive.org/download/camaro/camaro.mp4',
+        width: 640,
+        height: 480,
+      }, {
+        file: 'https://archive.org/download/camaro/camaro.HD.mp4',
+        width: 1920,
+        height: 1080,
+      },
+    ],
+    captions: [
+      {
+        file: 'https://archive.org/download/camaro/camaro.en.srt',
+        label: 'en',
+      },
+      {
+        file: 'https://archive.org/download/camaro/camaro.fr.srt',
+        label: 'fr',
+      },
+    ],
+    image: 'https://archive.org/download/camaro/format=Thumbnail&x=ignore.jpg',
+    duration: 87,
+    mediaid: 'camaro',
+    title: 'Camaro!',
+  },
+  {
+    file: 'https://archive.org/download/commute/commute.mp4',
+    title: 'commute',
+    duration: 183,
+    mediaid: 'commute',
+  },
+]
+
+Play('v', vplay, {
+  width: 400,
+  height: 300,
+  identifier: 'camaro',
+  collection: 'dumb_bunny',
+})
+
+Play('a', aplay, {
+  audio: true,
+  identifier: 'cracker2008-09-06.teac.me80.ad20.flac16',
+  width: 350,
+  height: 30,
+})
+</script>

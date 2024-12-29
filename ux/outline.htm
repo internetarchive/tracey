@@ -1,0 +1,32 @@
+<body>
+  <style>
+    span { position:absolute; font-size:40px; }
+  </style>
+
+  <div id="snub" style="width:100%; position:relative;">
+    this is a subtitle to outline in the mountains<br/>
+    and something else you should know really is coming to pass before you would normally be reeady to undertand slippers going bonkers
+  </div>
+
+<script>
+  /* eslint-disable no-console */
+  const snub = document.getElementById('snub')
+  const message = snub.innerHTML
+  const thick = 2
+  const color2 = 'black'
+  const color1 = 'white'
+
+  let str = ''
+  for (let y = -thick; y <= thick; y++) {
+    for (let x = -thick; x <= thick; x++) {
+      if (x || y)
+        str += `<span style="color:${color2}; left:${x}; top:${y};">${message}</span>`
+    }
+  }
+
+  str += `<span style="color:${color1}; left:0; top:0;">${message}</span>`
+  snub.innerHTML = str
+  console.log(str)
+</script>
+
+</body>

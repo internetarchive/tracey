@@ -1,0 +1,103 @@
+<!-- https://codepen.io/traceypooh/pen/pWjOdq -->
+<center>
+  <h1>
+    Responsive, masonic tiles using CSS Grid (only - no JS, no flexbox).
+  </h1>
+  <p>
+    Change browser width and note how everything reflows, _and_ the red tile numbers stay in correct order.
+  </p>
+</center>
+
+<div class="results"></div>
+
+<script>
+  // JS only used here to get some data, and to detect the image height (since we dropped that info
+  // from archive DB tables).
+  fetch('https://archive.org/advancedsearch.php?q=collection:fav-tracey_pooh AND NOT mediatype:collection&sort=-downloads&limit=50&output=json&fl[]=identifier&fl[]=title').then((e) => e.json()).then((res) => {
+    let n = 0
+    let htm = ''
+    for (const row of res.response.docs) {
+      const { identifier, title } = row
+      htm += `
+        <div>
+          <img src="https://archive.org/services/img/${identifier}"/>
+          <span>${n += 1}</span>
+          ${title.slice(0, 40)}
+        </div>
+      `
+    }
+    document.getElementsByClassName('results')[0].innerHTML = htm
+
+
+    document.querySelectorAll('img').forEach((e) => {
+      e.addEventListener('load', function load() {
+        const imgHT = this.height
+        const classes = `ht${Math.min(7, (imgHT ? Math.floor(imgHT / 40) : 5))}`
+        this.parentElement.classList.add(classes)
+      })
+    })
+  })
+</script>
+
+
+<style>
+/**
+Each tile's image height is known in advance.  at archive.org we use backend (PHP) to fetch that height and then simply have to run a formula like this for picking which 'htX' class to use:
+  'ht' . min(7, floor($imgHT / 40));
+
+We assume 20px gutters, and we _also_ split our grid into 20px high row increments (minimum here is 2 row spans per tile).
+
+So,
+a 'row span' of 2 is  60px high,
+a 'row span' of 3 is 100px high, etc.
+ */
+.results {
+   /* fit in up to 5 columns of 180px wide tiles, 20px gutters: 5*180 + 4*20: */
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-gap: 20px;
+  /* fit as many columns as possible, 180px wide each: */
+  grid-template-columns: repeat(auto-fill, 180px);
+  /* each row is 20px high -- we always span 2+ */
+  grid-auto-rows: minmax(20px, auto);
+  justify-content: center;
+}
+
+.results > * {
+  width: 180px;
+  /* only for older non-grid browsers: */
+  float: left;
+  /* only for older non-grid browsers: */
+  margin: 15px;
+}
+
+.ht0 { grid-row-end: span 2; }
+.ht1 { grid-row-end: span 3; }
+.ht2 { grid-row-end: span 4; }
+.ht3 { grid-row-end: span 5; }
+.ht4 { grid-row-end: span 6; }
+.ht5 { grid-row-end: span 7; }
+.ht6 { grid-row-end: span 8; }
+.ht7 { grid-row-end: span 9; }
+
+@supports (display: grid) {
+  .results > * {
+    /* modern browser -- grid-gap takes care of us: */
+    margin: 0 auto;
+  }
+}
+
+/* cosmetics only from here on down */
+.results > * {
+  background-color: #ddd;
+}
+.results > * img {
+  max-width: 100%;
+}
+.results > * span {
+  font-size: 125%;
+  color: red;
+  font-weight: bold;
+}
+</style>
