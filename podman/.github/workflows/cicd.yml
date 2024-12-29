@@ -7,5 +7,6 @@ jobs:
       NOMAD_VAR_PORTS: '{ 80 = "http" }'
       NOMAD_VAR_HOSTNAMES: '["podman"]'
       PLATFORMS: 'linux/amd64,linux/arm64'
+      NOMAD_VAR_MEMORY: 100 # xxx
     secrets:
       NOMAD_TOKEN_EXT: ${{ secrets.NOMAD_TOKEN_EXT }}
