@@ -44,8 +44,8 @@
     }
   }
 
-  const htm = (await (await fetch('../Downloads/')).text()) ||
-    (await (await fetch('../images/')).text())
+  const htm = (await (await fetch('./Downloads/')).text()) ||
+    (await (await fetch('./images/')).text())
 
   const dir = htm.match(/href="([^"]+)"/i)[1]
   log({dir})

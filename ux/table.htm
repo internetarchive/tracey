@@ -60,12 +60,12 @@ html, body {
 
 <script type="module">
 /* eslint-disable no-console */
-import $ from 'https://esm.archive.org/jquery@3.6.1'
+import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
 
 window.$ = $
 window.jQuery = $
 
-await import('https://esm.archive.org/jqueryui@1.11.1/jquery-ui.min.js')
+await import('https://esm.ext.archive.org/jqueryui@1.11.1/jquery-ui.min.js')
 
 let newImageZIndex = 1  // To make sure newly-loaded images land on top of images on the table
 let loaded = false      // Used to prevent initPhotos() running twice

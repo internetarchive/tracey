@@ -7,7 +7,7 @@ ME=https://tracey.archive.org
 
 (
   echo "
-<link href='https://esm.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://esm.ext.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
 <style>
   body { margin: 50px }
   a { text-decoration:none }
@@ -38,7 +38,7 @@ ME=https://tracey.archive.org
 
 # copy out public OK slide decks and formatting from another repo
 echo "
-<link href='https://esm.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://esm.ext.archive.org/bootstrap@5.1.3/dist/css/bootstrap.min.css' rel='stylesheet'>
 <style>
   body { margin: 50px }
   a { text-decoration:none }

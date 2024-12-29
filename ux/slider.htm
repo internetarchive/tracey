@@ -11,14 +11,14 @@
 - <input type="text" id="endDate"   name="endDate"   value="" /> ]
 
 <script type="module">
-import $ from 'https://esm.archive.org/jquery@3.6.1'
+import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
 
 window.$ = $
 window.jQuery = $
 
 await Promise.all([
-  import('https://esm.archive.org/jqueryui@1.11.1/jquery-ui.min.js'),
-  import('https://esm.archive.org/bootstrap@5.1.3'),
+  import('https://esm.ext.archive.org/jqueryui@1.11.1/jquery-ui.min.js'),
+  import('https://esm.ext.archive.org/bootstrap@5.1.3'),
 ])
 
 const minDate = new Date(2009, 8 - 1, 1)
