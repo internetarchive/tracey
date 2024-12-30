@@ -1,7 +1,7 @@
 <html>
   <head>
     <title>Collections are special</title>
-    <link rel="stylesheet" href="https://esm.archive.org/bootstrap@^5.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://esm.ext.archive.org/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   </head>
 
   <body class="Unity">
@@ -34,7 +34,7 @@
 
     window.jQuery = $
     window.$ = $
-    await import('https://esm.archive.org/tablesorter?deps=jquery@3.6.1')
+    await import('https://esm.ext.archive.org/tablesorter@2.32.0?deps=jquery@3.6.1')
 
     $('table.tablesorter').tablesorter({ textExtraction: 'complex' })
   </script>
