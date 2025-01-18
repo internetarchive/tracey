@@ -35,8 +35,8 @@ let's make https://moo.test.archive.org point to your mac
 GITLAB_HOME=$HOME/gitlab
 mkdir -p ${GITLAB_HOME?}/tls
 cd       ${GITLAB_HOME?}/tls
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/test.archive.org-cert.pem .
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/test.archive.org-key.pem  .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/test.archive.org-cert.pem .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/test.archive.org-key.pem  .
 
 chmod 400 test.archive.org-key.pem
 cd

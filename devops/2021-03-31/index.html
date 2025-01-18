@@ -127,7 +127,7 @@ ProxyJump '${IANAME?}'@sshgw-sf.us.archive.org
 mkdir -p ${GITLAB_HOME?}/tls
 cd       ${GITLAB_HOME?}/tls
 
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/${DOMAIN?}*.pem .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/${DOMAIN?}*.pem .
 
 chmod 400 *key.pem
 cd

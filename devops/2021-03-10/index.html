@@ -77,10 +77,10 @@ export SYSCTL=(brew services)
 ```bash
 mkdir -p ${GITLAB_HOME?}/tls
 cd       ${GITLAB_HOME?}/tls
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/test.archive.org-cert.pem .
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/test.archive.org-key.pem  .
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/x.archive.org-cert.pem .
-scp -p home.archive.org:/home/tracey/dev/nomad/certs/x.archive.org-key.pem  .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/test.archive.org-cert.pem .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/test.archive.org-key.pem  .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/x.archive.org-cert.pem .
+scp -p home.archive.org:/home/tracey/d/nomad/certs/x.archive.org-key.pem  .
 
 chmod 400 *key.pem
 cd
