@@ -21,13 +21,15 @@ const TALKS = [
   //   [add (derived from 'slug')] slides: 'https://tracey.archive.org/hashiconf',
   //   [drop] slug
   {
-    slug: 'aaron-swartz-day-2024',
+    href: 'https://youtu.be/MZ-PQjP-XRo?t=4314',
+    slides: 'https://tracey.archive.org/aaron-swartz-day-2024',
     title: 'Microservices, Monoliths & Operational Security <br> The Internet Archive in 2024',
     img: 'first-big-break.jpg',
     descrip: 'Aaron Swartz Day 2024',
   },
   {
-    slug: 'demuxed-2024',
+    href: 'https://www.youtube.com/watch?v=iNpMjj2qtNw',
+    slides: 'https://tracey.archive.org/demuxed-2024',
     title: 'Demuxed 2024:<br> What\'s on TV?<br> 4 editors and 2 robots walk into a bar..',
     img: 'demuxed-2024.jpg',
     descrip: `We social post hourly: "What's on TV?"<br>
