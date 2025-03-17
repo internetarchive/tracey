@@ -5,7 +5,7 @@ jobs:
     uses: internetarchive/cicd/.github/workflows/cicd.yml@main
     with:
       NOMAD_VAR_PORTS: '{ 80 = "http" }'
-      NOMAD_VAR_HOSTNAMES: '["tracey","tracey.archive.org"]'
+      NOMAD_VAR_HOSTNAMES: '["tracey.archive.org"]'
       PLATFORMS: 'linux/amd64,linux/arm64'
       NOMAD_VAR_MEMORY: 100 # xxx
     secrets:
