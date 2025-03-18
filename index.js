@@ -49,7 +49,7 @@ We use ffmpeg to crop the image area; tesseract to OCR the image into text; and 
   },
   {
     href: 'https://archive.org/details/safer-containers-at-archive-2023',
-    slides: 'https://podman.ext.archive.org',
+    slides: 'https://tracey.archive.org/podman',
     title: 'Safer Containers at the Archive in 2023',
     img: 'safer-containers.jpg',
     descrip: 'Tracey Jaquith & Rob Keizer talk about how to run docker containers more safely & quickly.<br>  Our team shares some high-level reasons why we\'re finding `podman` (a drop-in replacement for `docker` from RedHat) a more secure way to run containers',
