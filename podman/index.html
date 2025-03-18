@@ -1,0 +1,221 @@
+<!doctype html><head><meta charset="utf-8"/><script>window.REMOTE=1</script><script src="https://tracey.archive.org/eveal.js/eveal.js"></script><title>Safer Containers - Internet Archive 2023/10</title></head><body>
+
+
+# Safer Containers
+# in 8 minutes
+
+## Tracey Jaquith, Rob Keizer
+### Internet Archive 🏛️
+#### Oct 6, 2023
+
+
+---
+## What's a Container?
+![logo.png](logo.png)
+- Standardization, abstraction
+ - Think cargo container for software
+- Single built file
+  - "I want 10 copies of this container"
+
+---
+## What's a Container?
+![logo.png](logo.png)
+- Contains everything needed to run
+- Lightweight, not a full virtual machine
+- Unique identifier per container ( URI )
+- Run anywhere
+ - Development laptops
+ - On demand
+ - Server clusters
+
+---
+## How have containers Helped Us?
+- We standardized on Docker
+- Standardized testing and deployment
+ - Automated tests are run in containers
+ - Staging apps run in containers
+- Management
+ - Auditable, repeatable
+ - Ability to roll complex changes back
+ - Increased availability (relatively easily)
+
+---
+## Deriver Containers
+
+- Creates item `mp3`, `pdf`s, etc.
+- Provides isolation
+  - Limited visibility ( _single_ item dir )
+  - Unable to corrupt other tasks/files
+- Ephemeral storage
+  - Temporary files are removed automatically
+
+---
+
+## Current risks with Docker 😞
+
+ * Not designed for security, designed for abstraction
+ * Daemon is single point of failure
+ * Elevated privileges
+  - wide blast radius
+  - ability to read and write other files
+  - increased risk of breakout (eg shell escape)
+
+---
+
+![docker_vs_podman.jpeg](docker_vs_podman.jpeg)
+- Currently using `docker`
+- Looking seriously at `podman`
+- Fewer moving parts
+- Unix philosophy ( do one thing well )
+
+
+---
+
+![podman_logo.png](podman_logo.png)
+- Open Source, permissive license
+- Drop in replacement for `docker`
+- Supported
+  - Created & Maintained by RedHat
+  - [Hundreds of contributors](https://github.com/containers/podman)
+- Stable
+ - v1.0 released in Jan 2019
+
+---
+
+![podman_logo.png](podman_logo.png)
+- Can run as user with no privileges
+- Can run containers anywhere
+  - no `docker` daemon
+  - no `iptables` / routing changes
+- May help deriver container start/stop reliability
+
+
+---
+# Demo
+"hello world" web page podman container
+
+https://ia601400.us.archive.org/hi.php
+
+<section></section><section style="background-color:black; color:white; white-space:pre; text-align:left; font-size:80%; padding-left:15px; padding-top:0">
+
+```
+user: www-priv
+podman run --rm mwendler/figlet hello archive
+
+ _          _ _                        _     _
+| |__   ___| | | ___     __ _ _ __ ___| |__ (_)_   _____
+| '_ \ / _ \ | |/ _ \   / _` | '__/ __| '_ \| \ \ / / _ \
+| | | |  __/ | | (_) | | (_| | | | (__| | | | |\ V /  __/
+|_| |_|\___|_|_|\___/   \__,_|_|  \___|_| |_|_| \_/ \___|
+```
+
+</section>
+
+
+---
+ * `rootless`
+ * runs as `www-priv`
+ * no file r/w access
+
+
+<section></section><section style="background-color:black; color:white; white-space:pre; text-align:left; font-size:80%; padding-left:15px; padding-top:0">
+
+```
+user: www-priv
+podman run --rm mwendler/figlet hello archive
+
+ _          _ _                        _     _
+| |__   ___| | | ___     __ _ _ __ ___| |__ (_)_   _____
+| '_ \ / _ \ | |/ _ \   / _` | '__/ __| '_ \| \ \ / / _ \
+| | | |  __/ | | (_) | | (_| | | | (__| | | | |\ V /  __/
+|_| |_|\___|_|_|\___/   \__,_|_|  \___|_| |_|_| \_/ \___|
+```
+</section>
+
+
+---
+# Current work
+- TV "fixer" catalogd tasks
+  - r/w _single_ item dir
+  - running ~300/day
+
+- epub "on the fly" `daisy` format
+  - rootless container
+  - (scheduled for release)
+
+---
+# The End 🎬
+Thanks! 🙏
+
+We'd love to talk to anyone interested afterwards
+
+![logo.png](logo.png)
+
+
+
+---
+# Bonus / After time:
+## What is a container platform?
+- Software that runs containers
+- Handles administrative actions
+ - `start/stop`, `view logs`, etc.
+- Many different flavours
+  - (`docker`, `podman`, `runc`, `lxc`, `...` )
+
+
+---
+# Bonus / After time:
+- [jammy+] `podman` apt/debian pkg
+- [focal] opensuse.org distro => `/etc/apt/sources.list.d/`
+
+---
+# apt packages
+- _podman_
+- _uidmap_: maps outside => inside userid/gid
+- _slirp4netns_: rootless networking
+- _fuse-overlayfs_: rootless file r/w
+- _containernetworking-plugins_
+
+
+---
+# UID
+podman "rootless" techniques:
+- uid maps
+- random user uid
+  - hybrid of "rootfull" & "rootless"
+  - better network & file r/w performance
+
+
+---
+# Rootless More Info
+- [2023 rootless podman user namespaces in plain english](https://blog.podman.io/2023/05/rootless-podman-user-namespaces-in-plain-english/)
+- [2023 podman performance root and rootless](https://blog.podman.io/2023/07/podman-performance-root-and-rootless/)
+
+---
+## rootless -v- rootfull
+rootless slower than rootful:
+- networking & storage – must be done in _user space_ instead of _kernel space_
+  - _storage_:
+    - older kernels: FUSE filesystem `fuse-overlayfs`
+    - newer kernels (5.11+, jammy): kernel allows `podman` the `overlayfs` filesystem natively as non-root user
+  - _networking_: `slirp4netns` manually reassembles & forwards packets to container
+    - speedup by r/w volume mounts
+    - OR `podman run --net=host`
+      - but `opsec` 📉
+
+---
+## rootless -v- rootfull:
+## random user id
+-  `podman run --userns=auto` allows root `podman` to:
+  - creates container w/ performance advantages of root
+    - (kernel-native overlayfs & bridge networking)
+  - runtime security advantages of rootless
+    - container has no access to the host’s root user
+
+
+---
+## Future Goals
+
+- Remove *all* elevated privileges
+- Simplify architecture
+- Lower latency on startup
