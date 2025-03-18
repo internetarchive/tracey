@@ -1,5 +1,3 @@
-// deno-lint-ignore-file no-window
-
 import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
 import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
 

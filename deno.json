@@ -3,6 +3,7 @@
     "exclude": [
       "eveal.js/reveal.js/",
       "ux/flip/core.string.js",
+      "ux/jquery-1.10.2.min.js",
       "ux/flip/jquery.flips.js",
       "ux/flip/jquery.history.js",
       "ux/flip/jquery.tmpl.min.js",
@@ -11,7 +12,7 @@
     ],
     "rules": {
       "tags": ["recommended"],
-      "exclude": ["camelcase"]
+      "exclude": ["camelcase", "no-window"]
     }
   }
 }
