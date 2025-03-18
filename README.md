@@ -18,6 +18,6 @@ Find me at:
 ## TODO
 ```sh
 gg xxx
-wget crawl & find/fix 404s
+wget crawl & find/fix 404s # see poohbot repo for crawler/404 finder
 drop regen.sh
 ```
