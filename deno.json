@@ -1,0 +1,17 @@
+{
+  "lint": {
+    "exclude": [
+      "eveal.js/reveal.js/",
+      "ux/flip/core.string.js",
+      "ux/flip/jquery.flips.js",
+      "ux/flip/jquery.history.js",
+      "ux/flip/jquery.tmpl.min.js",
+      "ux/flip/jquery.touchSwipe-1.2.5.js",
+      "ux/flip/modernizr.custom.08464.js"
+    ],
+    "rules": {
+      "tags": ["recommended"],
+      "exclude": ["camelcase"]
+    }
+  }
+}

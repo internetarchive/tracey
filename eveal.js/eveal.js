@@ -11,6 +11,8 @@ window.BASE
 */
 
 
+// deno-lint-ignore-file no-window
+
 // Utility - loads an external JS file and append it to the head
 function req(file, callback) {
   const script = document.createElement('script')
