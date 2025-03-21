@@ -1,5 +1,5 @@
 import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
-import { jwplayer, jwbase } from 'https://av.prod.archive.org/js/jwplayer.js'
+import { jwplayer, jwbase } from 'https://av.archive.org/js/jwplayer.js'
 
 // eslint-disable-next-line no-console
 const log = console.log.bind(console)
@@ -44,8 +44,8 @@ function go(ttl, cfg, ialist) {
   }
   // eslint-disable-next-line no-param-reassign
   cfg.logo = {
-    prefix: 'https://av.prod.archive.org/jw/8',
-    file: 'https://av.prod.archive.org/jw/glogo-ghost.png',
+    prefix: 'https://av.archive.org/jw/8',
+    file: 'https://av.archive.org/jw/glogo-ghost.png',
     link: `https://archive.org${cfg.mediaid ? `/details/${cfg.mediaid}` : ''}`,
     hide: false,
   }
@@ -76,8 +76,8 @@ function go(ttl, cfg, ialist) {
     jwplayer(vn).on('ready', () => {
       ready[vn] = 1
       const iaid = cfg.mediaid
-      this.addButton('https://av.prod.archive.org/jw/glogo20x20.png', 'More Formats from Internet Archive', () => { location.href = `/details/${iaid}` }, 'btn1')
-      this.addButton('https://av.prod.archive.org/jw/share.png', 'Embedding Examples and Help', () => { location.href = `/help/video.php?identifier=${iaid}` }, 'btn2')
+      this.addButton('https://av.archive.org/jw/glogo20x20.png', 'More Formats from Internet Archive', () => { location.href = `/details/${iaid}` }, 'btn1')
+      this.addButton('https://av.archive.org/jw/share.png', 'Embedding Examples and Help', () => { location.href = `/help/video.php?identifier=${iaid}` }, 'btn2')
     })
   }
   if (ialist) {
