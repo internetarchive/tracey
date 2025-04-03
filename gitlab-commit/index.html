@@ -139,7 +139,7 @@ bit.ly/2BQ8eb4
 ## tl;dr 🥱
 ```yml
 include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
 add 👆 to your GitLab repository :
 - top-level file:
@@ -155,7 +155,7 @@ add 👆 to your GitLab repository :
 
 
 ---
-## [.gitlab-ci.yml](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+## [.gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 
 ---
 <pre class="stretch"><code class="hljs yaml">
@@ -193,7 +193,7 @@ deploy:
   script:
     # You can have your own/custom `project.nomad` in the top of your repo - or we'll just use
     # this fully parameterized nice generic 'house style' project
-    - if [ ! -e project.nomad ];then wget -q https://gitlab.com/internetarchive/nomad/-/raw/master/project.nomad; fi
+    - if [ ! -e project.nomad ];then wget -q https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad; fi
 
     # Swap out any env vars in `project.nomad` with environment values
     - node -e 'console.log(JSON.stringify(process.env))' >| /tmp/env.json
@@ -243,7 +243,7 @@ stop_review:
 
 ---
 ## nomad project
-- generic template: [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+- generic template: [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 - leverages: [levant](https://github.com/jrasell/levant)
 - example using levant + GitLab CI/CD Auto DevOps variables:
 ```
@@ -267,7 +267,7 @@ job SOMETHING {
 
 
 ---
-## [minimal project](https://gitlab.com/internetarchive/nomad/-/blob/master/hello-world.hcl) can use with GitLab
+## [minimal project](https://github.com/internetarchive/nomad/blob/main/hello-world.hcl) can use with GitLab
 
 
 ---
@@ -367,7 +367,7 @@ x-thumb                         service  50        running  2020-07-04T04:34:54-
 
 ---
 ## Full project.nomad
-[https://gitlab.com/internetarchive/nomad/project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[https://gitlab.com/internetarchive/nomad/project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 
 
@@ -794,7 +794,7 @@ EOH
 
 ---
 ## Monitoring & Usage 🕵️
-- [aliases](https://gitlab.com/internetarchive/nomad/-/blob/master/aliases)
+- [aliases](https://github.com/internetarchive/nomad/blob/main/aliases)
   - based on CWD & git branch and info
   - `nom-ssh` - ssh into container
   - `nom-app` - open url for webapp

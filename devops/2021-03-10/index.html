@@ -160,12 +160,12 @@ docker run --detach \
 ## Run a hello-world job
 ```bash
 wget -qO- \
-  https://gitlab.com/internetarchive/nomad/-/raw/master/hello-world.hcl \
+  https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/hello-world.hcl \
   |perl -pe 's/x.archive.org/test.archive.org/' \
   |nomad run -
 ```
 
-( [hello-world.hcl source](https://gitlab.com/internetarchive/nomad/-/raw/master/hello-world.hcl) )
+( [hello-world.hcl source](https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/hello-world.hcl) )
 
 try a few times:
 

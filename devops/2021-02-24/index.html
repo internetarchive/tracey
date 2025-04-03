@@ -536,9 +536,9 @@ wget -qO- https://gitlab.com/internetarchive/nomad/-/raw/fabio/etc/fabio-exec.hc
 
 ---
 ## Try a "hi world" job 🚀
-[hi world job](https://gitlab.com/internetarchive/nomad/-/blob/master/hello-world.hcl)
+[hi world job](https://github.com/internetarchive/nomad/blob/main/hello-world.hcl)
 ```bash
-wget https://gitlab.com/internetarchive/nomad/-/raw/master/hello-world.hcl
+wget https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/hello-world.hcl
 perl -i -pe 's/x.archive.org/test.archive.org/' hello-world.hcl
 nomad run hello-world.hcl
 

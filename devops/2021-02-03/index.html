@@ -25,8 +25,8 @@ tracey, matt, jason, clau, drini, arkiver, sawood
 ---
 # Overview
 - https://gitlab.com/internetarchive/nomad repo
-  - [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
-  - [variables & `levant`](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+  - [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
+  - [variables & `levant`](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 - RAM min/max
 - more info:
   - https://tracey.archive.org/gitlab-commit (slides)
@@ -53,13 +53,13 @@ https://git.archive.org/www
 
 ```yaml
 include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
 - [build] - use stock GitLab
 - [test] - not yet
 - [deploy] - custom, to nomad
 
-[(^ included .yml)](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+[(^ included .yml)](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 
 
 ---

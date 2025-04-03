@@ -249,11 +249,11 @@ GitLab repository's<br>
 ## tl;dr 🥱
 ```yml
 include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
 add 👆 to your GitLab repository :
 - top-level file:
-- [.gitlab-ci.yml](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+- [.gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 
 
 
@@ -301,7 +301,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <pre class=""><code class="hljs yaml"
 >    # ---- get templated  project.nomad ----
-    — wget  gitlab.com/internetarchive/nomad/-/raw/master/project.nomad
+    — wget  raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad
     — mv  project.nomad  project.hcl
     — sed -i "s/NOMAD_VAR_SLUG/$NOMAD_VAR_SLUG/" project.hcl
 </code></pre>
@@ -323,7 +323,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <pre class=""><code class="hljs yaml"
 >    # ---- get templated  project.nomad ----
-    — wget  gitlab.com/internetarchive/nomad/-/raw/master/project.nomad
+    — wget  raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad
     — mv  project.nomad  project.hcl
     — sed -i "s/NOMAD_VAR_SLUG/$NOMAD_VAR_SLUG/" project.hcl
 </code></pre>
@@ -347,7 +347,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <pre class=""><code class="hljs yaml"
 >    # ---- get templated  project.nomad ----
-    — wget  gitlab.com/internetarchive/nomad/-/raw/master/project.nomad
+    — wget  raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad
     — mv  project.nomad  project.hcl
     — sed -i "s/NOMAD_VAR_SLUG/$NOMAD_VAR_SLUG/" project.hcl
 </code></pre>
@@ -373,7 +373,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <pre class=""><code class="hljs yaml"
 >    # ---- get templated  project.nomad ----
-    — wget  gitlab.com/internetarchive/nomad/-/raw/master/project.nomad
+    — wget  raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad
     — mv  project.nomad  project.hcl
     — sed -i "s/NOMAD_VAR_SLUG/$NOMAD_VAR_SLUG/" project.hcl
 </code></pre>
@@ -402,7 +402,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <pre class=""><code class="hljs yaml"
 >    # ---- get templated  project.nomad ----
-    — wget  gitlab.com/internetarchive/nomad/-/raw/master/project.nomad
+    — wget  raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/project.nomad
     — mv  project.nomad  project.hcl
     — sed -i "s/NOMAD_VAR_SLUG/$NOMAD_VAR_SLUG/" project.hcl
 </code></pre>
@@ -420,7 +420,7 @@ add 👆 to your GitLab repository :
 </code></pre>
 <p class="">
 see
-[full .gitlab-ci.yml](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+[full .gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 for more
 </p>
 
@@ -428,19 +428,19 @@ for more
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 - uses template vars + GitLab CI/CD Auto DevOps variables
 
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 - uses template vars + GitLab CI/CD Auto DevOps variables
 <pre class=""><code class="hljs bash"
@@ -455,7 +455,7 @@ $NOMAD_SECRET_DATABASE_URL
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 - uses template vars + GitLab CI/CD Auto DevOps variables
 <pre class=""><code class="hljs bash"
@@ -471,7 +471,7 @@ $NOMAD_SECRET_DATABASE_URL
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 - uses template vars + GitLab CI/CD Auto DevOps variables
 <pre class=""><code class="hljs bash"
@@ -497,7 +497,7 @@ $NOMAD_SECRET_DATABASE_URL
 
 
 ---
-## [minimal project](https://gitlab.com/internetarchive/nomad/-/blob/master/hello-world.hcl)  usable with GitLab
+## [minimal project](https://github.com/internetarchive/nomad/blob/main/hello-world.hcl)  usable with GitLab
 
 
 ---
@@ -692,7 +692,7 @@ $NOMAD_SECRET_DATABASE_URL
 NOMAD_ADDR=...
 NOMAD_TOKEN=...
 
-wget https://gitlab.com/internetarchive/nomad/-/raw/master/hello-world.hcl
+wget https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/hello-world.hcl
 nomad run hello-world.hcl
 ```
 
@@ -916,7 +916,7 @@ CMD node /app/clock.js
  ╭─── .gitlab-ci.yml ───╮
 <code class="hljs yml"
 >include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 </code></pre>
 
 
@@ -944,14 +944,14 @@ https://gitlab.com/internetarchive/hashiconf-demo
 
 ---
 ## Full project.nomad
-[https://gitlab.com/internetarchive/nomad/project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[https://gitlab.com/internetarchive/nomad/project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 
 
 ---
 ## Customize
 Optional CI/CD vars for
-[project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 ```
 NOMAD_VAR_CHECK_PROTOCOL
@@ -976,7 +976,7 @@ NOMAD_VOLUMES
 ---
 ## Customize
 Optional CI/CD vars for
-[project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 ```
 NOMAD_VAR_CHECK_PROTOCOL
@@ -994,7 +994,7 @@ NOMAD_VOLUMES
 ```
 <div class="">
 Add any ☝🏽 to your `.gitlab-ci.yml`<br>
-([more info](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md))
+([more info](https://github.com/internetarchive/nomad/blob/main/README.md))
 </div>
 
 ---
@@ -1022,7 +1022,7 @@ Add any ☝🏽 to your `.gitlab-ci.yml`<br>
 
 ---
 ## Monitoring & Usage 🕵️
-[aliases](https://gitlab.com/internetarchive/nomad/-/blob/master/aliases)
+[aliases](https://github.com/internetarchive/nomad/blob/main/aliases)
 based on CWD & git info
 
 | | |
@@ -1041,7 +1041,7 @@ based on CWD & git info
 
 ---
 ## Additional Help
-[Create Nomad cluster](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md#setup-a-nomad-cluster)<br>
+[Create Nomad cluster](https://github.com/internetarchive/nomad/blob/main/README.md#setup-a-nomad-cluster)<br>
 linux, digital ocean ($5), mac/laptop
 <pre>
 
@@ -1051,7 +1051,7 @@ linux, digital ocean ($5), mac/laptop
 </pre>
 ---
 ## Additional Help
-[Create Nomad cluster](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md#setup-a-nomad-cluster)<br>
+[Create Nomad cluster](https://github.com/internetarchive/nomad/blob/main/README.md#setup-a-nomad-cluster)<br>
 linux, digital ocean ($5), mac/laptop
 <div class="">
 [create domain https certs](https://gitlab.com/internetarchive/nomad/-/blob/clustering/bin/create-https-certs.sh)
@@ -1061,7 +1061,7 @@ linux, digital ocean ($5), mac/laptop
 </pre>
 ---
 ## Additional Help
-[Create Nomad cluster](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md#setup-a-nomad-cluster)<br>
+[Create Nomad cluster](https://github.com/internetarchive/nomad/blob/main/README.md#setup-a-nomad-cluster)<br>
 linux, digital ocean ($5), mac/laptop
 <div class="">
 [create domain https certs](https://gitlab.com/internetarchive/nomad/-/blob/clustering/bin/create-https-certs.sh)
@@ -1157,7 +1157,7 @@ all main dev using gitlab + nomad review apps
 
 ---
 ## Deploy with GitLab + Nomad
-- 2 line [.gitlab-ci.yml](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+- 2 line [.gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 - 2 CI/CD vars
 <pre>
 
@@ -1170,7 +1170,7 @@ all main dev using gitlab + nomad review apps
 
 ---
 ## Deploy with GitLab + Nomad
-- 2 line [.gitlab-ci.yml](https://gitlab.com/internetarchive/nomad/-/blob/master/.gitlab-ci.yml)
+- 2 line [.gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 - 2 CI/CD vars
 
 <h1>🚀</h1>

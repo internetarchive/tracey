@@ -176,12 +176,12 @@ jobs:
 - [build] <span class="fragment">` - docker build` and `push` to github registry</span>
 - [test] <span class="fragment"> - if exists, runs `test.sh`</span> <span class="fragment">- [can customize](https://github.com/internetarchive/hello-js)</span>
 - [deploy] <span class="fragment"> - runs:
-[deploy.sh](https://gitlab.com/internetarchive/nomad/-/blob/master/deploy.sh)</span>
+[deploy.sh](https://github.com/internetarchive/nomad/blob/main/deploy.sh)</span>
 </div>
 
 ---
 ## Deployment
-[deploy.sh](https://gitlab.com/internetarchive/nomad/-/blob/master/deploy.sh)
+[deploy.sh](https://github.com/internetarchive/nomad/blob/main/deploy.sh)
 
 Runs inside a container with `nomad` binary
 
@@ -190,7 +190,7 @@ Runs inside a container with `nomad` binary
   - into shell environment variables & `env.env` file
 </div><div class="fragment fade-up lefty">
 - uses templated
-[project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 (HCL format)
 </div><div class="fragment fade-up lefty">
 - `project.nomad` + `env.env` + env vars => `project.hcl`
@@ -205,7 +205,7 @@ nomad run       var-file=env.env  project.hcl
 ---
 ## nomad project
 - generic template:
-  [project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 - uses template vars + GitHub CI/CD variables
 <pre class="fragment fade-up"><code class="hljs bash"
@@ -231,7 +231,7 @@ $NOMAD_SECRET_DATABASE_URL
 
 
 ---
-## [minimal project](https://gitlab.com/internetarchive/nomad/-/blob/master/hello-world.hcl)
+## [minimal project](https://github.com/internetarchive/nomad/blob/main/hello-world.hcl)
 
 
 ---
@@ -274,7 +274,7 @@ $NOMAD_SECRET_DATABASE_URL
 NOMAD_ADDR=...
 NOMAD_TOKEN=...
 
-wget https://gitlab.com/internetarchive/nomad/-/raw/master/hello-world.hcl
+wget https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/hello-world.hcl
 nomad run hello-world.hcl
 ```
 
@@ -383,14 +383,14 @@ https://github.com/internetarchive/hashitalksdemo
 
 ---
 ## Full project.nomad
-[https://gitlab.com/internetarchive/nomad/project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[https://gitlab.com/internetarchive/nomad/project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 
 
 ---
-## [Customize](https://gitlab.com/internetarchive/nomad/-/tree/master#customizing)
+## [Customize](https://github.com/internetarchive/nomad#customizing)
 Optional CI/CD vars for
-[project.nomad](https://gitlab.com/internetarchive/nomad/-/blob/master/project.nomad)
+[project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
 
 ```
 NOMAD_VAR_CHECK_PATH
@@ -411,13 +411,13 @@ NOMAD_VOLUMES
 ```
 <div class="fragment">
 Add any ☝🏽 to your `cicd.yml`<br>
-([more info](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md))
+([more info](https://github.com/internetarchive/nomad/blob/main/README.md))
 </div>
 
 
 ---
 ## Monitoring & Usage 🕵️
-[aliases](https://gitlab.com/internetarchive/nomad/-/blob/master/aliases)
+[aliases](https://github.com/internetarchive/nomad/blob/main/aliases)
 based on CWD & git info
 
 | | |
@@ -499,7 +499,7 @@ Demo repositories
 Create a Nomad cluster
 <div class="fragment">
 · [single node HinD](https://github.com/internetarchive/hind)<br>
-· [multi node](https://gitlab.com/internetarchive/nomad/-/blob/master/README.md#setup-a-nomad-cluster)</div>
+· [multi node](https://github.com/internetarchive/nomad/blob/main/README.md#setup-a-nomad-cluster)</div>
 
 ---
 ## Deploy Git repositories to Nomad
