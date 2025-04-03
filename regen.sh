@@ -27,7 +27,7 @@ ME=https://tracey.archive.org
       git log -1 --format=%ci $i |cut -b1-7 |tr -d '\n'
       echo -n ")</i></small>"
       set -x
-      echo -n "<b><a href='https://traceypooh.github.io/slides/$i'>$i</a></b></p>"
+      echo -n "<b><a href='https://tracey.archive.org/$i'>$i</a></b></p>"
       set +x
       echo
     done
