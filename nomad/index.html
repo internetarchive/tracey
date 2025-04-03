@@ -310,7 +310,7 @@ job "hello-world" {
     }
     service {
       name = "hello-world"
-      tags = ["urlprefix-internetarchive-bai-master.x.archive.org:443/"]
+      tags = ["urlprefix-internetarchive-hello-js-main.x.archive.org:443/"]
       port = "http"
       check {
         type     = "http"
@@ -323,10 +323,10 @@ job "hello-world" {
     task "hello-world" {
       driver = "docker"
       config {
-        image = "registry.gitlab.com/internetarchive/bai/master:latest"
+        image = "ghcr.io/internetarchive/hello-js:main"
         ports = [ "http" ]
         auth {
-          server_address = "registry.gitlab.com"
+          server_address = "ghcr.io"
           username = ""
           password = ""
         }
@@ -355,8 +355,7 @@ http.createServer((req, res) => {
 
 `.gitlab-ci-yml`
 ```bash
-include:
-  - remote: 'https://gitlab.com/internetarchive/nomad/-/raw/master/.gitlab-ci.yml'
+include: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
 
 ---
