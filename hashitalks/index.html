@@ -25,7 +25,7 @@ TV Architect<br>
 · video/audio · devops · javascript ·<br><br>
 
 <span class="fragment highlight-red">slides</span>: https://bit.ly/3ara7cD<br>
-repo: [gitlab/internetarchive](https://github.com/internetarchive/nomad)<br>
+repo: [github/internetarchive](https://github.com/internetarchive/nomad)<br>
 </div>
 
 </div>
@@ -138,12 +138,12 @@ bit.ly/3ara7cD
 ---
 ## tl;dr 🥱
 ```yml
-include:
-  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
+include: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
-add 👆 to your GitLab repository :
-- top-level file:
-- [.gitlab-ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
+add 👆 to your GitLab repository:
+- top-level `.gitlab-ci.yml` file
+
+[ci.yml](https://github.com/internetarchive/nomad/blob/main/ci.yml)
 
 
 ---
@@ -180,9 +180,9 @@ include:
     # make nice hostname, eg:
     #   services-timemachine.x.archive.org
     #   ia-petabox-webdev-3939-fix-things.x.archive.org
-    # and a unique slug that factors in group, project, and branch (when not master)
+    # and a unique slug that factors in group, project, and branch (when not main)
     - export BRANCH_PART=""
-    - if [ "$CI_COMMIT_REF_SLUG" != "master" ]; then export BRANCH_PART="-${CI_COMMIT_REF_SLUG}"; fi
+    - if [ "$CI_COMMIT_REF_SLUG" != "main" ]; then export BRANCH_PART="-${CI_COMMIT_REF_SLUG}"; fi
     - export NOMAD_VAR_SLUG=$(echo "${CI_PROJECT_PATH_SLUG}${BRANCH_PART}" |cut -b1-63)
     - export NOMAD_VAR_HOSTNAME="${NOMAD_VAR_SLUG}.${BASE_DOMAIN}"
     - if [ "$NOMAD_VAR_HOSTNAMES" = "" ]; then export NOMAD_VAR_HOSTNAMES='["'$NOMAD_VAR_HOSTNAME'"]'; fi
@@ -240,7 +240,7 @@ stop_review:
   dependencies: []
   allow_failure: true
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
       when: never
     - if: '$NOMAD_VAR_NO_DEPLOY'
       when: never
@@ -363,7 +363,7 @@ job "hello-world" {
     }
     service {
       name = "hello-world"
-      tags = ["urlprefix-internetarchive-bai-master.x.archive.org:443/"]
+      tags = ["urlprefix-internetarchive-hello-js-main.x.archive.org:443/"]
       port = "http"
       check {
         type     = "http"
@@ -376,10 +376,10 @@ job "hello-world" {
     task "hello-world" {
       driver = "docker"
       config {
-        image = "registry.gitlab.com/internetarchive/bai/master:latest"
+        image = "ghcr.io/internetarchive/hello-js:main"
         ports = [ "http" ]
         auth {
-          server_address = "registry.gitlab.com"
+          server_address = "ghcr.io"
           username = ""
           password = ""
         }
@@ -407,7 +407,7 @@ job "hello-world" {
 nomad status
 ID                              Type     Priority  Status   Submit Date
 fabio                           system   50        running  2020-07-04T12:14:32-07:00
-internetarchive-bai             service  50        running  2020-07-04T04:31:30-07:00
+internetarchive-hello-js        service  50        running  2020-07-04T04:31:30-07:00
 internetarchive-word-salad      service  50        running  2020-07-04T04:24:31-07:00
 internetarchive-www             service  50        running  2020-07-04T04:36:02-07:00
 internetarchive-www-ia-topnav   service  50        running  2020-07-04T13:58:37-07:00
@@ -466,9 +466,9 @@ variables {
 
 
   # This autogenerates from https://github.com/internetarchive/nomad/blob/main/ci.yml
-  # This will normally have "-$CI_COMMIT_REF_SLUG" appended, but is omitted for "master" branch.
+  # This will normally have "-$CI_COMMIT_REF_SLUG" appended, but is omitted for "main" branch.
   # You should not change this.
-  SLUG = "internetarchive-bai"
+  SLUG = "internetarchive-hello-js"
 
 
   # The remaining vars can be optionally set/overriden in a repo via CI/CD variables in repo's
@@ -563,7 +563,7 @@ locals {
 }
 
 
-# NOTE: for master branch: NOMAD_VAR_SLUG === CI_PROJECT_PATH_SLUG
+# NOTE: for main branch: NOMAD_VAR_SLUG === CI_PROJECT_PATH_SLUG
 job "NOMAD_VAR_SLUG" {
   datacenters = ["dc1"]
 
@@ -993,8 +993,7 @@ NOMAD_VOLUMES
 variables:
   NOMAD_VAR_VOLUMES: '["/home:/home:ro"]'
 
-include:
-  - remote: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
+include: 'https://raw.githubusercontent.com/internetarchive/nomad/refs/heads/main/ci.yml'
 ```
 
 
@@ -1035,9 +1034,9 @@ https://docs.gitlab.com/ee/ci/large_repositories
 
 ---
 ## Additional Help
-- [create a nomad cluster](https://gitlab.com/internetarchive/nomad/-/blob/clustering/setup.sh)
+- [create a nomad cluster](https://github.com/internetarchive/hind)
 - [create domain https certs](https://gitlab.com/internetarchive/nomad/-/blob/clustering/bin/create-https-certs.sh)
-- [gitlab pipeline examples](https://gitlab.com/internetarchive/word-salad/-/pipelines)
+- [gitlab pipeline examples](https://gitlab.com/internetarchive/nomad/-/pipelines)
 
 
 ---
@@ -1057,5 +1056,5 @@ https://docs.gitlab.com/ee/ci/large_repositories
 <div style="color: #ddd; margin-top:20%">
 Thank You!<br>
 slides: bit.ly/3ara7cD<br>
-repo: [gitlab/internetarchive](https://github.com/internetarchive/nomad)<br>
+repo: [github/internetarchive](https://github.com/internetarchive/nomad)<br>
 </div>
