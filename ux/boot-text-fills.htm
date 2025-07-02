@@ -43,7 +43,7 @@
 </style>
 
 
-<center><a style="margin:20px;" class="btn btn-success" onclick="toggle()">Swell!</a></center>
+<center><a style="margin:20px;" class="btn btn-success">Swell!</a></center>
 
 <div id="qcc" style="position:relative; width:600px; margin:auto; border:1px solid #ccc; border-radius:5px; overflow-y:hidden;">
   <div id="cc-all" style="position:absolute; padding:10px;">
@@ -79,22 +79,22 @@
 
 
 <script type="module">
-  import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
+  document.querySelector('.btn-success').addEventListener('click', () => {
+    const id = document.getElementById('qcc').classList.contains('big') ? 'cc-showing' : 'cc-all'
+    const ht = document.getElementById(id).getBoundingClientRect().height
+    document.getElementById('qcc').style.height = `${20 + ht}px`
+    document.getElementById('qcc').classList.toggle('big')
+  })
 
-  window.$ = $
-  window.jQuery = $
-  await import('https://esm.ext.archive.org/bootstrap@3.4.1')
+  // page load time setup:
+  const top1 = document.getElementById('cc-showing').getBoundingClientRect().top + window.pageYOffset
+  const top2 = document.getElementById('cc-above').getBoundingClientRect().top + window.pageYOffset
+  const topp = -1 * (top1 - top2)
 
-  window.toggle = function toggle() {
-    const ht = $('#qcc').hasClass('big') ? $('#cc-showing').height() + 20 : $('#cc-all').height() + 20
-    $('#qcc').css({ height: ht }).toggleClass('big')
-  }
-
-  const topp = -1 * ($('#cc-showing').offset().top - $('#cc-above').offset().top)
   // eslint-disable-next-line no-console
-  console.log(`moving to ${topp}`)
+  console.log(`moving to ${topp}`, { top1, top2, topp })
 
-  $('#qcc').css({ height: $('#cc-showing').height() + 20 })
-  $('#cc-all').css({ top: topp })
-
+  document.getElementById('qcc').style.height =
+    `${document.getElementById('cc-showing').getBoundingClientRect().height + 20}px`
+  document.getElementById('cc-all').style.top = `${topp}px`
 </script>
