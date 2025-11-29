@@ -54,7 +54,7 @@
             <span>Inspired by <a href="https://flipboard.com/">Flipboard</a></span>
 
             · <a href="flip.htm?prelinger">prelinger videos</a><br>
-            · <a href="flip.htm?poohbot">poohbot.com</a><br>
+            · <a href="flip.htm?traceypooh">traceypooh.com</a><br>
             · <a href="flip.htm?movies">IA videos</a><br>
             · <a href="flip.htm?moviespick">IA "picked" videos</a><br>
             · <a href="flip.htm?hunter">hunter website</a><br>
@@ -95,8 +95,8 @@ let where = false
 
 
 // toggle pick one!
-if (location.search.match('poohbot')) {
-  rss = 'https://poohbot.com/index.xml'
+if (location.search.match('traceypooh')) {
+  rss = 'https://traceypooh.com/index.xml'
 } else if (location.search.match('moviespick')) {
   where = 'mediatype:movies AND format:thumbnail AND pick:1'
   mindescrip = 200
@@ -174,7 +174,7 @@ new Parser(opts).parseURL(rss).then((map) => {
 
     mat = get1(i.encoded).match(/(https:\/\/(wwww.)*archive.org\/embed\/([^/?&"]+))/)
     if (mat) {
-      // eg: offset embedding, eg: poohBot.com
+      // eg: offset embedding, eg: traceypooh.com
       // eslint-disable-next-line prefer-destructuring
       i.iaid = mat[3] // chexxx
       i.thumbnail = `https://archive.org/download/${mat[3]}/format=Thumbnail`
