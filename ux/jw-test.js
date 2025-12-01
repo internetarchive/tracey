@@ -178,8 +178,8 @@ go('sharing/embed attempt (not showing up,<br/> but hacking in 2 custom buttons)
 go('mp4 + ogv', {
   mediaid: 'commute',
   playlist: [{
-    sources: [{ file: 'https://archive.org/~tracey/_/commute/commute.mp4' },
-              { file: 'https://archive.org/~tracey/_/commute/commute.ogv' }],
+    sources: [{ file: 'https://archive.org/download/commute/commute.mp4' },
+              { file: 'https://archive.org/download/commute/commute.ogv' }],
     image: 'https://archive.org/download/commute/format=Thumbnail&x=ignore.jpg',
     title: 'thrilling title',
   }],
@@ -190,7 +190,7 @@ go('mp4 + ogv', {
 
 go('ogv only', {
   mediaid: 'commute',
-  file: 'https://archive.org/~tracey/_/commute/commute.ogv',
+  file: 'https://archive.org/download/commute/commute.ogv',
   image: 'https://archive.org/download/commute/format=Thumbnail&x=ignore.jpg',
   title: 'commute',
   width: 320,
@@ -200,7 +200,7 @@ go('ogv only', {
 
 go('mp4 only', {
   mediaid: 'camels',
-  file: 'https://archive.org/~tracey/_/camels/camels.mp4',
+  file: 'https://archive.org/download/camels/camels.mp4',
   image: 'https://archive.org/download/camels/format=Thumbnail&x=ignore.jpg',
   title: 'camels',
   width: 320,
@@ -210,7 +210,7 @@ go('mp4 only', {
 
 go('mp3 only', {
   mediaid: 'ellepurr',
-  file: 'https://archive.org/~tracey/_/ellepurr/elle.mp3',
+  file: 'https://archive.org/download/ellepurr/elle.mp3',
   title: 'elle purring',
   width: 320,
   height: 40,
