@@ -97,7 +97,7 @@ req(`${BASE}lib/js/head.min.js`, () => {
           src: `${BASE}plugin/highlight/highlight.js`,
           async: true,
           callback: () => {
-            window.hljs.configure({ tabReplace: '  ' })
+            window.hljs.configure({tabReplace: '  '})
             window.hljs.initHighlightingOnLoad()
           },
         },
