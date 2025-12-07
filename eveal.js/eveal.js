@@ -5,11 +5,16 @@
 // (avoids blocked AJAX attempt for an external .md file load, etc.)
 
 /* CUSTOMIZATION SETTINGS:
-window.NIGHT
-window.REMOTE
-window.BASE
+- NIGHT
+
+Use when you load eveal.js like this, as a CSV list in query
+<script src=".../eveal.js?NIGHT"></script>
 */
 
+// Get the currently executing script
+const FLAGS = new URL(document.currentScript.src).search.slice(1).split(',').filter((e) => !!e)
+const BASE = document.currentScript.src.split('?')[0].replace(/\/eveal\.js$/, '/reveal.js/')
+console.log({ BASE, FLAGS })
 
 // Utility - loads an external JS file and append it to the head
 function req(file, callback) {
@@ -19,12 +24,6 @@ function req(file, callback) {
   script.onload = callback // real browsers
   document.getElementsByTagName('head')[0].appendChild(script)
 }
-
-// NOTE: these allow caller to override the default (2 different ways) and include us remotely.
-// NOTE: the `../eveal.js/` redundancy is for legacy setup
-if (window.REMOTE)
-  window.BASE = 'https://tracey.archive.org/eveal.js/reveal.js/'
-const BASE = window.BASE ?? '../eveal.js/reveal.js/'
 
 req(`${BASE}lib/js/head.min.js`, () => {
   // slurp the current body text (markdown) into a string,
@@ -61,7 +60,7 @@ req(`${BASE}lib/js/head.min.js`, () => {
   // get the styles and theme in place
   const loads = [
     `${BASE}css/reveal.css`,       // main CSS
-    `${BASE}${window.NIGHT ? '../night.css' : '../sky.css'}`, // desired theme
+    `${BASE}${FLAGS.includes('NIGHT') ? '../night.css' : '../sky.css'}`, // desired theme
     `${BASE}lib/css/zenburn.css`,  // for syntax highlighting of code
     (window.location.search.match(/print-pdf/gi) ? // printing and PDF exports
       `${BASE}css/print/pdf.css` :
