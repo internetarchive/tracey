@@ -21,7 +21,7 @@
 ### Overview
 - 13 nodes (VMs) and growing
 - `kubectl` v1.10
-- using `kubeadm` to setup
+- using `k3s` to setup
 - RBAC
   - namespaces
   - like unix users and groups
@@ -43,9 +43,21 @@
   - `docker pull docker.archive.org/neat-webapp`
   - pod [group of services/daemons]
   - replicaSet, deployment, load balancer
-- simple as:
-  - https://git.archive.org/ia/petabox/blob/master/docker/k8-deploy-iiif.sh
 
+---
+### eg: deploy [IIIF](https://iiif.io/) app to kubernetes
+
+```sh
+kubectl run iiif --image=registry.example.com/ia/iiif/master:latest --port=8080
+
+kubectl expose deployment iiif --port 8080 --target-port 8080 --type=NodePort
+
+kubectl patch svc/iiif  -p='{"spec":{
+   "ports":[
+     {"name":"http", "port":  8080, "protocol":"TCP", "nodePort": 30303, "targetPort":  8080}
+   ]
+ }}
+```
 
 ---
 ### Survey of early adopters
@@ -71,12 +83,11 @@
 ---
 ### 'You can Go Your Own Way'
 - Easy to take a group of xenial+ VMs
-- run some simple setup (for `kubeadm` and `kubectl` etc.)
+- run some simple setup (for `k3s` and `kubectl` etc.)
 - copy `.kube/config` to laptop
 - good to go!
 
-https://git.archive.org/ia/petabox/blob/master/docker/kubernetes.sh
-https://git.archive.org/ia/petabox/blob/master/docker/kubeadm-setup.sh
+https://gitlab.com/internetarchive/kre8/-/blob/master/README.md#create-a-k8-cluster-as-needed
 
 ---
 <!-- .slide: data-background="giphy.gif" -->
