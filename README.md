@@ -21,3 +21,8 @@ gg xxx
 wget crawl & find/fix 404s # see poohbot repo for crawler/404 finder
 drop regen.sh
 ```
+
+- add foms2018 subdir to talks
+- add aaron-swartz-day subdir to talks
+- replace `kubernetes-special-topic/index.html` /TechDoc/ links
+- add kubernetes-special-topic to top page cards list
