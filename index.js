@@ -22,9 +22,13 @@ const TALKS = [
   //   [drop] slug
   {
     slug: 'hashitalks-2026',
-    title: '<a href="https://hashi.co/hashitalks-2026">HashiTalks 2026</a>HinD: Hashistack-in-Docker - nomad cluster in a single container',
+    title: `<a href="https://hashi.co/hashitalks-2026">HashiTalks 2026</a>
+    <a style="display:inline" href="https://github.com/internetarchive/hind">HinD</a>: Hashistack-in-Docker - nomad cluster in a single container`,
     img: 'talks26.jpg',
-    descrip: 'Zero to production Nomad cluster in minutes - just one shell script and go', // xxxx
+    descrip: `Zero to production Nomad cluster in minutes - just one shell script and go.<hr>
+
+    The single docker/podman container uses Nomad, Consul and Caddy with automatic HTTPS.
+    `,
   },
   {
     href: 'https://youtu.be/MZ-PQjP-XRo?t=4314',

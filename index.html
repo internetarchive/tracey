@@ -9,6 +9,12 @@
   -->
   <link href="bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <style>
+.list-games {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
 .list {
   display: grid;
   grid-gap: 10px;
@@ -21,6 +27,7 @@ h2 {
 .card {
   text-align: center;
   display: initial;
+  max-width: 300px;
 }
 .card a img {
   max-width: 250px;
@@ -52,8 +59,8 @@ a {
     </b>
 
     <main>
-      <h2>Games</h2>
-      <div id="games" class="list">
+      <h2 style="text-align:center">Games</h2>
+      <div id="games" class="list-games">
       </div>
 
       <h2>Presentations & Talks [2026...2016]</h2>
