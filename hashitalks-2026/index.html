@@ -306,47 +306,19 @@ Drop a GitHub Action / `gitlab-ci.yml` in your repo<br>
 
 
 ---
-## Nomad deploys
-- generic template:
-  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
-
-- uses template vars + GitHub CI/CD variables
-
----
-[Optional CI/CD vars](https://github.com/internetarchive/nomad#customizing)
-
-```
-NOMAD_SECRET_MY_WEBHOOK
-NOMAD_SECRET_DATABASE_URL
-
-NOMAD_VAR_CPU
-NOMAD_VAR_MEMORY
-
-NOMAD_VAR_COUNT
-
-NOMAD_VAR_HEALTH_TIMEOUT
-
-NOMAD_VAR_HOSTNAMES
-NOMAD_VAR_PORTS
-
-NOMAD_VAR_PV
-...
-```
-
-
----
 ## Helper repos
 
 <div class="fragment">feature example:</div>
-<div class="fragment">secrets mgmt (consul KV storage)</div>
+<div class="fragment">secrets mgmt (consul KV storage)</div><br>
 
 <div class="fragment">
 https://github.com/internetarchive/cicd
 
 <div class="fragment">
 https://github.com/internetarchive/nomad
-<div>
+<div><br>
 
+<div class="fragment">^ tons of customization available</div>
 
 ---
 ## 🔥 Hot Copy Edits (helper repo feature)
