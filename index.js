@@ -21,6 +21,12 @@ const TALKS = [
   //   [add (derived from 'slug')] slides: 'https://tracey.archive.org/hashiconf',
   //   [drop] slug
   {
+    slug: 'hashitalks-2026',
+    title: '<a href="https://hashi.co/hashitalks-2026">HashiTalks 2026</a>HinD: Hashistack-in-Docker - nomad cluster in a single container',
+    img: 'talks26.jpg',
+    descrip: 'Zero to production Nomad cluster in minutes - just one shell script and go', // xxxx
+  },
+  {
     href: 'https://youtu.be/MZ-PQjP-XRo?t=4314',
     slides: 'https://tracey.archive.org/aaron-swartz-day-2024',
     title: 'Microservices, Monoliths & Operational Security <br> The Internet Archive in 2024',
