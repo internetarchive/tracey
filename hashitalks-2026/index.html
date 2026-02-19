@@ -43,7 +43,7 @@ founding coder<br>
 
 <div class="fragment"><br><br>
 <span class="fragment highlight-red">slides</span>: https://tracey.archive.org<br>
-repo: [github/internetarchive](https://github.com/internetarchive/hind)<br>
+repo: [github/internetarchive/hind](https://github.com/internetarchive/hind)<br>
 </div>
 
 ---
@@ -125,7 +125,7 @@ run web apps, jobs, crons
 </div><br>
 
 <div class="fragment">
-· Wildcard DNS pointing to VM (idealy)<br>
+· Wildcard DNS pointing to VM (ideally)<br>
   `*.example.com` → your VM IP<br>
 </div><br>
 
@@ -272,7 +272,7 @@ Nomad schedules across all nodes
 
 <div class="fragment lefty">
 archive.org -- home, search & more pages<br>
-→ <em>Run on nomad</em> 🚀
+<em>→ run on nomad</em> 🚀
 </div>
 
 
@@ -286,21 +286,59 @@ Once HinD is running, you have:<br>
 
 <div class="fragment">
 Drop a GitHub Action / `gitlab-ci.yml` in your repo<br>
-→ GitHub/GitLab deploys automatically
+→ GitHub / GitLab deploys automatically
 </div>
 
 
 ---
-## We have helper repos
-
+## tl;dr 🥱
+[GitHub Action](https://github.com/internetarchive/cicd)<br>
+- create file `.github/workflows/cicd.yml`
 <div class="fragment">
-secrets mgmt (nomad & consul KV storage)
+  - use your HinD `NOMAD_ADDR`<br>
+  - update `BASE_DOMAIN`
+</div>
 
-<div class="fragment">
-customizations
+- use your HinD `NOMAD_TOKEN`
+<div class="fragment"></div>
+  - [⚙️ Settings > Security > Secrets > Actions > New repository secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
+</div>
 
-<div class="fragment">
-info, hot copy edits, more
+
+---
+## Nomad deploys
+- generic template:
+  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
+
+- uses template vars + GitHub CI/CD variables
+
+---
+[Optional CI/CD vars](https://github.com/internetarchive/nomad#customizing)
+
+```
+NOMAD_SECRET_MY_WEBHOOK
+NOMAD_SECRET_DATABASE_URL
+
+NOMAD_VAR_CPU
+NOMAD_VAR_MEMORY
+
+NOMAD_VAR_COUNT
+
+NOMAD_VAR_HEALTH_TIMEOUT
+
+NOMAD_VAR_HOSTNAMES
+NOMAD_VAR_PORTS
+
+NOMAD_VAR_PV
+...
+```
+
+
+---
+## Helper repos
+
+<div class="fragment">feature example:</div>
+<div class="fragment">secrets mgmt (consul KV storage)</div>
 
 <div class="fragment">
 https://github.com/internetarchive/cicd
@@ -308,6 +346,30 @@ https://github.com/internetarchive/cicd
 <div class="fragment">
 https://github.com/internetarchive/nomad
 <div>
+
+
+---
+## 🔥 Hot Copy Edits (helper repo feature)
+<div class="fragment">
+Slow loop: edit → commit → push → CI → deploy 😩
+</div><br>
+
+<div class="fragment">
+`nom-cp` — copies file from your laptop<br>
+directly to running container
+</div><br>
+
+<div class="fragment">
+Pair with VSCode "Run on Save" →<br>
+instant gratification every `⌘S`
+</div><br>
+
+<div class="fragment">
+Great for: JS · HTML · static files<br>
+any server with `--watch` mode
+</div>
+
+
 
 
 ---
@@ -346,57 +408,6 @@ nomad run https://internetarchive.github.io/hind/etc/hello-world.hcl
 
 
 ---
-## tl;dr 🥱
-GitHub Action<br>
-- create file `.github/workflows/cicd.yml`
-<div class="fragment">
-  - use your HinD `NOMAD_ADDR`<br>
-  - update `BASE_DOMAIN`
-</div>
-
-- use your HinD `NOMAD_TOKEN`
-<div class="fragment">
-  - [⚙️ Settings > Security > Secrets > Actions > New repository secret](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
-</div>
-
-
----
-## nomad project
-- generic template:
-  [project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
-
-- uses template vars + GitHub CI/CD variables
-
-
----
-## [Customize](https://github.com/internetarchive/nomad#customizing)
-Optional CI/CD vars for
-[project.nomad](https://github.com/internetarchive/nomad/blob/main/project.nomad)
-
-```
-NOMAD_SECRET_MY_WEBHOOK
-NOMAD_SECRET_DATABASE_URL
-
-NOMAD_VAR_CPU
-NOMAD_VAR_MEMORY
-
-NOMAD_VAR_COUNT
-
-NOMAD_VAR_HEALTH_TIMEOUT
-
-NOMAD_VAR_HOSTNAMES
-NOMAD_VAR_PORTS
-
-NOMAD_VAR_PV
-...
-```
-<div class="fragment">
-Add any ☝🏽 to your `cicd.yml`<br>
-([more info](https://github.com/internetarchive/nomad/blob/main/README.md))
-</div>
-
-
----
 ## References
 ### [HinD](https://github.com/internetarchive/hind)
 ### [CI/CD w/ nomad](https://github.com/internetarchive/nomad)
@@ -426,8 +437,8 @@ Add any ☝🏽 to your `cicd.yml`<br>
 ·                                                        ·
 ```
 <center>
-slides: tracey.archive.org
-repo: [gitlab/internetarchive](https://github.com/internetarchive/hind)
+[tracey.archive.org](https://tracey.archive.org)
+[github/internetarchive/hind](https://github.com/internetarchive/hind)
 </center>
 </section>
 
