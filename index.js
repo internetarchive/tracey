@@ -21,7 +21,8 @@ const TALKS = [
   //   [add (derived from 'slug')] slides: 'https://tracey.archive.org/hashiconf',
   //   [drop] slug
   {
-    slug: 'hashitalks-2026',
+    href: 'https://archive.org/details/hind-hashitalks-2026',
+    slides: 'https://tracey.archive.org/hashitalks-2026',
     title: `<a href="https://hashi.co/hashitalks-2026">HashiTalks 2026</a>
     <a style="display:inline" href="https://github.com/internetarchive/hind">HinD</a>: Hashistack-in-Docker - nomad cluster in a single container`,
     img: 'talks26.jpg',
