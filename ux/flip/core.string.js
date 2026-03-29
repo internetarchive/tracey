@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 /**
  * @depends nothing
  * @name core.string
@@ -223,7 +225,7 @@ String.prototype.queryStringToJSON = String.prototype.queryStringToJSON || funct
 				cmd = 'if ( typeof jsonCLOSUREGLOBAL'+path+' === "undefined" ) jsonCLOSUREGLOBAL'+path+' = {}';
 				eval(cmd);
 				json = jsonCLOSUREGLOBAL;
-				delete jsonCLOSUREGLOBAL;
+				jsonCLOSUREGLOBAL = undefined;
 			});
 			// Apply Value
 			jsonCLOSUREGLOBAL = json; // we have made this a global as closure compiler struggles with evals
@@ -231,8 +233,8 @@ String.prototype.queryStringToJSON = String.prototype.queryStringToJSON || funct
 			cmd = 'jsonCLOSUREGLOBAL'+path+' = valueCLOSUREGLOBAL';
 			eval(cmd);
 			json = jsonCLOSUREGLOBAL;
-			delete jsonCLOSUREGLOBAL;
-			delete valueCLOSUREGLOBAL;
+			jsonCLOSUREGLOBAL = undefined;
+			valueCLOSUREGLOBAL = undefined;
 		}
 		// ^ We now have the parts added to your JSON object
 	}

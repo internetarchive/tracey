@@ -14,6 +14,7 @@ Use when you load eveal.js like this, as a CSV list in query
 // Get the currently executing script
 const FLAGS = new URL(document.currentScript.src).search.slice(1).split(',').filter((e) => !!e)
 const BASE = document.currentScript.src.split('?')[0].replace(/\/eveal\.js$/, '/reveal.js/')
+// eslint-disable-next-line no-console
 console.log({ BASE, FLAGS })
 
 // Utility - loads an external JS file and append it to the head
