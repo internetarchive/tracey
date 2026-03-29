@@ -11,12 +11,12 @@
     height: auto;
   }
   #cols {
+    width: max-content; /* KEY! as columns shrink/expand => good; also native l/r scrolling "just works" */
     position: relative;
     white-space: nowrap;
     border-top: 10px solid #333;
     border-bottom: 10px solid #333;
     overflow: visible;
-    width: auto;
     height: auto;
     background-color: #333;
   }
@@ -78,15 +78,8 @@
       </div>
     </div>`
   }
-
-  window.resize = function resize() {
-    const ncols = document.getElementsByClassName('tvcol').length
-    const colW  = document.getElementsByClassName('tvcol')[0].offsetWidth
-    const tvcolMaxW = window.innerWidth * 0.6
-    document.getElementById('cols').style.width = (ncols * colW) + tvcolMaxW
-  }
 </script>
-<body style="border:0; padding:0; margin:0" onload="window.resize()">
+<body style="border:0; padding:0; margin:0">
   <div id="wrap">
     <script>document.write(window.render())
 </script>
