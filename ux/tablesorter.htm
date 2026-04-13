@@ -5,7 +5,7 @@
   </head>
 
   <body class="Unity">
-    <table border="1" class="table table-striped tablesorter">
+    <table border="1" class="table table-striped Tablesort">
       <thead>
         <tr>
           <th>identifier</th>
@@ -29,14 +29,16 @@
     </table>
   </body>
 
+  <style>
+    /* Tablesort column-sort indicators */
+    th[role=columnheader] { cursor: pointer; }
+    th[role=columnheader]::after  { content: '⬘'; opacity: 0.6; font-size: 150%; line-height: 0.9; }
+    th[aria-sort="ascending"]::after  { content: '▲'; opacity: 1; font-size: 100%; line-height: 16px; }
+    th[aria-sort="descending"]::after { content: '▼'; opacity: 1; font-size: 100%; line-height: 16px; }
+  </style>
+
   <script type="module">
-    import $ from 'https://esm.ext.archive.org/jquery@3.6.1'
-
-    window.jQuery = $
-    window.$ = $
-    await import('https://esm.ext.archive.org/tablesorter@2.32.0?deps=jquery@3.6.1')
-
-    $('table.tablesorter').tablesorter({ textExtraction: 'complex' })
+    import Tablesort from 'https://esm.ext.archive.org/tablesort'
+    document.querySelectorAll('table.Tablesort').forEach((t) => new Tablesort(t))
   </script>
-
 </html>
